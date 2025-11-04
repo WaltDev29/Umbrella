@@ -1,0 +1,32 @@
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ccc;
+  background-color: #f8f9fa;
+}
+
+.app-logo {
+  height: 40px;
+  margin-right: 15px;
+}
+
+.app-main {
+  flex-grow: 1;
+  padding: 20px;
+  height: 100%;
+}
+
+.app-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-top: 1px solid #ccc;
+  background-color: #f8f9fa;
+}
