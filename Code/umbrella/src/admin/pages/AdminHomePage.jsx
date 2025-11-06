@@ -22,7 +22,7 @@ function AdminHomePage() {
                 <button onClick={() => moveToDashBoard("UMBRELLA")}>우산 목록</button>
                 <button onClick={() => moveToDashBoard("USER")}>회원 목록</button>
                 <button onClick={() => moveToDashBoard("LOG")}>이용 기록</button>
-                <button onClick={navigate("/update-user-info")}>관리자 계정 정보 수정</button>
+                <button onClick={() => navigate("/update-admin-info")}>관리자 계정 정보 수정</button>
             </div>
             <div>
                 <div>전체 우산 수 : {totalCount}개</div>

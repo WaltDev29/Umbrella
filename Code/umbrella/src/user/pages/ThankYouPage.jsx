@@ -6,10 +6,19 @@ export default function ThankYouPage() {
   const location = useLocation();
   const [countdown, setCountdown] = useState(5);
 
+  // 이전 페이지에서 전달받은 메시지 또는 기본 메시지
+  const message = location.state?.message || '처리가 완료되었습니다.';
+  const prevMode = location.state?.mode || "USER";
+
+  const backToHome = () => {
+      if (prevMode === "ADMIN") navigate("/admin-home");
+      else navigate('/')
+  };
+
   // 5초 뒤에 홈으로 이동하는 타이머 설정
   useEffect(() => {
     const timerId = setTimeout(() => {
-      navigate('/');
+      backToHome();
     }, 5000);
 
     // 1초마다 카운트다운을 업데이트하는 인터벌 설정
@@ -22,14 +31,11 @@ export default function ThankYouPage() {
       clearTimeout(timerId);
       clearInterval(intervalId);
     };
-  }, [navigate]);
-
-  // 이전 페이지에서 전달받은 메시지 또는 기본 메시지
-  const message = location.state?.message || '처리가 완료되었습니다.';
+  }, [navigate, prevMode]);
 
   return (
     <div 
-      onClick={() => navigate('/')} 
+      onClick={backToHome}
       style={{ cursor: 'pointer', height: '100%', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
     >
       <h1>{message}</h1>
