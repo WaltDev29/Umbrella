@@ -6,29 +6,37 @@ function UpdateUmbrellaInfo() {
     const [state, setState] = useState(false);  // 모듈 컨트롤을 위한 state 이름 정해주세요. please.
     const location = useLocation();
     const mode = location.state?.mode || null;
-    const item = location.state?.selectedItem || null;
+    const item = location.state?.selectedItem || null;  // dashboard에서 선택한 우산 정보
 
-    const title = mode == "INSERT" ? "등록" :
-        mode == "UPDATE" ? "상태 변경" :
-            mode == "DELETE" ? "삭제" : "ERROR"
+    // 선택된 우산 정보 state에 따라 문자열 할당
+    const titleMap = {
+        "INSERT": "등록",
+        "UPDATE": "상태 변경",
+        "DELETE": "삭제"
+    }
+    const sortMap = {
+        "L": "장우산",
+        "S": "단우산"
+    }
+    const statMap = {
+        "R": "대여중",
+        "B": "고장",
+        "L": "분실"
+    }
+    const title = titleMap[mode] || "ERROR"
+    const itemSort = sortMap[item?.sort] || "ERROR"
+    const itemStat = statMap[item?.stat] || "ERROR"
 
-    const itemSort = item?.sort == "L" ?
-        "장우산" :
-        item?.sort == "S" ?
-            "단우산" : "ERROR";
-
-    const itemStat = item?.stat == "R" ? "대여중" :
-        item?.stat == "B" ? "고장" :
-            item?.stat == "L" ? "분실" :
-                "ERROR";
 
     const newItemId = "UMB-12346"
+
 
     const handleSubmit = e => {
         e.preventDefault();
         setState(true);
     }
 
+    // CheckUpdateInfoPage 모듈에서 취소버튼 눌렀을 시 돌아오도록 하기 위한 함수
     const handleCancel = () => {
         setState(false)
     }
@@ -40,7 +48,7 @@ function UpdateUmbrellaInfo() {
                 <form onSubmit={handleSubmit}>
                     <h1>우산 {title}</h1>
                     <div>우산 번호 : {item?.id || newItemId}</div>
-                    {mode == "INSERT" &&
+                    {mode === "INSERT" &&
                         <div>
                             <span>우산 종류</span>
                             <select name="" id="">
@@ -50,7 +58,7 @@ function UpdateUmbrellaInfo() {
                         </div>
                     }
 
-                    {mode == "UPDATE" &&
+                    {mode === "UPDATE" &&
                         <div>
                             <div>우산 종류 : {itemSort}</div>
                             <span>우산 상태</span>
@@ -62,7 +70,7 @@ function UpdateUmbrellaInfo() {
                         </div>
                     }
 
-                    {mode == "DELETE" &&
+                    {mode === "DELETE" &&
                         <div>
                             <div>우산 종류 : {itemSort}</div>
                             <div>우산 상태 : {itemStat}</div>

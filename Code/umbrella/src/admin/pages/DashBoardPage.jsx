@@ -5,25 +5,19 @@ function DashBoardPage() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const dummyItem = {
-        "id": "UMB-12345",
-        "sort": "L",
-        "stat": "B"
-    }
-
-    const [selectedItem, setSelectedItem] = useState(dummyItem);
+    const [selectedItem, setSelectedItem] = useState(null); // 선택한 우산 state
 
     const mode = location.state?.mode || "오류";
-    const title = mode == "UMBRELLA" ? "우산 목록"
-        : mode == "USER" ? "회원 목록"
+    const title = mode === "UMBRELLA" ? "우산 목록"
+        : mode === "USER" ? "회원 목록"
             : "이용 기록"
 
-    const columns = mode == "UMBRELLA" ? ["ID", "우산종류", "우산상태", "생성일시", "최종수정일"] :
-        mode == "USER" ? ["ID", "전화번호", "비밀번호", "생성일시"] :
-            mode == "LOG" ? ["ID", "구분", "우산", "회원", "생성일시"] : null;
+    const columns = mode === "UMBRELLA" ? ["ID", "우산종류", "우산상태", "생성일시", "최종수정일"] :
+        mode === "USER" ? ["ID", "전화번호", "비밀번호", "생성일시"] :
+            mode === "LOG" ? ["ID", "구분", "우산", "회원", "생성일시"] : null;
 
     // 이거 DB에서 불러온 정보라고 가정함. 우산 정보만 했음.
-    const [data, setData] = useState([
+    const [datas, setdatas] = useState([
         {
             id: "UMB-12345",
             sort: "L",
@@ -47,6 +41,7 @@ function DashBoardPage() {
         }
     ])
 
+    // 더미데이터
     useEffect(() => {
         const DummyUmbrellaDatas = [{
             id: "UMB-12345",
@@ -111,15 +106,15 @@ function DashBoardPage() {
                 createdAt: "2025-11-04"
             }]
 
-        let datas = mode == "UMBRELLA" ? DummyUmbrellaDatas :
-            mode == "USER" ? DummyUseraDatas :
+        let datas = mode === "UMBRELLA" ? DummyUmbrellaDatas :
+            mode === "USER" ? DummyUseraDatas :
                 DummyLogDatas
-        setData(datas);
+        setdatas(datas);
 
     }, [mode]);
 
     const handleUmbrellaEdit = mode => {
-        if (mode == "INSERT") navigate("/update-umbrella-info", {state: {mode: mode, selectedItem: null}});
+        if (mode === "INSERT") navigate("/update-umbrella-info", {state: {mode: mode, selectedItem: null}});
         else navigate("/update-umbrella-info", {state: {mode: mode, selectedItem: selectedItem}});
     }
 
@@ -170,20 +165,22 @@ function DashBoardPage() {
             direction = "desc";
         }
 
-        const sortedData = [...data].sort((a, b) => {
+        // GPT 코드인데 아직 분석 안 해서 잘 모름.
+        const sortedData = [...datas].sort((a, b) => {
             if (a[key] < b[key]) return direction === "asc" ? -1 : 1;
             if (a[key] > b[key]) return direction === "asc" ? 1 : -1;
             return 0;
         });
 
-        setData(sortedData);
+        setdatas(sortedData);
         setSortConfig({key, direction, column});
     };
+
 
     return (
         <div>
             <h1>{title}</h1>
-            {mode == "UMBRELLA" &&
+            {mode === "UMBRELLA" &&
                 <div>
                     <button onClick={() => handleUmbrellaEdit("INSERT")}>우산 등록</button>
                     <button onClick={() => handleUmbrellaEdit("UPDATE")}>우산 상태 수정</button>
@@ -221,23 +218,23 @@ function DashBoardPage() {
                     })}
                     </thead>
                     <tbody>
-                    {data.map(data => (
-                        mode == "UMBRELLA" ?
-                            (<tr key={data.id}>
+                    {datas.map(data => (
+                        mode === "UMBRELLA" ?
+                            (<tr key={data.id} onClick={() => setSelectedItem(data)}>
                                 <td>{data.id}</td>
                                 <td>{data.sort}</td>
                                 <td>{data.stat}</td>
                                 <td>{data.createdAt}</td>
                                 <td>{data.updatedAt}</td>
                             </tr>)
-                            : mode == "USER" ?
-                                (<tr key={data.id}>
+                            : mode === "USER" ?
+                                (<tr key={data.id} onClick={() => setSelectedItem(data)}>
                                     <td>{data.id}</td>
                                     <td>{data.phoneNum}</td>
                                     <td>{data.password}</td>
                                     <td>{data.createdAt}</td>
                                 </tr>)
-                                : (<tr key={data.id}>
+                                : (<tr key={data.id} onClick={() => setSelectedItem(data)}>
                                     <td>{data.id}</td>
                                     <td>{data.sort}</td>
                                     <td>{data.umbId}</td>
