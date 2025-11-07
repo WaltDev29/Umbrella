@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function UserRegisterPage() {
@@ -6,10 +6,7 @@ export default function UserRegisterPage() {
   const location = useLocation();
   
   // mode: 'RENTAL', 'RETURN', 'LOST' 중 하나
-  const mode = location.state?.mode || 'RENTAL'; 
-  
-  // 반납/분실 신고 시, 로그인 상태를 관리하는 state
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const mode = location.state?.mode || 'RENTAL';
 
   // 더미 데이터
   const mockRentalInfo = {
@@ -43,50 +40,30 @@ export default function UserRegisterPage() {
   const handleLogin = () => {
     // 로그인 성공 처리 (가정)
     console.log('사용자 로그인 성공');
-    setIsLoggedIn(true);
+    navigate('/rental-info', {
+      state: {
+        mode: mode, // 'RETURN' or 'LOST'
+        umbrellaType: mockRentalInfo.umbrellaType,
+        uniqueId: mockRentalInfo.uniqueId,
+        dueDate: mockRentalInfo.dueDate,
+      },
+    });
   };
 
-  const handleReturn = () => {
-    navigate('/complete', { state: { message: '반납이 완료되었습니다.' } });
-  };
-
-  const handleLost = () => {
-    navigate('/complete', { state: { message: '분실 신고가 완료되었습니다.' } });
-  };
-
-  // 로그인 상태와 모드에 따라 동적으로 제목 결정
-  const title = !isLoggedIn
-    ? '사용자 정보 입력'
-    : mode === 'RETURN'
-    ? '반납 요청'
-    : '분실 신고';
+  const title = mode === 'RETURN' ? '반납 요청' : '분실 신고';
 
   return (
     <div>
       <h1>{title}</h1>
-      
-      {!isLoggedIn ? (
-        // 로그인 전
-        <>
-          <label>전화번호:</label> <input type="tel" />
-          <br />
-          <label>비밀번호:</label> <input type="password" />
-          <br />
-          <button onClick={handleLogin}>입력</button>
-        </>
-      ) : (
-        // 로그인 후
-        <>
-          <h3>대여 정보</h3>
-          <p>우산 종류: {mockRentalInfo.umbrellaType}</p>
-          <p>고유 번호: {mockRentalInfo.uniqueId}</p>
-          <p>반납 기한: {mockRentalInfo.dueDate}</p>
-          
-          {/* mode에 따라 다른 최종 버튼 표시 */}
-          {mode === 'RETURN' && <button onClick={handleReturn}>반납</button>}
-          {mode === 'LOST' && <button onClick={handleLost}>분실 신고</button>}
-        </>
-      )}
+
+      {/* 로그인 전 */}
+      <>
+        <label>전화번호:</label> <input type="tel" />
+        <br />
+        <label>비밀번호:</label> <input type="password" />
+        <br />
+        <button onClick={handleLogin}>입력</button>
+      </>
     </div>
   );
 }
