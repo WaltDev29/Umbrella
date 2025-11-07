@@ -10,6 +10,7 @@ function DashBoardPage() {
         "sort": "L",
         "stat": "B"
     }
+
     const [selectedItem, setSelectedItem] = useState(dummyItem);
 
     const mode = location.state?.mode || "오류";

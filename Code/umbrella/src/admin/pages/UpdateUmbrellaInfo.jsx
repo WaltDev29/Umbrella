@@ -1,10 +1,9 @@
 import React, {useState} from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import CheckUpdateInfoPage from "./CheckUpdateInfoPage";
 
 function UpdateUmbrellaInfo() {
-    const [state, setState] = useState(false);
-    const navigate = useNavigate();
+    const [state, setState] = useState(false);  // 모듈 컨트롤을 위한 state 이름 정해주세요. please.
     const location = useLocation();
     const mode = location.state?.mode || null;
     const item = location.state?.selectedItem || null;
@@ -15,12 +14,12 @@ function UpdateUmbrellaInfo() {
 
     const itemSort = item?.sort == "L" ?
         "장우산" :
-        item?.sort == "L" ?
+        item?.sort == "S" ?
             "단우산" : "ERROR";
 
-    const itemStat = item?.sort == "R" ? "대여중" :
-        item?.sort == "B" ? "고장" :
-            item?.sort == "L" ? "분실" :
+    const itemStat = item?.stat == "R" ? "대여중" :
+        item?.stat == "B" ? "고장" :
+            item?.stat == "L" ? "분실" :
                 "ERROR";
 
     const newItemId = "UMB-12346"
@@ -34,6 +33,7 @@ function UpdateUmbrellaInfo() {
         setState(false)
     }
 
+    // 이 안에 조건부 렌더링 되는 부분 컴포넌트로 분리하는 거 고려해주세요.
     return (
         <div>
             {!state &&
