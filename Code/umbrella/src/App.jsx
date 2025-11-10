@@ -1,11 +1,8 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Layout from './Layout.jsx';
 import HomePage from './user/pages/HomePage.jsx';
-import UserRegisterPage from './user/pages/UserRegisterPage.jsx';
-import UmbrellaSelectPage from './user/pages/UmbrellaSelectPage.jsx';
-import RentalInfoPage from './user/pages/RentalInfoPage.jsx';
-import ReportPage from './user/pages/ReportPage.jsx';
-import ThankYouPage from './user/pages/ThankYouPage.jsx';
+import Components from './user/pages/Components';
+import Render from './user/pages/Render'
 
 import AdminLogInPage from "./admin/pages/AdminLogInPage";
 import AdminHomePage from "./admin/pages/AdminHomePage";
@@ -19,11 +16,6 @@ function App() {
             <Routes>
                 <Route path="/" element={<Layout/>}>
                     <Route index element={<HomePage/>}/>
-                    <Route path="user-register" element={<UserRegisterPage/>}/>
-                    <Route path="select" element={<UmbrellaSelectPage/>}/>
-                    <Route path="rental-info" element={<RentalInfoPage/>}/>
-                    <Route path="report" element={<ReportPage/>}/>
-                    <Route path="complete" element={<ThankYouPage/>}/>
                     <Route path="login" element={<AdminLogInPage/>}/>
                     <Route path="admin-home" element={<AdminHomePage/>}/>
                     <Route path="dashboard" element={<DashBoardPage/>}/>

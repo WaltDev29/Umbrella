@@ -1,22 +1,22 @@
-import React from 'react';
-import {useNavigate} from 'react-router-dom';
+import React, { useReducer, useEffect } from 'react';
+// Render.jsx에서 리듀서 로직과 초기 상태를 가져옵니다.
+import { initialState, umbrellaReducer } from "./Render";
+// Components.jsx에서 모든 하위 컴포넌트와 렌더러 함수를 가져옵니다.
+import { Header, Footer, Render } from "./Components";
 
-export default function HomePage() {
-    const navigate = useNavigate();
+// 최상위 부모 컴포넌트
+function HomePage() {
+    const [state, dispatch] = useReducer(umbrellaReducer, initialState);
 
     return (
         <div>
-            <h1>우산 대여 서비스</h1>
-            {/* 각 버튼은 'mode'라는 state를 UserRegisterPage로 전달 */}
-            <button onClick={() => navigate('/user-register', {state: {mode: 'RENTAL'}})}>대여</button>
-            <br/>
-            <button onClick={() => navigate('/user-register', {state: {mode: 'RETURN'}})}>반납</button>
-            <br/>
-            <button onClick={() => navigate('/user-register', {state: {mode: 'LOST'}})}>분실 신고</button>
-            <br/>
-            <button onClick={() => navigate('/report')}>고장 신고</button>
-            <br/>
-            <button onClick={() => navigate('/login')}>관리자모드</button>
+            <Header />
+            <div>
+                {Render(state.currentStep, dispatch, state)}
+            </div>
+            <Footer dispatch={dispatch} />
         </div>
     );
 }
+
+export default HomePage;
