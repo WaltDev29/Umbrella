@@ -22,23 +22,22 @@ function KioskStartPage() {
 
     return (
         <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',margin: 0, padding: 0 }}>
-
+           {/*<div>*/}
             <div
                 onClick={handleAdminTap}
                 style={{
                     position: 'absolute',
                     top: 0,
                     left: 0,
-                    width: '10%',
-                    height: '10%',
-                    backgroundColor: 'transparent',
+                    width: '100%',
+                    height: '20%',
+                    backgroundColor: 'red', //'transparent',
                     zIndex: 10,
                 }}
             />
 
             <h1>키오스크 시작 화면</h1>
             <button onClick={handleStart}>시작하기</button>
-
         </div>
     );
 }
