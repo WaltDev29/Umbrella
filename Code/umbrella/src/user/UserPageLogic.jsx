@@ -1,5 +1,3 @@
-import React from 'react';
-
 // =========================================================================
 // 1. 더미 데이터
 // =========================================================================
@@ -21,21 +19,23 @@ export const UMBRELLAS = [
 ];
 
 // =========================================================================
-// 2. useReducer 정의
+// 2. Initial State
 // =========================================================================
-
 export const initialState = {
     currentStep: 'USER_HOME',
+    stepHistory: ['USER_HOME'],  // 방문한 화면 히스토리
     userInfo: { phone: '', password: '', passwordConfirm: '' },
-    selectedUmbrella: null, // 선택한 우산 타입 (LONG/SHORT)
-    selectedUmbrellaID: null, // 확정된 우산 고유 ID (U001 등)
+    selectedUmbrella: null,
+    selectedUmbrellaID: null,
     rentalMode: null,
     reportInfo: { umbrellaID: '' },
     error: null,
 };
 
-// 대여 가능한 우산 중 랜덤 ID 선택
-const getRandomAvailableUmbrella = (type) => {
+// =========================================================================
+// 3. 유틸 함수
+// =========================================================================
+export const getRandomAvailableUmbrella = (type) => {
     const availableUmbrellas = UMBRELLAS.filter(u =>
         u.type === (type === 'LONG' ? '장우산' : '단우산') && u.status === '대여가능'
     );
@@ -46,27 +46,84 @@ const getRandomAvailableUmbrella = (type) => {
     return availableUmbrellas[randomIndex].id;
 };
 
+export const getPreviousStep = (history) => {
+    if (history.length <= 1) return 'USER_HOME';
+    return history[history.length - 2];
+};
 
+// =========================================================================
+// 4. Reducer
+// =========================================================================
 export function umbrellaReducer(state, action) {
     switch (action.type) {
         // 1. 내비게이션 및 리셋
         case 'NAVIGATE':
-            return { ...state, currentStep: action.payload, error: null };
+            return {
+                ...state,
+                currentStep: action.payload,
+                stepHistory: [...state.stepHistory, action.payload],
+                error: null
+            };
+
+        case 'GO_BACK':
+            const previousStep = getPreviousStep(state.stepHistory);
+            return {
+                ...state,
+                currentStep: previousStep,
+                stepHistory: state.stepHistory.slice(0, -1),
+                error: null
+            };
+
         case 'RESET':
-            // selectedUmbrellaID 포함하여 초기화
-            return { ...initialState, currentStep: 'USER_HOME' };
+            return { ...initialState, currentStep: 'USER_HOME', stepHistory: ['USER_HOME'] };
+
         case 'SET_ERROR':
             return { ...state, error: action.payload };
 
-        // 2. 초기 모드 설정 (UserHome에서 시작)
+        // 2. 초기 모드 설정
         case 'START_BORROW':
-            return { ...state, rentalMode: 'BORROW', currentStep: 'USER_INFO', error: null, userInfo: initialState.userInfo, selectedUmbrellaID: null };
+            return {
+                ...state,
+                rentalMode: 'BORROW',
+                currentStep: 'USER_INFO',
+                stepHistory: [...state.stepHistory, 'USER_INFO'],
+                error: null,
+                userInfo: initialState.userInfo,
+                selectedUmbrellaID: null
+            };
+
         case 'START_RETURN':
-            return { ...state, rentalMode: 'RETURN', currentStep: 'USER_INFO', error: null, userInfo: initialState.userInfo, selectedUmbrellaID: null };
+            return {
+                ...state,
+                rentalMode: 'RETURN',
+                currentStep: 'USER_INFO',
+                stepHistory: [...state.stepHistory, 'USER_INFO'],
+                error: null,
+                userInfo: initialState.userInfo,
+                selectedUmbrellaID: null
+            };
+
         case 'START_LOST_REPORT':
-            return { ...state, rentalMode: 'LOST_REPORT', currentStep: 'USER_INFO', error: null, userInfo: initialState.userInfo, selectedUmbrellaID: null };
+            return {
+                ...state,
+                rentalMode: 'LOST_REPORT',
+                currentStep: 'USER_INFO',
+                stepHistory: [...state.stepHistory, 'USER_INFO'],
+                error: null,
+                userInfo: initialState.userInfo,
+                selectedUmbrellaID: null
+            };
+
         case 'START_DEFECT_REPORT':
-            return { ...state, rentalMode: 'DEFECT_REPORT', currentStep: 'DEFECT_REPORT_INFO', error: null, reportInfo: initialState.reportInfo, selectedUmbrellaID: null };
+            return {
+                ...state,
+                rentalMode: 'DEFECT_REPORT',
+                currentStep: 'DEFECT_REPORT_INFO',
+                stepHistory: [...state.stepHistory, 'DEFECT_REPORT_INFO'],
+                error: null,
+                reportInfo: initialState.reportInfo,
+                selectedUmbrellaID: null
+            };
 
         // 3. 사용자 정보 입력 단계
         case 'SET_USER_INFO':
@@ -74,16 +131,31 @@ export function umbrellaReducer(state, action) {
 
         case 'USER_AUTH_SUCCESS':
             if (state.rentalMode === 'BORROW') {
-                return { ...state, currentStep: 'UMBRELLA_SELECT', error: null };
+                return {
+                    ...state,
+                    currentStep: 'UMBRELLA_SELECT',
+                    stepHistory: [...state.stepHistory, 'UMBRELLA_SELECT'],
+                    error: null
+                };
             }
-            return { ...state, currentStep: 'CONFIRM_RENTAL_MODAL', error: null };
+            return {
+                ...state,
+                currentStep: 'CONFIRM_RENTAL_MODAL',
+                stepHistory: [...state.stepHistory, 'CONFIRM_RENTAL_MODAL'],
+                error: null
+            };
 
         // 4. 고장신고 상세 정보 입력 단계
         case 'SET_REPORT_INFO':
             return { ...state, reportInfo: action.payload };
 
         case 'CONFIRM_REPORT_SUCCESS':
-            return { ...state, currentStep: 'THANKS', error: null };
+            return {
+                ...state,
+                currentStep: 'THANKS',
+                stepHistory: [...state.stepHistory, 'THANKS'],
+                error: null
+            };
 
         // 5. 우산 선택 및 확정
         case 'SELECT_UMBRELLA': {
@@ -105,12 +177,18 @@ export function umbrellaReducer(state, action) {
                 selectedUmbrella: selectedType,
                 selectedUmbrellaID: selectedID,
                 currentStep: 'CONFIRM_RENTAL_MODAL',
+                stepHistory: [...state.stepHistory, 'CONFIRM_RENTAL_MODAL'],
                 error: null,
             };
         }
 
         case 'CONFIRM_RENTAL_FINAL':
-            return { ...state, currentStep: 'THANKS', error: null };
+            return {
+                ...state,
+                currentStep: 'THANKS',
+                stepHistory: [...state.stepHistory, 'THANKS'],
+                error: null
+            };
 
         default:
             return state;
