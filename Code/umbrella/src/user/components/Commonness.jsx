@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export function Buttons(props) {
     return (
@@ -26,6 +27,13 @@ export function Header() {
 }
 
 export function Footer({ dispatch, canGoBack }) {
+    const navigate = useNavigate();
+
+    const handleHome = () => {
+        dispatch({ type: 'RESET' });
+        navigate('/');
+    };
+
     return (
         <div>
             <Buttons
@@ -34,7 +42,7 @@ export function Footer({ dispatch, canGoBack }) {
             >
                 이전
             </Buttons>
-            <Buttons onClick={() => dispatch({ type: 'RESET' })}>홈</Buttons>
+            <Buttons onClick={handleHome}>홈</Buttons>
         </div>
     );
 }

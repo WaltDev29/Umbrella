@@ -10,7 +10,6 @@ import { Thanks } from './components/Thanks';
 function UserHomePage() {
     const [state, dispatch] = useReducer(umbrellaReducer, initialState);
 
-    //뒤로가기 비활성화
     const canGoBack = state.currentStep !== 'USER_HOME' && state.currentStep !== 'THANKS';
 
     const renderCurrentStep = () => {
@@ -51,10 +50,11 @@ function UserHomePage() {
 
     return (
         <div>
-            <Header />
             <div>
                 {renderCurrentStep()}
             </div>
+
+            {/* UserHomePage만의 푸터 */}
             <Footer dispatch={dispatch} canGoBack={canGoBack} />
         </div>
     );

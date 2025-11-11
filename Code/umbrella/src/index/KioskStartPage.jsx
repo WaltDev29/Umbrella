@@ -22,7 +22,6 @@ function KioskStartPage() {
 
     return (
         <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',margin: 0, padding: 0 }}>
-           {/*<div>*/}
             <div
                 onClick={handleAdminTap}
                 style={{
