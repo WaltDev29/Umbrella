@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet, useNavigate, Link, useLocation } from 'react-router-dom';
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import './Layout.css';
 
 export default function Layout() {
