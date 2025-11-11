@@ -7,14 +7,14 @@ function DashBoardPage() {
 
     const [selectedItem, setSelectedItem] = useState(null); // 선택한 우산 state
 
-    const mode = location.state?.mode || "오류";
+    const mode = location.state?.mode || "UMBRELLA";  // ← "오류" → "UMBRELLA"
     const title = mode === "UMBRELLA" ? "우산 목록"
         : mode === "USER" ? "회원 목록"
             : "이용 기록"
 
     const columns = mode === "UMBRELLA" ? ["ID", "우산종류", "우산상태", "생성일시", "최종수정일"] :
         mode === "USER" ? ["ID", "전화번호", "비밀번호", "생성일시"] :
-            mode === "LOG" ? ["ID", "구분", "우산", "회원", "생성일시"] : null;
+            mode === "LOG" ? ["ID", "구분", "우산", "회원", "생성일시"] : [];  // ← null → []
 
     // 이거 DB에서 불러온 정보라고 가정함. 우산 정보만 했음.
     const [datas, setdatas] = useState([
