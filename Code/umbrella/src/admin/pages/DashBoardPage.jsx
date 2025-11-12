@@ -190,32 +190,34 @@ function DashBoardPage() {
             <div>
                 <table>
                     <thead>
-                    {columns.map(column => {
-                        return (
-                            <th key={column}>
-                                {column === "우산종류" ?
-                                    (<select>
-                                        <option value="ALL">{column}</option>
-                                        <option value="L">L</option>
-                                        <option value="S">S</option>
-                                    </select>)
-                                    : column === "구분" ?
+                    <tr>
+                        {columns.map(column => {
+                            return (
+                                <th key={column}>
+                                    {column === "우산종류" ?
                                         (<select>
                                             <option value="ALL">{column}</option>
-                                            <option value="RENTAL">대여</option>
-                                            <option value="RETURN">반납</option>
-                                            <option value="BROKEN">고장</option>
-                                            <option value="LOST">분실</option>
+                                            <option value="L">L</option>
+                                            <option value="S">S</option>
                                         </select>)
-                                        : (<button onClick={() => handleColClick(column)}>
-                                            {column}
-                                            {sortConfig.column === column &&
-                                                (sortConfig.direction === "asc" ? " ▲" : " ▼")}
-                                        </button>)
-                                }
-                            </th>
-                        )
-                    })}
+                                        : column === "구분" ?
+                                            (<select>
+                                                <option value="ALL">{column}</option>
+                                                <option value="RENTAL">대여</option>
+                                                <option value="RETURN">반납</option>
+                                                <option value="BROKEN">고장</option>
+                                                <option value="LOST">분실</option>
+                                            </select>)
+                                            : (<button onClick={() => handleColClick(column)}>
+                                                {column}
+                                                {sortConfig.column === column &&
+                                                    (sortConfig.direction === "asc" ? " ▲" : " ▼")}
+                                            </button>)
+                                    }
+                                </th>
+                            )
+                        })}
+                    </tr>
                     </thead>
                     <tbody>
                     {datas.map(data => (
