@@ -7,6 +7,7 @@ export default function Layout() {
     const location = useLocation();
 
     const isHomePage = location.pathname === '/';
+    const isIndexPage = location.pathname === '/';
 
     // 사용자 페이지 경로 체크
     const isUserPage = location.pathname === '/userhomepage';
@@ -23,7 +24,7 @@ export default function Layout() {
             </main>
 
             {/* 사용자 페이지가 아닐 때만 기본 푸터 표시 */}
-            {!isUserPage && (
+            {!isUserPage && !isIndexPage &&(
                 <footer className="app-footer">
                     <button onClick={() => navigate('/')}>홈</button>
                     <button onClick={() => navigate(-1)} disabled={isHomePage}>뒤로가기</button>
