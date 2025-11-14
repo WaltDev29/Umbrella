@@ -4,6 +4,7 @@ import { checkAllUmbrellas, checkUmbrellaById, createUmbrella } from '../view/Um
 import Umbrellas from '../../database/entity/Umbrellas';
 import { checkAllHistorys, checkHistoryByUmbrellaId, checkHistoryByUserId } from '../view/HistorysView';
 import Historys from '../../database/entity/Historys';
+import {checkAllManagers} from "../view/ManagersView";
 
 //==================== 1. User 로직 ====================
 // 인증 컨트롤러: 전화번호와 비밀번호로 사용자 인증
@@ -42,7 +43,7 @@ export async function getUmbrellaListController() {
 // 단일 우산 반환
 export async function getUmbrellaByIdController(umbrella_id) {
     const umbrellas = await checkUmbrellaById(umbrella_id);
-    if (!umbrella) return { success: false, error: '존재하지 않는 우산입니다.' };
+    if (!umbrellas) return { success: false, error: '존재하지 않는 우산입니다.' };
     return { success: true, umbrellas };
 }
 // 등록
@@ -84,5 +85,15 @@ export async function getHistoryByUserController(user_id) {
         return { success: true, historys };
     } catch (err) {
         return { success: false, error: '해당 사용자 이력 불러오기 실패' };
+    }
+}
+
+// ==================== 4. Managers 로직 ====================
+export async function getManagerListController(){
+    try {
+        const managers = await checkAllManagers();
+        return { success: true, managers };
+    } catch (err) {
+        return { success: false, error: '관리자 목록 불러오기 실패' };
     }
 }
