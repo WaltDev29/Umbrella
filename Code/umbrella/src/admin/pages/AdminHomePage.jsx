@@ -12,7 +12,7 @@ function AdminHomePage() {
     const todayUserCount = 5;
 
     const moveToDashBoard = mode => {
-        navigate("/dashboard", {state : {mode : [mode]}});
+        navigate("/dashboard", {state : {mode : mode}});
     }
 
     return (
