@@ -1,63 +1,127 @@
 import React from 'react';
 import { Buttons, ErrorDisplay } from './Commonness';
-import { UMBRELLAS } from '../UserPageLogic';
 
 export function ConfirmRental({ dispatch, state }) {
-    const { rentalMode, selectedUmbrella, selectedUmbrellaID, userInfo } = state;
+    const { cache } = state;
+    const { userInfo, rentalMode, selectedUmbrellaID, selectedUmbrellaData } = cache;
+    const [isProcessing, setIsProcessing] = React.useState(false);
 
-    const userUmbrella = UMBRELLAS.find(u => u.currentUserPhone === userInfo.phone && u.status === '대여중');
+    const handleConfirm = async () => {
+        setIsProcessing(true);
+        dispatch({ type: 'SET_LOADING', payload: true });
 
-    const titleMap = { BORROW: '대여 정보 확정', RETURN: '반납 정보 확인', LOST_REPORT: '분실 신고 확정' };
-    const confirmText = { BORROW: '대여 실행', RETURN: '반납 완료', LOST_REPORT: '분실 신고' };
+        try {
+            let endpoint = '';
+            let body = {};
 
-    if ((rentalMode === 'RETURN' || rentalMode === 'LOST_REPORT') && !userUmbrella) {
-        return (
-            <div>
-                <ErrorDisplay message="고객님께서 대여 중인 우산 정보가 없습니다." />
-                <Buttons onClick={() => dispatch({ type: 'NAVIGATE', payload: 'USER_HOME' })}>홈으로</Buttons>
-            </div>
-        );
-    }
+            // 엔드포인트와 바디 설정
+            switch (rentalMode) {
+                case 'BORROW':
+                    endpoint = 'http://localhost:5000/api/umbrellas/borrow';
+                    body = { user_id: userInfo.user_id, umbrella_id: selectedUmbrellaID };
+                    break;
 
-    const displayUmbrellaID = selectedUmbrellaID || 'ID 확인 불가';
-    const isBorrowError = rentalMode === 'BORROW' && !selectedUmbrellaID;
+                case 'RETURN':
+                    endpoint = 'http://localhost:5000/api/umbrellas/return';
+                    body = { user_id: userInfo.user_id, umbrella_id: selectedUmbrellaID };
+                    break;
 
-    const handleConfirm = () => {
-        if (isBorrowError) {
-            dispatch({ type: 'SET_ERROR', payload: '오류가 발생했습니다. 다시 시도해 주세요.' });
-            return;
+                case 'LOST_REPORT':
+                    endpoint = 'http://localhost:5000/api/umbrellas/loss-report';
+                    body = { user_id: userInfo.user_id, umbrella_id: selectedUmbrellaID };
+                    break;
+
+                case 'DEFECT_REPORT':
+                    endpoint = 'http://localhost:5000/api/umbrellas/defect-report';
+                    body = { phone: userInfo.phone, umbrella_id: selectedUmbrellaID };
+                    break;
+
+                default:
+                    throw new Error('알 수 없는 요청');
+            }
+
+            // API 호출
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                dispatch({ type: 'SET_ERROR', payload: data.message || '처리 실패' });
+                setIsProcessing(false);
+                dispatch({ type: 'SET_LOADING', payload: false });
+                return;
+            }
+
+            // 성공 → 완료 페이지로
+            dispatch({ type: 'NAVIGATE', payload: 'THANKS' });
+
+        } catch (error) {
+            console.error('에러:', error);
+            dispatch({ type: 'SET_ERROR', payload: '처리 중 오류 발생' });
+            setIsProcessing(false);
+            dispatch({ type: 'SET_LOADING', payload: false });
+        } finally {
+            setIsProcessing(false);
+            dispatch({ type: 'SET_LOADING', payload: false });
         }
-        console.log(`[${confirmText[rentalMode]}] 성공적으로 처리되었습니다. 우산 ID: ${displayUmbrellaID}`);
-        dispatch({ type: 'CONFIRM_RENTAL_FINAL' });
-    }
+    };
+
+    const modeLabel = {
+        'BORROW': '대여',
+        'RETURN': '반납',
+        'LOST_REPORT': '분실 신고',
+        'DEFECT_REPORT': '고장 신고'
+    }[rentalMode];
 
     return (
-        <div>
-            <h2>{titleMap[rentalMode]}</h2>
+        <div className="confirm-rental">
+            <h2>{modeLabel} 정보 확인</h2>
             <ErrorDisplay message={state.error} />
 
-            {rentalMode === 'BORROW' && (
-                <div>
-                    <h3>대여하실 우산 정보</h3>
-                    <p>우산 종류: {selectedUmbrella === 'LONG' ? '장우산' : '단우산'}</p>
-                    <p>우산 고유 번호: {displayUmbrellaID}</p>
-                    <p>우산 보관함에서 {displayUmbrellaID} 번호의 우산을 찾아 대여해주세요.</p>
+            <div className="confirm-details">
+                <div className="detail-item">
+                    <span className="label">종류:</span>
+                    <span className="value">
+            {selectedUmbrellaData?.umbrella_type === 'L' ? '장우산' : '단우산'}
+          </span>
                 </div>
-            )}
 
-            {(rentalMode === 'RETURN' || rentalMode === 'LOST_REPORT') && (
-                <div>
-                    <h3>고객님이 대여하신 우산</h3>
-                    <p>우산 번호: {userUmbrella?.id || '없음'}</p>
-                    <p>우산 종류: {userUmbrella?.type}</p>
-                    <p>반납 기한: (더미데이터에 없음)</p>
+                <div className="detail-item">
+                    <span className="label">우산 번호:</span>
+                    <span className="value">{selectedUmbrellaID}</span>
                 </div>
-            )}
 
-            <p>전화번호: {userInfo.phone}</p>
-            <Buttons onClick={handleConfirm} disabled={isBorrowError}>
-                {confirmText[rentalMode]}
-            </Buttons>
+                <div className="detail-item">
+                    <span className="label">전화번호:</span>
+                    <span className="value">
+            {userInfo.phone.slice(0, 3)}****{userInfo.phone.slice(-4)}
+          </span>
+                </div>
+
+                <p className="warning">위 정보가 맞으신가요?</p>
+            </div>
+
+            <div className="buttons">
+                <Buttons
+                    onClick={handleConfirm}
+                    disabled={isProcessing}
+                    className="confirm-btn"
+                >
+                    {isProcessing ? '처리 중...' : '확정'}
+                </Buttons>
+
+                <Buttons
+                    onClick={() => dispatch({ type: 'GO_BACK' })}
+                    disabled={isProcessing}
+                    className="back-btn"
+                >
+                    돌아가기
+                </Buttons>
+            </div>
         </div>
     );
 }

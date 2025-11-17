@@ -97,3 +97,134 @@ export async function getManagerListController(){
         return { success: false, error: '관리자 목록 불러오기 실패' };
     }
 }
+
+// ==================== 대여 ====================
+export async function BorrowCheckController(phone, password) {
+    try {
+        // 1. 기존 사용자 확인
+        let user = await checkUserByTelAndPw(phone, password);
+
+        if (user) {
+            // 대여중인 우산 확인
+            const borrowedUmbrella = await checkBorrowedUmbrella(user.user_id);
+
+            if (borrowedUmbrella) {
+                return {
+                    valid: true,
+                    hasActiveLoan: true,
+                    message: '반납 후 이용해주세요.'
+                };
+            }
+
+            return {
+                valid: true,
+                hasActiveLoan: false,
+                isNewUser: false,
+                user: user
+            };
+        }
+
+        // 2. 신규 사용자 → 자동 등록
+        user = await createUser(phone, password);
+        return {
+            valid: true,
+            hasActiveLoan: false,
+            isNewUser: true,
+            user: user
+        };
+
+    } catch (error) {
+        return { valid: false, error: 'DB 오류' };
+    }
+}
+
+// ==================== 반납 ====================
+export async function ReturnCheckController(phone, password) {
+    try {
+        // 1. 사용자 조회
+        const user = await checkUserByTelAndPw(phone, password);
+
+        if (!user) {
+            return { valid: false, error: '등록되지 않은 사용자입니다.' };
+        }
+
+        // 2. 대여중 우산 확인
+        const umbrella = await checkBorrowedUmbrella(user.user_id);
+
+        if (!umbrella) {
+            return { valid: false, error: '대여 기록이 없습니다.' };
+        }
+
+        return {
+            valid: true,
+            user: user,
+            umbrella: umbrella
+        };
+
+    } catch (error) {
+        return { valid: false, error: 'DB 오류' };
+    }
+}
+
+// ==================== 분실 신고 ====================
+export async function LossReportCheckController(phone, password) {
+    try {
+        // 1. 사용자 조회
+        const user = await checkUserByTelAndPw(phone, password);
+
+        if (!user) {
+            return { valid: false, error: '등록되지 않은 사용자입니다.' };
+        }
+
+        // 2. 대여중 우산 확인
+        const umbrella = await checkBorrowedUmbrella(user.user_id);
+
+        if (!umbrella) {
+            return { valid: false, error: '대여 기록이 없습니다.' };
+        }
+
+        return {
+            valid: true,
+            user: user,
+            umbrella: umbrella
+        };
+
+    } catch (error) {
+        return { valid: false, error: 'DB 오류' };
+    }
+}
+
+// ==================== 고장 신고 ====================
+export async function DefectReportController(phone, umbrellaId) {
+    try {
+        const res = await fetch('http://localhost:5000/api/umbrellas/defect-report', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ phone, umbrella_id: umbrellaId })
+        });
+
+        if (!res.ok) {
+            return { success: false };
+        }
+
+        return { success: true };
+    } catch (error) {
+        return { success: false };
+    }
+}
+
+// ==================== Helper 함수 ====================
+async function checkBorrowedUmbrella(user_id) {
+    try {
+        const res = await fetch('http://localhost:5000/api/umbrellas/borrowed', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ user_id })
+        });
+
+        if (!res.ok) return null;
+        return await res.json();
+    } catch (error) {
+        return null;
+    }
+}

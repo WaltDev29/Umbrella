@@ -1,40 +1,95 @@
 import React from 'react';
 import { Buttons, ErrorDisplay } from './Commonness';
-import { UMBRELLAS } from '../UserPageLogic';
 
 export function DefectReport({ dispatch, state }) {
-    const [formData, setFormData] = React.useState(state.reportInfo);
+    const [formData, setFormData] = React.useState({
+        phone: '',
+        umbrella_id: ''
+    });
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = () => {
-        const { umbrellaID } = formData;
-
-        const umbrellaExists = UMBRELLAS.some(u => u.id === umbrellaID);
-
-        if (!umbrellaExists) {
-            dispatch({ type: 'SET_ERROR', payload: '존재하지 않는 우산 번호입니다.' });
+    const handleSubmit = async () => {
+        const { phone, umbrella_id } = formData;
+        
+        if (!phone) {
+            dispatch({ type: 'SET_ERROR', payload: '휴대폰 번호를 입력해주세요.' });
             return;
         }
 
-        console.log(`우산 번호 ${umbrellaID}에 대한 고장 신고가 접수되었습니다.`);
-        dispatch({ type: 'SET_REPORT_INFO', payload: formData });
-        dispatch({ type: 'CONFIRM_REPORT_SUCCESS' });
+        if (!umbrella_id) {
+            dispatch({ type: 'SET_ERROR', payload: '우산 번호를 입력해주세요.' });
+            return;
+        }
+
+        dispatch({ type: 'SET_LOADING', payload: true });
+
+        try {
+            // 하이픈 제거
+            const normalizedPhone = phone.replace(/-/g, '');
+
+            const response = await fetch('http://localhost:5000/api/umbrellas/defect-report', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    phone: normalizedPhone,
+                    umbrella_id: parseInt(umbrella_id)
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                dispatch({ type: 'SET_ERROR', payload: data.message || '고장 신고 실패' });
+                dispatch({ type: 'SET_LOADING', payload: false });
+                return;
+            }
+            
+            dispatch({ type: 'NAVIGATE', payload: 'THANKS' });
+
+        } catch (error) {
+            console.error('고장 신고 에러:', error);
+            dispatch({ type: 'SET_ERROR', payload: '처리 중 오류 발생' });
+        } finally {
+            dispatch({ type: 'SET_LOADING', payload: false });
+        }
     };
 
     return (
-        <div>
+        <div className="defect-report">
             <h2>고장 신고</h2>
             <ErrorDisplay message={state.error} />
-            <div>
-                <label> 우산 고유번호:
-                    <input type="text" name="umbrellaID" value={formData.umbrellaID} onChange={handleChange} maxLength="4" />
-                </label>
-                <p>예: U001 ~ U007</p>
+
+            <div className="form-group">
+                <label>휴대폰 번호</label>
+                <input
+                    type="tel"
+                    name="phone"
+                    placeholder="01012345678"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    disabled={state.isLoading}
+                />
             </div>
-            <Buttons onClick={handleSubmit}>신고하기</Buttons>
+
+            <div className="form-group">
+                <label>우산 번호</label>
+                <input
+                    type="number"
+                    name="umbrella_id"
+                    placeholder="우산 번호를 입력하세요"
+                    value={formData.umbrella_id}
+                    onChange={handleChange}
+                    disabled={state.isLoading}
+                />
+            </div>
+
+            <Buttons onClick={handleSubmit} disabled={state.isLoading}>
+                {state.isLoading ? '신고 중...' : '고장 신고'}
+            </Buttons>
         </div>
     );
 }
