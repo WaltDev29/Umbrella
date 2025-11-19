@@ -1,6 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { updateUmbrellaStatusController, deleteUmbrellaController } from "../../database/controller/Controller";
+import {updateUmbrellaStatusController,
+    deleteUmbrellaController,
+    addUmbrellaController
+} from "../../database/controller/Controller";
 
 function CheckUpdateInfoPage({ title, onCancel, data }) {
     const navigate = useNavigate();
@@ -10,8 +13,7 @@ function CheckUpdateInfoPage({ title, onCancel, data }) {
     const umbrellaStatus = data ? data[1] : null;
 
     const handleSubmit = async () => {
-        // 1. 유효성 검사: ID는 무조건 있어야 함
-        if (!umbrellaId) {
+        if (title !== "등록" && !umbrellaId) {
             alert("업데이트할 우산 ID가 없습니다.");
             console.error("전달된 데이터:", data);
             return;
@@ -20,20 +22,24 @@ function CheckUpdateInfoPage({ title, onCancel, data }) {
         try {
             let result;
 
-            // 2. ✨ [로직 추가] 삭제인지 수정인지 구분하여 컨트롤러 호출
             if (title === "삭제") {
-                // 삭제 로직 (ID만 필요)
                 console.log(`[삭제 요청] 우산 ID: ${umbrellaId}`);
                 result = await deleteUmbrellaController(umbrellaId);
             } else {
-                // 수정 로직 (상태값도 필요)
-                // 수정인데 상태값이 없으면 방어
+
+                // 등록 or 수정할 때 필요한 상태값이 없으면
                 if (!umbrellaStatus) {
-                    alert("변경할 상태값이 없습니다.");
+                    alert(title+"할 상태값이 없습니다.");
                     return;
                 }
-                console.log(`[수정 요청] 우산 ID: ${umbrellaId}, 상태: ${umbrellaStatus}`);
-                result = await updateUmbrellaStatusController(umbrellaStatus, umbrellaId);
+
+                // 수정 로직 (상태값도 필요)
+                // 수정인데 상태값이 없으면 방어
+                if(title === "등록") {
+                    result = await addUmbrellaController(umbrellaStatus);
+                } else if(title === "상태 수정"){
+                    result = await updateUmbrellaStatusController(umbrellaStatus, umbrellaId);
+                }
             }
 
             // 3. 결과 처리 (공통)
@@ -61,8 +67,7 @@ function CheckUpdateInfoPage({ title, onCancel, data }) {
             <div style={{ margin: "20px 0", padding: "10px", border: "1px solid #ddd" }}>
                 <p><strong>우산 번호:</strong> {umbrellaId}</p>
 
-                {/* ✨ [UI 수정] '삭제'가 아닐 때만 상태 변경 텍스트를 보여줍니다. */}
-                {title !== "삭제" && (
+                {title === "상태 수정" && (
                     <p><strong>변경될 상태:</strong> {umbrellaStatus}</p>
                 )}
             </div>

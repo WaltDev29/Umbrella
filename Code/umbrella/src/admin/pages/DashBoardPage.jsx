@@ -55,7 +55,6 @@ function DashBoardPage() {
         console.log("selectedItem이 변경되었습니다:", selectedItem);
     }, [selectedItem]);
 
-    // ✅ [핵심 수정] 삭제 기능도 데이터를 넘기도록 명시적 구현
     const handleUmbrellaEdit = targetMode => {
         console.log("핸들 실행", targetMode, selectedItem);
 

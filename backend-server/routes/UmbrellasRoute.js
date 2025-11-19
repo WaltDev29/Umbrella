@@ -187,7 +187,7 @@ router.post('/update_status', async(req, res) => {
 });
 
 router.post('/delete', async(req, res) => {
-    console.log("데이터 확인"+req.body);
+    console.log("데이터 확인 "+req.body);
     const {umbrella_id} = req.body;
 
     let connection;
