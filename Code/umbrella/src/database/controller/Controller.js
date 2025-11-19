@@ -1,10 +1,16 @@
-import { createUser, checkUserByTelAndPw } from '../view/UsersView';
+import { createUser, checkUserByTelAndPw, checkAllUsers } from '../view/UsersView';
 import Users from '../../database/entity/Users';
-import { checkAllUmbrellas, checkUmbrellaById, createUmbrella } from '../view/UmbrellasView';
+import {
+    checkAllUmbrellas,
+    checkUmbrellaById,
+    createUmbrella, deleteUmbrella,
+    getUmbrellaStats,
+    updateUmbrellaStatus
+} from '../view/UmbrellasView';
 import Umbrellas from '../../database/entity/Umbrellas';
 import { checkAllHistorys, checkHistoryByUmbrellaId, checkHistoryByUserId } from '../view/HistorysView';
 import Historys from '../../database/entity/Historys';
-import {checkAllManagers} from "../view/ManagersView";
+import {checkAllManagers, updateManagerInfoView} from "../view/ManagersView";
 
 //==================== 1. User 로직 ====================
 // 인증 컨트롤러: 전화번호와 비밀번호로 사용자 인증
@@ -27,6 +33,16 @@ export async function NewUserController(phone, password) {
         return { success: true, user: created };
     } catch (err) {
         return { success: false, error: '사용자 등록에 실패했습니다.' };
+    }
+}
+
+// 전체 사용자 목록 반환
+export async function getUserListController(){
+    try {
+        const users = await checkAllUsers();
+        return { success: true, users };
+    } catch (err) {
+        return { success: false, error: '사용자 목록 불러오기 실패' };
     }
 }
 
@@ -56,6 +72,15 @@ export async function addUmbrellaController(umbrella_type) {
         return { success: true, umbrella: created };
     } catch (err) {
         return { success: false, error: '우산 등록 실패' };
+    }
+}
+// 우산 개수 조회
+export async function getUmbrellaStatsController() {
+    try {
+        const stats = await getUmbrellaStats();
+        return { success: true, stats: stats }; // 'stats' 객체를 반환
+    } catch (err) {
+        return { success: false, error: '우산 통계 로드 실패' };
     }
 }
 
@@ -95,5 +120,38 @@ export async function getManagerListController(){
         return { success: true, managers };
     } catch (err) {
         return { success: false, error: '관리자 목록 불러오기 실패' };
+    }
+}
+
+export async function updateManagerInfoController(old_pw, new_pw) {
+    try {
+        // 1. View단 함수에게 데이터 전달
+        const result = await updateManagerInfoView(old_pw, new_pw);
+        return { success: true, data: result };
+    } catch (err) {
+        // 2. View에서 'throw'한 에러를 여기서 잡음
+        throw new Error('컨트롤러 처리 실패: ' + err.message);
+    }
+}
+
+export async function updateUmbrellaStatusController(umbrella_status, umbrella_id) {
+    try {
+        // 1. View단 함수에게 데이터 전달
+        const result = await updateUmbrellaStatus(umbrella_status, umbrella_id);
+        return { success: true, data: result };
+    } catch (err) {
+        // 2. View에서 'throw'한 에러를 여기서 잡음
+        throw new Error('컨트롤러 처리 실패: ' + err.message);
+    }
+}
+
+export async function deleteUmbrellaController(umbrella_id) {
+    try {
+        // 1. View단 함수에게 데이터 전달
+        const result = await deleteUmbrella(umbrella_id);
+        return { success: true, data: result };
+    } catch (err) {
+        // 2. View에서 'throw'한 에러를 여기서 잡음
+        throw new Error('컨트롤러 처리 실패: ' + err.message);
     }
 }

@@ -1,18 +1,37 @@
-import React from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { getUmbrellaStatsController } from "../../database/controller/Controller";
 
 function AdminHomePage() {
     const navigate = useNavigate();
-    
-    // 더미 데이터
-    const totalCount = 100;
-    const rentalCount = 30;
-    const brokenCount = 7;
-    const lostCount = 5;
-    const todayUserCount = 5;
+
+    const [stats, setStats] = useState({
+        total: 0,
+        R: 0,
+        B: 0,
+        L: 0,
+        todayUserCount: 0
+    });
+
+    useEffect(() => {
+        const fetchStats = async () => {
+            const result = await getUmbrellaStatsController();
+
+            if (result.success && result.stats) {
+                setStats(prevStats => ({
+                    // 아래는 스프레드 문법이라 하며, 대충 prevStats(업데이트 전 이전 내용),
+                    // result.stats(업데이트 이후 내용)로 덮어쓰라는 의미임.
+                    ...prevStats,
+                    ...result.stats
+                }));
+            }
+        };
+
+        fetchStats();
+    }, []);
 
     const moveToDashBoard = mode => {
-        navigate("/dashboard", {state : {mode : mode}});
+        navigate("/dashboard", { state: { mode: mode } });
     }
 
     return (
@@ -25,12 +44,12 @@ function AdminHomePage() {
                 <button onClick={() => navigate("/update-admin-info")}>관리자 계정 정보 수정</button>
             </div>
             <div>
-                <div>전체 우산 수 : {totalCount}개</div>
+                <div>전체 우산 수 : {stats.total}개</div>
                 <div>
-                    <div>대여 중 : {rentalCount}개</div>
-                    <div>고장 : {brokenCount}개</div>
-                    <div>분실 : {lostCount}개</div>
-                    <div>금일 이용자 : {todayUserCount}개</div>
+                    <div>대여 중 : {stats.R}개</div>
+                    <div>고장 : {stats.B}개</div>
+                    <div>분실 : {stats.L}개</div>
+                    <div>금일 이용자 : {stats.todayUserCount}개</div>
                 </div>
             </div>
         </div>
