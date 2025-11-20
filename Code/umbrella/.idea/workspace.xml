@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b261a67d-4b56-4d82-a5b0-2f5663bf4e4f" name="변경" comment="관리자 모드 프로토타입 주석 추가, dashboard 기능 추가" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/../.." value="heamin_merge" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;WaltDev29&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/WaltDev29/Umbrella&quot;,
+    &quot;accountId&quot;: &quot;b84b71e9-1d22-4a23-af96-acf7176991a8&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="34zzFJLPXafpelnU5DBcDSJUtcq" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "heamin",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Umbrella/Code",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "npm",
+    "npm.npm start.executor": "Run",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.3.4.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Umbrella\Code\umbrella\public" />
+      <recent name="D:\Umbrella\Code\umbrella\src\user\pages" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.npm start">
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.59" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="b261a67d-4b56-4d82-a5b0-2f5663bf4e4f" name="변경" comment="" />
+      <created>1751362959683</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1751362959683</updated>
+      <workItem from="1762231085164" duration="457000" />
+      <workItem from="1762336725565" duration="566000" />
+      <workItem from="1762337307801" duration="4370000" />
+      <workItem from="1762390454203" duration="532000" />
+      <workItem from="1762399505139" duration="1201000" />
+      <workItem from="1762402929768" duration="852000" />
+      <workItem from="1762418601272" duration="11331000" />
+      <workItem from="1762482420725" duration="5016000" />
+      <workItem from="1763366867053" duration="955000" />
+      <workItem from="1763376801564" duration="3009000" />
+      <workItem from="1763380446852" duration="31000" />
+      <workItem from="1763380500190" duration="215000" />
+      <workItem from="1763380735954" duration="867000" />
+      <workItem from="1763449899404" duration="17000" />
+      <workItem from="1763524965472" duration="1078000" />
+      <workItem from="1763627172301" duration="195000" />
+      <workItem from="1763627387873" duration="79000" />
+    </task>
+    <task id="LOCAL-00001" summary="First Commit">
+      <option name="closed" value="true" />
+      <created>1762231529899</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1762231529899</updated>
+    </task>
+    <task id="LOCAL-00002" summary="사용자 모드 프로토타입, 관리자 모드 프로토타입 (작업중)">
+      <option name="closed" value="true" />
+      <created>1762400967939</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1762400967939</updated>
+    </task>
+    <task id="LOCAL-00003" summary="관리자 모드 프로토타입 완성">
+      <option name="closed" value="true" />
+      <created>1762434575344</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1762434575344</updated>
+    </task>
+    <task id="LOCAL-00004" summary="관리자 모드 프로토타입 주석 추가">
+      <option name="closed" value="true" />
+      <created>1762484469327</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1762484469327</updated>
+    </task>
+    <task id="LOCAL-00005" summary="관리자 모드 프로토타입 주석 추가, dashboard 기능 추가">
+      <option name="closed" value="true" />
+      <created>1762491337453</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1762491337453</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="First Commit" />
+    <MESSAGE value="사용자 모드 프로토타입, 관리자 모드 프로토타입 (작업중)" />
+    <MESSAGE value="관리자 모드 프로토타입 완성" />
+    <MESSAGE value="관리자 모드 프로토타입 주석 추가" />
+    <MESSAGE value="관리자 모드 프로토타입 주석 추가, dashboard 기능 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="관리자 모드 프로토타입 주석 추가, dashboard 기능 추가" />
+  </component>
+</project>

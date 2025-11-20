@@ -1,121 +1,90 @@
 import React, {useEffect, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 
+// controller로부터 데이터를 불러오기 위한 함수들 import
+import {getUmbrellaListController, getUserListController, getHistoryListController} from "../../database/controller/Controller";
+
 function DashBoardPage() {
     const navigate = useNavigate();
     const location = useLocation();
 
     const [selectedItem, setSelectedItem] = useState(null); // 선택한 우산 state
 
-    const mode = location.state?.mode || "오류";
+    const mode = location.state?.mode || "UMBRELLA";
     const title = mode === "UMBRELLA" ? "우산 목록"
         : mode === "USER" ? "회원 목록"
             : "이용 기록"
 
     const columns = mode === "UMBRELLA" ? ["ID", "우산종류", "우산상태", "생성일시", "최종수정일"] :
         mode === "USER" ? ["ID", "전화번호", "비밀번호", "생성일시"] :
-            mode === "LOG" ? ["ID", "구분", "우산", "회원", "생성일시"] : null;
+            mode === "LOG" ? ["ID", "구분", "우산", "회원", "생성일시"] : [];
 
-    // 이거 DB에서 불러온 정보라고 가정함. 우산 정보만 했음.
-    const [datas, setdatas] = useState([
-        {
-            id: "UMB-12345",
-            sort: "L",
-            stat: "B",
-            createdAt: "2025-10-04",
-            updatedAt: "2025-11-05"
-        },
-        {
-            id: "UMB-12346",
-            sort: "S",
-            stat: "R",
-            createdAt: "2025-10-28",
-            updatedAt: "2025-11-01"
-        },
-        {
-            id: "UMB-12347",
-            sort: "S",
-            stat: "L",
-            createdAt: "2025-11-04",
-            updatedAt: "2025-11-06"
-        }
-    ])
+    const [datas, setdatas] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
-    // 더미데이터
+    // 데이터 불러오기
     useEffect(() => {
-        const DummyUmbrellaDatas = [{
-            id: "UMB-12345",
-            sort: "L",
-            stat: "B",
-            createdAt: "2025-10-04",
-            updatedAt: "2025-11-05"
-        },
-            {
-                id: "UMB-12346",
-                sort: "S",
-                stat: "R",
-                createdAt: "2025-10-28",
-                updatedAt: "2025-11-01"
-            },
-            {
-                id: "UMB-12347",
-                sort: "S",
-                stat: "L",
-                createdAt: "2025-11-04",
-                updatedAt: "2025-11-06"
-            }]
+        const fetchData = async() => {
+            setIsLoading(true);
+            try {
+                let resultData = [];
 
-        const DummyUseraDatas = [{
-            id: "USER-12345",
-            phoneNum: "010-1234-5678",
-            password: "1234",
-            createdAt: "2025-10-04"
-        },
-            {
-                id: "USER-12346",
-                phoneNum: "010-5678-1234",
-                password: "5678",
-                createdAt: "2025-10-28"
-            },
-            {
-                id: "USER-12347",
-                phoneNum: "010-0000-0000",
-                password: "0000",
-                createdAt: "2025-11-04"
-            }]
+                if (mode === "UMBRELLA") {
+                    const result = await getUmbrellaListController();
+                    if (result.success) resultData = result.umbrellas;
+                } else if(mode== "USER"){
+                    const result = await getUserListController();
+                    if(result.success) resultData = result.users;
+                } else if (mode === "LOG") {
+                    const result = await getHistoryListController();
+                    if (result.success) resultData = result.historys;
+                }
+                setdatas(resultData);
 
-        const DummyLogDatas = [{
-            id: "LOG-12345",
-            sort: "RENTAL",
-            umbId: "UMB-12345",
-            userId: "USER-12345",
-            createdAt: "2025-10-04"
-        },
-            {
-                id: "LOG-12346",
-                sort: "RETURN",
-                umbId: "UMB-12346",
-                userId: "USER-12346",
-                createdAt: "2025-10-28"
-            },
-            {
-                id: "LOG-12347",
-                sort: "LOST",
-                umbId: "UMB-12347",
-                userId: "USER-12347",
-                createdAt: "2025-11-04"
-            }]
+            } catch (error) {
+                console.error("데이터 로딩 실패:", error);
+            }
+            setIsLoading(false);
+        };
 
-        let datas = mode === "UMBRELLA" ? DummyUmbrellaDatas :
-            mode === "USER" ? DummyUseraDatas :
-                DummyLogDatas
-        setdatas(datas);
-
+        fetchData();
     }, [mode]);
 
-    const handleUmbrellaEdit = mode => {
-        if (mode === "INSERT") navigate("/update-umbrella-info", {state: {mode: mode, selectedItem: null}});
-        else navigate("/update-umbrella-info", {state: {mode: mode, selectedItem: selectedItem}});
+    // 선택 확인용 로그 (디버깅용)
+    useEffect(() => {
+        console.log("selectedItem이 변경되었습니다:", selectedItem);
+    }, [selectedItem]);
+
+    const handleUmbrellaEdit = targetMode => {
+        console.log("핸들 실행", targetMode, selectedItem);
+
+        // 1. 등록 (INSERT) - 데이터 필요 없음
+        if (targetMode === "INSERT") {
+            navigate("/update-umbrella-info", {
+                state: { mode: targetMode, selectedItem: null }
+            });
+        }
+        // 2. 수정 (UPDATE) - 데이터 필수
+        else if (targetMode === "UPDATE") {
+            if (!selectedItem) {
+                alert("수정할 우산을 목록에서 선택해주세요.");
+                return;
+            }
+            navigate("/update-umbrella-info", {
+                state: { mode: targetMode, selectedItem: selectedItem }
+            });
+        }
+        // 3. 삭제 (DELETE) - 데이터 필수 (수정과 동일한 패턴!)
+        else if (targetMode === "DELETE") {
+            if (!selectedItem) {
+                alert("삭제할 우산을 목록에서 선택해주세요.");
+                return;
+            }
+            // 삭제 모드일 때도 selectedItem을 똑같이 넘겨줍니다.
+            navigate("/update-umbrella-info", {
+                state: { mode: targetMode, selectedItem: selectedItem }
+            });
+        }
     }
 
     const [sortConfig, setSortConfig] = useState({key: null, direction: "asc", column: ""});
@@ -123,49 +92,26 @@ function DashBoardPage() {
     const handleColClick = (column) => {
         let key;
         switch (column) {
-            case "ID":
-                key = "id";
-                break;
-            case "우산종류":
-                key = "sort";
-                break;
-            case "우산상태":
-                key = "stat";
-                break;
-            case "생성일시":
-                key = "createdAt";
-                break;
-            case "최종수정일":
-                key = "updatedAt";
-                break;
-            case "전화번호":
-                key = "phoneNum";
-                break;
-            case "비밀번호":
-                key = "password";
-                break;
-            case "구분":
-                key = "sort";
-                break;
-            case "우산":
-                key = "umbId";
-                break;
-            case "회원":
-                key = "userId";
-                break;
-            default:
-                key = null;
+            case "ID": key = "id"; break;
+            case "우산종류": key = "sort"; break;
+            case "우산상태": key = "stat"; break;
+            case "생성일시": key = "createdAt"; break;
+            case "최종수정일": key = "updatedAt"; break;
+            case "전화번호": key = "phoneNum"; break;
+            case "비밀번호": key = "password"; break;
+            case "구분": key = "sort"; break;
+            case "우산": key = "umbId"; break;
+            case "회원": key = "userId"; break;
+            default: key = null;
         }
 
-        if (!key) return; // 해당 컬럼에 매핑된 key가 없으면 무시
+        if (!key) return;
 
-        // 정렬 방향 토글
         let direction = "asc";
         if (sortConfig.key === key && sortConfig.direction === "asc") {
             direction = "desc";
         }
 
-        // GPT 코드인데 아직 분석 안 해서 잘 모름.
         const sortedData = [...datas].sort((a, b) => {
             if (a[key] < b[key]) return direction === "asc" ? -1 : 1;
             if (a[key] > b[key]) return direction === "asc" ? 1 : -1;
@@ -175,7 +121,6 @@ function DashBoardPage() {
         setdatas(sortedData);
         setSortConfig({key, direction, column});
     };
-
 
     return (
         <div>
@@ -220,26 +165,27 @@ function DashBoardPage() {
                     <tbody>
                     {datas.map(data => (
                         mode === "UMBRELLA" ?
-                            (<tr key={data.id} onClick={() => setSelectedItem(data)}>
-                                <td>{data.id}</td>
-                                <td>{data.sort}</td>
-                                <td>{data.stat}</td>
-                                <td>{data.createdAt}</td>
-                                <td>{data.updatedAt}</td>
+                            (<tr key={data.umbrella_id} onClick={() => {setSelectedItem(data)}}>
+                                <td>{data.umbrella_id}</td>
+                                <td>{data.umbrella_type}</td>
+                                <td>{data.umbrella_status}</td>
+                                <td>{data.created_at}</td>
+                                <td>{data.updated_at}</td>
                             </tr>)
                             : mode === "USER" ?
-                                (<tr key={data.id} onClick={() => setSelectedItem(data)}>
-                                    <td>{data.id}</td>
-                                    <td>{data.phoneNum}</td>
-                                    <td>{data.password}</td>
-                                    <td>{data.createdAt}</td>
+                                (<tr key={data.user_id} onClick={() => {setSelectedItem(data)}}>
+                                    <td>{data.user_id}</td>
+                                    <td>{data.user_tel}</td>
+                                    <td>{data.user_pw}</td>
+                                    <td>{data.created_at}</td>
                                 </tr>)
-                                : (<tr key={data.id} onClick={() => setSelectedItem(data)}>
-                                    <td>{data.id}</td>
-                                    <td>{data.sort}</td>
-                                    <td>{data.umbId}</td>
-                                    <td>{data.userId}</td>
-                                    <td>{data.createdAt}</td>
+                                : (<tr key={data.history_id} onClick={() => {setSelectedItem(data)}}>
+                                    <td>{data.history_id}</td>
+                                    <td>{data.history_type}</td>
+                                    <td>{data.umbrella_id}</td>
+                                    <td>{data.user_id}</td>
+                                    <td>{data.created_at}</td>
+                                    <td>{data.due_at}</td>
                                 </tr>)
                     ))}
                     </tbody>
