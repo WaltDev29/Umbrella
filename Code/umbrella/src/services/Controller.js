@@ -1,6 +1,6 @@
 import {createUser, checkUserByTelAndPw, checkAllUsers} from '../repositories/UserRepository';
 import User from '../domain/User';
-import { getUmbrellas, checkUmbrellaById, createUmbrella } from '../repositories/UmbrellaRepository';
+import { getAllUmbrellas, getUmbrellasById, createUmbrella } from '../repositories/UmbrellaRepository';
 import { checkAllHistorys, checkHistoryByUmbrellaId, checkHistoryByUserId } from '../repositories/HistoryRepository';
 import {checkAllManagers} from "../repositories/ManagerRepository";
 import {getUmbrellaStats} from "../repositories/UmbrellaRepository";
@@ -46,7 +46,7 @@ export async function NewUserController(phone, password) {
 // 전체 목록 반환
 export async function getUmbrellaListController() {
     try {
-        const umbrellas = await getUmbrellas("");
+        const umbrellas = await getAllUmbrellas("");
         return { success: true, umbrellas };
     } catch (err) {
         return { success: false, error: '우산 목록 불러오기 실패' };
@@ -54,7 +54,7 @@ export async function getUmbrellaListController() {
 }
 // 단일 우산 반환
 export async function getUmbrellaByIdController(umbrella_id) {
-    const umbrellas = await checkUmbrellaById(umbrella_id);
+    const umbrellas = await getUmbrellasById(umbrella_id);
     if (!umbrellas) return { success: false, error: '존재하지 않는 우산입니다.' };
     return { success: true, umbrellas };
 }

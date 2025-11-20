@@ -5,20 +5,20 @@ import {fetchAPIGet, fetchAPIPost} from "./UtilRepository";
 // ============ SELECT ============
 
 // 전체 우산 조회
-async function getAllUmbrellas() {
-    const data = fetchAPIGet("umbrellas","");
+export async function getAllUmbrellas() {
+    const data = await fetchAPIGet("umbrellas","");
     return Array.isArray(data) ? data.map(u => new Umbrella(u)) : [];
 }
 
 // 단일 우산 조회 (By ID)
 export async function getUmbrellasById(id) {
-    const data = fetchAPIGet("umbrellas",id);
+    const data = await fetchAPIGet("umbrellas",id);
     return new Umbrella(data);
 }
 
 // 상태별 우산 개수 조회
 export async function getUmbrellaStats() {
-    return fetchAPIGet("umbrellas","stats");
+    return await fetchAPIGet("umbrellas","stats");
 }
 
 
@@ -27,7 +27,7 @@ export async function getUmbrellaStats() {
 
 // CREATE
 export async function createUmbrella(umbrella_type) {
-    const res = fetchAPIPost(
+    const res = await fetchAPIPost(
         "umbrellas",
         "",
         { 'Content-Type': 'application/json' },
