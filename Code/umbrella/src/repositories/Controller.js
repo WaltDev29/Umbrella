@@ -1,16 +1,12 @@
 import {createUser, checkUserByTelAndPw, checkAllUsers} from './UserRepository';
 import User from '../domain/User';
 import { getUmbrellas, checkUmbrellaById, createUmbrella } from './UmbrellaRepository';
-import Umbrella from '../domain/Umbrella';
 import { checkAllHistorys, checkHistoryByUmbrellaId, checkHistoryByUserId } from './HistoryRepository';
-import History from '../domain/History';
 import {checkAllManagers} from "./ManagerRepository";
 import {getUmbrellaStats} from "./UmbrellaRepository";
 import {updateManagerInfoView} from "./ManagerRepository";
 import {updateUmbrella} from "./UmbrellaRepository";
 import {deleteUmbrella} from "./UmbrellaRepository";
-
-const API_URL = 'http://localhost:5000/api';
 
 // ============ fetch 공통 로직 ============
 // export async function fetchAPIGet(url) {

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react"; // useEffect 추가
+import React, { useState } from "react"; // useEffect 추가
 import { useLocation } from "react-router-dom";
-import {addUmbrellaController} from "../../../repositories/Controller";
 import CheckUpdateInfoPage from "./CheckUpdateInfoPage";
 
 function UpdateUmbrellaInfo() {
