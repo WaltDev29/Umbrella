@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const mysql = require('mysql2/promise');
-
 const dbConfig = {
     host: '192.168.24.156',
     user: 'team_user',
@@ -10,9 +9,7 @@ const dbConfig = {
     port: 3306
 };
 
-// ==================== 전체 우산 조회 및 우산 상태별 조회 ====================
-// GET /api/umbrellas  (전체)
-// GET /api/umbrellas?status=A  (상태별)
+// 우산 전체 조회
 router.get('/', async (req, res) => {
     let connection;
     try {
@@ -30,14 +27,46 @@ router.get('/', async (req, res) => {
 
         const [rows] = await connection.execute(query, params);
         res.status(200).json(rows);
-
     } catch (err) {
-        res.status(500).json({ message: '우산 조회 실패' });
+        res.status(500).json({ message: '우산 목록 로드 실패.' });
     } finally {
         if (connection) connection.end();
     }
 });
 
+// 상태별 우산 개수 조회(count)
+router.get('/stats', async (req, res) => {
+    let connection;
+    try {
+        connection = await mysql.createConnection(dbConfig);
+        // 1. 전체 개수 쿼리
+        const [totalRows] = await connection.execute('SELECT COUNT(*) AS totalCount FROM umbrellas');
+
+        // 2. 상태별 개수 쿼리
+        const [statusRows] = await connection.execute(
+            'SELECT umbrella_status, COUNT(*) AS count FROM umbrellas GROUP BY umbrella_status'
+        );
+
+        // 3. 데이터를 하나의 JSON으로 조립
+        const stats = {
+            total: totalRows[0].totalCount, // { total: 50 }
+        };
+
+        // statusRows = [ { umbrella_status: 'B', count: 5 }, { umbrella_status: 'L', count: 2 } ]
+        statusRows.forEach(row => {
+            stats[row.umbrella_status] = row.count; // { total: 50, B: 5, L: 2 }
+        });
+
+        res.status(200).json(stats); // 4. "조립된 통계 객체"를 반환!
+
+    } catch (err) {
+        res.status(500).json({ message: '통계 로드 실패.' });
+    } finally {
+        if (connection) connection.end();
+    }
+});
+
+// 단일 우산 조회
 // ==================== 단일 우산 조회 ====================
 router.get('/:umbrella_id', async (req, res) => {
     let connection;
@@ -256,5 +285,51 @@ router.post('/defect-report', async (req, res) => {
 });
 
 
+
+// 관리자 페이지 우산 상태 수정 함수
+router.post('/update_status', async(req, res) => {
+    // 1. 🌟 View가 'body'에 실어 보낸 데이터를 req.body로 꺼냄
+    const { umbrella_status, umbrella_id } = req.body;
+
+    let connection;
+    try {
+        connection = await mysql.createConnection(dbConfig);
+
+        // 2. 'SELECT'가 아닌 'UPDATE' 또는 'INSERT' 쿼리 실행
+        await connection.execute(
+            'UPDATE umbrellas SET umbrella_status = ? WHERE umbrella_id = ?',
+            [umbrella_status, umbrella_id]
+        );
+
+        res.status(200).json({ success: true, message: '우산 상태 업데이트 성공' });
+
+    } catch (err) {
+        res.status(500).json({ message: 'DB 업데이트 실패: ' + err.message });
+    } finally {
+        if (connection) connection.end();
+    }
+});
+
+router.post('/delete', async(req, res) => {
+    console.log("데이터 확인 "+req.body);
+    const {umbrella_id} = req.body;
+
+    let connection;
+
+    try{
+        connection = await mysql.createConnection(dbConfig);
+
+        await connection.execute(
+            'DELETE FROM umbrellas WHERE umbrella_id = ?',
+            [umbrella_id]
+        );
+
+        res.status(200).json({ success: true, message: '업데이트 성공' });
+    } catch(err) {
+        res.status(500).json({ message: '우산 데이터 삭제 실패: ' + err.message });
+    } finally {
+        if(connection) connection.end();
+    }
+});
 
 module.exports = router;

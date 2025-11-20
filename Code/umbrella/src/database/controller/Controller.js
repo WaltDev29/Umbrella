@@ -98,6 +98,41 @@ export async function getManagerListController(){
     }
 }
 
+export async function updateManagerInfoController(old_pw, new_pw) {
+    try {
+        // 1. View단 함수에게 데이터 전달
+        const result = await updateManagerInfoView(old_pw, new_pw);
+        return { success: true, data: result };
+    } catch (err) {
+        // 2. View에서 'throw'한 에러를 여기서 잡음
+        throw new Error('컨트롤러 처리 실패: ' + err.message);
+    }
+}
+
+export async function updateUmbrellaStatusController(umbrella_status, umbrella_id) {
+    try {
+        // 1. View단 함수에게 데이터 전달
+        const result = await updateUmbrellaStatus(umbrella_status, umbrella_id);
+        return { success: true, data: result };
+    } catch (err) {
+        // 2. View에서 'throw'한 에러를 여기서 잡음
+        throw new Error('컨트롤러 처리 실패: ' + err.message);
+    }
+}
+
+export async function deleteUmbrellaController(umbrella_id) {
+    try {
+        // 1. View단 함수에게 데이터 전달
+        const result = await deleteUmbrella(umbrella_id);
+        return { success: true, data: result };
+    } catch (err) {
+        // 2. View에서 'throw'한 에러를 여기서 잡음
+        throw new Error('컨트롤러 처리 실패: ' + err.message);
+    }
+}
+
+
+
 // ==================== 대여 ====================
 export async function BorrowCheckController(phone, password) {
     try {

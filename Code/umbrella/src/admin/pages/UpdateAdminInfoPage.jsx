@@ -1,5 +1,7 @@
-import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+// import {updateManagerInfoView} from "../../database/view/ManagersView"; // 컨트롤러를 사용하므로 View는 직접 import 안 해도 됩니다.
+import { updateManagerInfoController } from "../../database/controller/Controller";
 
 function UpdateAdminInfoPage() {
     const navigate = useNavigate();
@@ -8,19 +10,26 @@ function UpdateAdminInfoPage() {
     const [checkPw, setCheckPw] = useState("");     // 새 비밀번호 확인
     const [error, setError] = useState(""); // 에러 메시지
 
-    const password = "1234";    // 기존 패스워드
-    
-    const handleSubmit = e => {
+    // const password = "1234";    // (서버에서 검사하므로 이 부분은 제거)
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        // 기존 비밀번호 검사 로직 (실제로는 DB에서 불러와주세요)
-        if (password != originalPw) {
-            setError("기존 비밀번호가 일치하지 않습니다.");
+        setError(""); // 에러 메시지 초기화
+
+        // 1. 새 비밀번호 일치 여부 (클라이언트)
+        if (pw !== checkPw) {
+            setError("새 비밀번호가 일치하지 않습니다.");
             return;
         }
-        else {
-            if (pw === checkPw) navigate('/complete', { state: { message: '비밀번호 변경이 완료되었습니다.' } });
-            else setError("새 비밀번호가 일치하지 않습니다.")
+
+        // 2. 서버로 전송 (API 호출)
+        try {
+            await updateManagerInfoController(originalPw, pw);
+
+            navigate('/complete', { state: { message: '비밀번호 변경이 완료되었습니다.' } });
+
+        } catch (err) {
+            setError(err.message || "비밀번호 변경에 실패했습니다.");
         }
     }
 
@@ -31,17 +40,17 @@ function UpdateAdminInfoPage() {
             <form onSubmit={handleSubmit}>
                 <label>
                     기존 비밀번호 :
-                    <input type="password" onChange={e => setOriginalPw(e.target.value)}/>
+                    <input type="password" onChange={e => setOriginalPw(e.target.value)} />
                 </label>
-                <br/>
+                <br />
                 <label>
                     새 비밀번호 :
-                    <input type="password" onChange={e => setPw(e.target.value)}/>
+                    <input type="password" onChange={e => setPw(e.target.value)} />
                 </label>
-                <br/>
+                <br />
                 <label>
                     비밀번호 확인 :
-                    <input type="password" onChange={e => setCheckPw(e.target.value)}/>
+                    <input type="password" onChange={e => setCheckPw(e.target.value)} />
                 </label>
                 <div>
                     <button type="submit">비밀번호 변경</button>
