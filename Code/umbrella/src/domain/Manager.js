@@ -1,4 +1,5 @@
-class Managers {
+// todo 이거 사용함?
+class Manager {
     constructor({manager_id, manager_tel, manager_pw, manager_created}){
         this.manager_id = manager_id;
         this.manager_tel = manager_tel;
@@ -7,4 +8,4 @@ class Managers {
     }
 }
 
-export default Managers;
+export default Manager;

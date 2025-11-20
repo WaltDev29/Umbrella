@@ -1,21 +1,32 @@
-import {createUser, checkUserByTelAndPw, checkAllUsers} from '../view/UsersView';
-import Users from '../../database/entity/Users';
-import { checkAllUmbrellas, checkUmbrellaById, createUmbrella } from '../view/UmbrellasView';
-import Umbrellas from '../../database/entity/Umbrellas';
-import { checkAllHistorys, checkHistoryByUmbrellaId, checkHistoryByUserId } from '../view/HistorysView';
-import Historys from '../../database/entity/Historys';
-import {checkAllManagers} from "../view/ManagersView";
-import {getUmbrellaStats} from "../view/UmbrellasView";
-import {updateManagerInfoView} from "../view/ManagersView";
-import {updateUmbrellaStatus} from "../view/UmbrellasView";
-import {deleteUmbrella} from "../view/UmbrellasView";
+import {createUser, checkUserByTelAndPw, checkAllUsers} from './UserRepository';
+import User from '../domain/User';
+import { getUmbrellas, checkUmbrellaById, createUmbrella } from './UmbrellaRepository';
+import Umbrella from '../domain/Umbrella';
+import { checkAllHistorys, checkHistoryByUmbrellaId, checkHistoryByUserId } from './HistoryRepository';
+import History from '../domain/History';
+import {checkAllManagers} from "./ManagerRepository";
+import {getUmbrellaStats} from "./UmbrellaRepository";
+import {updateManagerInfoView} from "./ManagerRepository";
+import {updateUmbrella} from "./UmbrellaRepository";
+import {deleteUmbrella} from "./UmbrellaRepository";
+
+const API_URL = 'http://localhost:5000/api';
+
+// ============ fetch 공통 로직 ============
+// export async function fetchAPIGet(url) {
+//     const res = await fetch(url, {method: "GET"});
+//     if(!res.ok) throw new Error(message);
+//     return await res.json();
+// }
 
 //==================== 1. User 로직 ====================
+// todo 이거 안 쓰고 뭐로 인증하고 가입함?
+// todo 로직이 겹치는 게 많아서 유효성 검사 부분 통합할 수 있을 것 같은데
 // 인증 컨트롤러: 전화번호와 비밀번호로 사용자 인증
 export async function UserLoginController(phone, password) {
-    const tempUser = new Users({ user_id: null, user_tel: phone, user_pw: password });
-    if (!tempUser.isTelTrue()) return { valid: false, error: '휴대전화 형식이 올바르지 않습니다.' };
-    if (!tempUser.isPasswordTrue()) return { valid: false, error: 'PIN은 4자리 숫자여야 합니다.' };
+    const tempUser = new User({ user_id: null, user_tel: phone, user_pw: password });
+    if (!tempUser.isTelValid()) return { valid: false, error: '휴대전화 형식이 올바르지 않습니다.' };
+    if (!tempUser.isPasswordValid()) return { valid: false, error: 'PIN은 4자리 숫자여야 합니다.' };
     const user = await checkUserByTelAndPw(phone, password);
     if (!user) return { valid: false, error: '일치하는 사용자가 없습니다.' };
     return { valid: true, user };
@@ -23,9 +34,9 @@ export async function UserLoginController(phone, password) {
 
 // 신규 가입 컨트롤러
 export async function NewUserController(phone, password) {
-    const tempUser = new Users({ user_id: null, user_tel: phone, user_pw: password });
-    if (!tempUser.isTelTrue()) return { success: false, error: '휴대전화 형식이 올바르지 않습니다.' };
-    if (!tempUser.isPasswordTrue()) return { success: false, error: '비밀번호는 4자리 숫자여야 합니다.' };
+    const tempUser = new User({ user_id: null, user_tel: phone, user_pw: password });
+    if (!tempUser.isTelValid()) return { success: false, error: '휴대전화 형식이 올바르지 않습니다.' };
+    if (!tempUser.isPasswordValid()) return { success: false, error: '비밀번호는 4자리 숫자여야 합니다.' };
     try {
         const created = await createUser(phone, password);
         return { success: true, user: created };
@@ -34,11 +45,12 @@ export async function NewUserController(phone, password) {
     }
 }
 
-//==================== 2. Umbrellas 로직 ====================
+//==================== 2. Umbrella 로직 ====================
+// todo 이거 presentation에서 처리하도록?
 // 전체 목록 반환
 export async function getUmbrellaListController() {
     try {
-        const umbrellas = await checkAllUmbrellas();
+        const umbrellas = await getUmbrellas("");
         return { success: true, umbrellas };
     } catch (err) {
         return { success: false, error: '우산 목록 불러오기 실패' };
@@ -63,7 +75,7 @@ export async function addUmbrellaController(umbrella_type) {
     }
 }
 
-//==================== 3. Historys 로직 ====================
+//==================== 3. History 로직 ====================
 // 전체 이력 반환
 export async function getHistoryListController() {
     try {
@@ -92,7 +104,7 @@ export async function getHistoryByUserController(user_id) {
     }
 }
 
-// ==================== 4. Managers 로직 ====================
+// ==================== 4. Manager 로직 ====================
 export async function getManagerListController(){
     try {
         const managers = await checkAllManagers();
@@ -116,7 +128,7 @@ export async function updateManagerInfoController(old_pw, new_pw) {
 export async function updateUmbrellaStatusController(umbrella_status, umbrella_id) {
     try {
         // 1. View단 함수에게 데이터 전달
-        const result = await updateUmbrellaStatus(umbrella_status, umbrella_id);
+        const result = await updateUmbrella(umbrella_status, umbrella_id);
         return { success: true, data: result };
     } catch (err) {
         // 2. View에서 'throw'한 에러를 여기서 잡음

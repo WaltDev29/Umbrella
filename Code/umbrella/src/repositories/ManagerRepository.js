@@ -1,4 +1,4 @@
-import Managers from '../entity/Managers';
+import Manager from '../domain/Manager';
 
 const API_URL = 'http://localhost:5000/api';
 
@@ -7,7 +7,7 @@ export async function checkAllManagers() {
     const res = await fetch(`${API_URL}/managers`, {method: 'GET'});
     if(!res.ok) throw new Error('관리자 목록 로드 실패');
     const data = await res.json();
-    return Array.isArray(data) ? data.map(m => new Managers(m)) : [];
+    return Array.isArray(data) ? data.map(m => new Manager(m)) : [];
 }
 
 export async function updateManagerInfoView(old_pw, new_pw) {

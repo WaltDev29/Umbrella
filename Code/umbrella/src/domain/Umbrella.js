@@ -1,4 +1,4 @@
-class Umbrellas {
+class Umbrella {
     constructor({ umbrella_id, umbrella_type, umbrella_status, created_at, updated_at }) {
         this.umbrella_id = umbrella_id;
         this.umbrella_type = umbrella_type; // 'L', 'S'
@@ -7,6 +7,7 @@ class Umbrellas {
         this.updated_at = updated_at;
     }
 
+    // todo 얘네 사용하는지 검토
     // 장/단우산 반환
     getTypeLabel() {
         return this.umbrella_type === 'L' ? '장우산' : '단우산';
@@ -32,4 +33,4 @@ class Umbrellas {
         return this.umbrella_status === 'L';
     }
 }
-export default Umbrellas;
+export default Umbrella;

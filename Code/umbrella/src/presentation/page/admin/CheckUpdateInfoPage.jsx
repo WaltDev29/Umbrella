@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {updateUmbrellaStatusController,
     deleteUmbrellaController,
     addUmbrellaController
-} from "../../database/controller/Controller";
+} from "../../../repositories/Controller";
 
 function CheckUpdateInfoPage({ title, onCancel, data }) {
     const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import {updateManagerInfoView} from "../../database/view/ManagersView"; // 컨트롤러를 사용하므로 View는 직접 import 안 해도 됩니다.
-import { updateManagerInfoController } from "../../database/controller/Controller";
+import { updateManagerInfoController } from "../../../repositories/Controller";
 
 function UpdateAdminInfoPage() {
     const navigate = useNavigate();

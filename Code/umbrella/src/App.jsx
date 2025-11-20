@@ -1,13 +1,13 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Layout from './Layout.jsx';
-import KioskStartPage from "./index/KioskStartPage.jsx";
-import UserHomePage from './user/UserHomePage';
+import KioskStartPage from "./presentation/page/KioskStartPage.jsx";
+import UserHomePage from './presentation/page/user/UserHomePage';
 
-import AdminLogInPage from "./admin/pages/AdminLogInPage";
-import AdminHomePage from "./admin/pages/AdminHomePage";
-import DashBoardPage from "./admin/pages/DashBoardPage";
-import UpdateAdminInfoPage from "./admin/pages/UpdateAdminInfoPage";
-import UpdateUmbrellaInfo from "./admin/pages/UpdateUmbrellaInfo";
+import AdminLogInPage from "./presentation/page/admin/AdminLogInPage";
+import AdminHomePage from "./presentation/page/admin/AdminHomePage";
+import DashBoardPage from "./presentation/page/admin/DashBoardPage";
+import UpdateAdminInfoPage from "./presentation/page/admin/UpdateAdminInfoPage";
+import UpdateUmbrellaInfo from "./presentation/page/admin/UpdateUmbrellaInfo";
 
 
 function App() {

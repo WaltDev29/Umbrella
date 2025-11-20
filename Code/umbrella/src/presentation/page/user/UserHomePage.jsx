@@ -1,10 +1,10 @@
 import React, { useReducer } from 'react';
 import { umbrellaReducer, initialState } from './UserPageLogic';
-import { UserInfo } from './components/UserInfo';
-import { UmbrellaSelect } from './components/UmbrellaSelect';
-import { DefectReport } from './components/DefectReport';
-import { ConfirmRental } from './components/ConfirmRental';
-import { Thanks } from './components/Thanks';
+import { UserInfo } from '../../component/user/UserInfo';
+import { UmbrellaSelect } from '../../component/user/UmbrellaSelect';
+import { DefectReport } from '../../component/user/DefectReport';
+import { ConfirmRental } from '../../component/user/ConfirmRental';
+import { Thanks } from '../../component/user/Thanks';
 
 function UserHomePage() {
     const [state, dispatch] = useReducer(umbrellaReducer, initialState);

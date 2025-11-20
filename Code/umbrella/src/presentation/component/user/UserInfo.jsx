@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     BorrowCheckController
-} from '../../database/controller/Controller';
+} from '../../../repositories/Controller';
 import { Buttons, ErrorDisplay } from './Commonness';
 
 export function UserInfo({ dispatch, state, rentalMode }) {

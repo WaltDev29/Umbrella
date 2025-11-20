@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getUmbrellaStatsController } from "../../database/controller/Controller";
+import { getUmbrellaStatsController } from "../../../repositories/Controller";
 
 function AdminHomePage() {
     const navigate = useNavigate();
