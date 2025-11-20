@@ -8,6 +8,7 @@ import AdminHomePage from "./presentation/page/admin/AdminHomePage";
 import DashBoardPage from "./presentation/page/admin/DashBoardPage";
 import UpdateAdminInfoPage from "./presentation/page/admin/UpdateAdminInfoPage";
 import UpdateUmbrellaInfo from "./presentation/page/admin/UpdateUmbrellaInfo";
+import ThankYouPage from "./presentation/page/admin/ThankYouPage";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
                     <Route path="dashboard" element={<DashBoardPage/>}/>
                     <Route path="update-admin-info" element={<UpdateAdminInfoPage/>}/>
                     <Route path="update-umbrella-info" element={<UpdateUmbrellaInfo/>}/>
+                    <Route path="complete" element={<ThankYouPage/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
