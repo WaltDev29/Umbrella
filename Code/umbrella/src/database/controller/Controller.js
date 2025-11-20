@@ -1,10 +1,14 @@
-import { createUser, checkUserByTelAndPw } from '../view/UsersView';
+import {createUser, checkUserByTelAndPw, checkAllUsers} from '../view/UsersView';
 import Users from '../../database/entity/Users';
 import { checkAllUmbrellas, checkUmbrellaById, createUmbrella } from '../view/UmbrellasView';
 import Umbrellas from '../../database/entity/Umbrellas';
 import { checkAllHistorys, checkHistoryByUmbrellaId, checkHistoryByUserId } from '../view/HistorysView';
 import Historys from '../../database/entity/Historys';
 import {checkAllManagers} from "../view/ManagersView";
+import {getUmbrellaStats} from "../view/UmbrellasView";
+import {updateManagerInfoView} from "../view/ManagersView";
+import {updateUmbrellaStatus} from "../view/UmbrellasView";
+import {deleteUmbrella} from "../view/UmbrellasView";
 
 //==================== 1. User 로직 ====================
 // 인증 컨트롤러: 전화번호와 비밀번호로 사용자 인증
@@ -261,5 +265,25 @@ async function checkBorrowedUmbrella(user_id) {
         return await res.json();
     } catch (error) {
         return null;
+    }
+}
+
+// 우산 개수 조회
+export async function getUmbrellaStatsController() {
+    try {
+        const stats = await getUmbrellaStats();
+        return { success: true, stats: stats }; // 'stats' 객체를 반환
+    } catch (err) {
+        return { success: false, error: '우산 통계 로드 실패' };
+    }
+}
+
+// 전체 사용자 목록 반환
+export async function getUserListController(){
+    try {
+        const users = await checkAllUsers();
+        return { success: true, users };
+    } catch (err) {
+        return { success: false, error: '사용자 목록 불러오기 실패' };
     }
 }
