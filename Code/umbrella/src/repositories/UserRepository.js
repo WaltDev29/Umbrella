@@ -1,32 +1,13 @@
 import User from '../domain/User';
-const API_URL = 'http://localhost:5000/api';
+import {fetchAPIGet, fetchAPIPost} from "./UtilRepository";
 
-// ============ Fetch 공통 로직 ============
-
-// GET
-async function fetchAPIGet(table,url) {
-    const res = await fetch(`${API_URL}/${table}/${url}`, {method: "GET"});
-    if(!res.ok) throw new Error("API 호출 실패");
-    return await res.json();
-}
-
-// POST
-async function fetchAPIPost(table, url,headers, body) {
-    const res = await fetch(`${API_URL}/${table}/${url}`, {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify(body)
-    });
-    if (!res.ok) throw new Error("API 호출 실패");
-    return res;
-}
 
 // ============ SELECT ============
 
 // 전체 사용자 목록 조회
 export async function checkAllUsers() {
-    const res = await fetchAPIGet("users", "");
-    return Array.isArray(res) ? res.map(u => new User(u)) : [];
+    const data = await fetchAPIGet("users", "");
+    return Array.isArray(data) ? data.map(u => new User(u)) : [];
 }
 
 // todo 이거 왜 POST? 전화번호만 받도록 수정

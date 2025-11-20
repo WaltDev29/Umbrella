@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 
 // controller로부터 데이터를 불러오기 위한 함수들 import
-import {getUmbrellaListController, getUserListController, getHistoryListController} from "../../../repositories/Controller";
+import {getUmbrellaListController, getUserListController, getHistoryListController} from "../../../services/Controller";
 
 function DashBoardPage() {
     const navigate = useNavigate();
