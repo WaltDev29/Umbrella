@@ -6,8 +6,8 @@ const API_URL = 'http://localhost:5000/api';
 
 // GET
 async function fetchAPIGet(url) {
-    const res = await fetch(url, {method: "GET"});
-    if(!res.ok) throw new Error(message);
+    const res = await fetch(`${API_URL}/umbrellas/${url}`, {method: "GET"});
+    if(!res.ok) throw new Error("API 호출 실패");
     return await res.json();
 }
 
@@ -18,7 +18,7 @@ async function fetchAPIPost(url,headers, body) {
         headers: headers,
         body: JSON.stringify(body)
     });
-    if (!res.ok) throw new Error('우산 등록 실패');
+    if (!res.ok) throw new Error('우산 정보 수정 실패');
     return res;
 }
 
@@ -28,19 +28,19 @@ async function fetchAPIPost(url,headers, body) {
 
 // 전체 우산 조회
 async function getAllUmbrellas() {
-    const data = fetchAPIGet(`${API_URL}/umbrellas`);
+    const data = fetchAPIGet("");
     return Array.isArray(data) ? data.map(u => new Umbrella(u)) : [];
 }
 
 // 단일 우산 조회 (By ID)
 export async function getUmbrellasById(id) {
-    const data = fetchAPIGet(`${API_URL}/umbrellas/${id}`);
+    const data = fetchAPIGet(id);
     return new Umbrella(data);
 }
 
 // 상태별 우산 개수 조회
 export async function getUmbrellaStats() {
-    return fetchAPIGet(`${API_URL}/umbrellas/stats`);
+    return fetchAPIGet("stats");
 }
 
 
