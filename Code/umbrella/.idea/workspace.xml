@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b261a67d-4b56-4d82-a5b0-2f5663bf4e4f" name="변경" comment="사용자페이지 분리, App.jsx에 Route 추가, Warning.jsx 페이지 작성">
-      <change afterPath="$PROJECT_DIR$/src/presentation/page/user/DefectReportPage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/presentation/page/user/LostReportPage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/presentation/page/user/ReturnPage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/presentation/page/user/Warning.jsx" afterDir="false" />
+    <list default="true" id="b261a67d-4b56-4d82-a5b0-2f5663bf4e4f" name="변경" comment="고장우산신고페이지 표시 방식 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/component/user/Commonness.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/component/user/Commonness.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/component/user/DefectReport.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/component/user/DefectReport.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/component/user/Thanks.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/component/user/Thanks.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/component/user/DefectReport2.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/component/user/DefectReport2.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/page/user/DefectReportPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/user/DefectReportPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/page/user/UserHomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/user/UserHomePage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +57,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Umbrella/Code/umbrella&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Umbrella/Code/umbrella/src/presentation/component/user&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -74,6 +71,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Umbrella\Code\umbrella\src\presentation\component\user" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Umbrella\Code\umbrella\public" />
       <recent name="D:\Umbrella\Code\umbrella\src\user\pages" />
@@ -132,7 +132,8 @@
       <workItem from="1763645218244" duration="188000" />
       <workItem from="1763645426772" duration="765000" />
       <workItem from="1763688694081" duration="472000" />
-      <workItem from="1763698740488" duration="3567000" />
+      <workItem from="1763698740488" duration="7361000" />
+      <workItem from="1763707873055" duration="3708000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <option name="closed" value="true" />
@@ -182,7 +183,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763646154920</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="사용자페이지 분리, App.jsx에 Route 추가, Warning.jsx 페이지 작성">
+      <option name="closed" value="true" />
+      <created>1763703736793</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1763703736793</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,6 +205,7 @@
     <MESSAGE value="관리자 모드 프로토타입 주석 추가, dashboard 기능 추가" />
     <MESSAGE value="누락된 await 추가" />
     <MESSAGE value="사용자페이지 분리, App.jsx에 Route 추가, Warning.jsx 페이지 작성" />
-    <option name="LAST_COMMIT_MESSAGE" value="사용자페이지 분리, App.jsx에 Route 추가, Warning.jsx 페이지 작성" />
+    <MESSAGE value="고장우산신고페이지 표시 방식 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="고장우산신고페이지 표시 방식 수정" />
   </component>
 </project>

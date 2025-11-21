@@ -1,13 +1,20 @@
 import React, {useState} from 'react';
 import { Buttons, ErrorDisplay } from './Commonness';
 
-export default function DefectReport3({ dispatch, state }) {
+
+export default function DefectReport({setIsDone}) {
     const [formData, setFormData] = useState({
         phone: '',
         umbrella_id: ''
     });
 
-    const [error, setError] = useState()
+    const [error, setError] = useState({
+        state : false,
+        message : ""
+    })
+
+    const [isLoading, setIsloading] = useState(false);
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -16,18 +23,19 @@ export default function DefectReport3({ dispatch, state }) {
 
     const handleSubmit = async () => {
         const { phone, umbrella_id } = formData;
-        
+
+        // 유효성 검사
         if (!phone) {
-            dispatch({ type: 'SET_ERROR', payload: '휴대폰 번호를 입력해주세요.' });
+            setError({state: true, message: "휴대폰 번호를 입력해주세요."})
             return;
         }
 
         if (!umbrella_id) {
-            dispatch({ type: 'SET_ERROR', payload: '우산 번호를 입력해주세요.' });
+            setError({state: true, message: "우산 번호를 입력해주세요."})
             return;
         }
 
-        dispatch({ type: 'SET_LOADING', payload: true });
+        setIsloading(true)
 
         try {
             // 하이픈 제거
@@ -45,25 +53,25 @@ export default function DefectReport3({ dispatch, state }) {
             const data = await response.json();
 
             if (!response.ok) {
-                dispatch({ type: 'SET_ERROR', payload: data.message || '고장 신고 실패' });
-                dispatch({ type: 'SET_LOADING', payload: false });
+                setError({state : true, message: data.message || '고장 신고 실패'});
+                setIsloading(false);
                 return;
             }
-            
-            dispatch({ type: 'NAVIGATE', payload: 'THANKS' });
+
+            setIsDone(true);
 
         } catch (error) {
             console.error('고장 신고 에러:', error);
-            dispatch({ type: 'SET_ERROR', payload: '처리 중 오류 발생' });
+            setError({state: true, message: "처리 중 오류 발생"})
         } finally {
-            dispatch({ type: 'SET_LOADING', payload: false });
+            setIsloading(false)
         }
     };
 
     return (
         <div className="defect-report">
             <h2>고장 신고</h2>
-            <ErrorDisplay message={state.error} />
+            {error.state && <ErrorDisplay message={error.message} />}
 
             <div className="form-group">
                 <label>휴대폰 번호</label>
@@ -73,7 +81,7 @@ export default function DefectReport3({ dispatch, state }) {
                     placeholder="01012345678"
                     value={formData.phone}
                     onChange={handleChange}
-                    disabled={state.isLoading}
+                    disabled={isLoading}
                 />
             </div>
 
@@ -85,12 +93,12 @@ export default function DefectReport3({ dispatch, state }) {
                     placeholder="우산 번호를 입력하세요"
                     value={formData.umbrella_id}
                     onChange={handleChange}
-                    disabled={state.isLoading}
+                    disabled={isLoading}
                 />
             </div>
 
-            <Buttons onClick={handleSubmit} disabled={state.isLoading}>
-                {state.isLoading ? '신고 중...' : '고장 신고'}
+            <Buttons onClick={handleSubmit} disabled={isLoading}>
+                {isLoading ? '신고 중...' : '고장 신고'}
             </Buttons>
         </div>
     );

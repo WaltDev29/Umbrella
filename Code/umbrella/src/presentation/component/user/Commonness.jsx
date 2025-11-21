@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// todo 이거 굳이 쓸 필요 없음.
 export function Buttons(props) {
     return (
         <button onClick={props.onClick} disabled={props.disabled}>
@@ -9,6 +10,7 @@ export function Buttons(props) {
     );
 }
 
+// todo 이것도 굳이 쓸 필요 없음. css 어떻게 입힐 지에 달린 듯
 export function ErrorDisplay({ message }) {
     if (!message) return null;
     return (
@@ -18,6 +20,7 @@ export function ErrorDisplay({ message }) {
     );
 }
 
+// todo 이것도 필요없을듯
 export function Header() {
     return (
         <div>

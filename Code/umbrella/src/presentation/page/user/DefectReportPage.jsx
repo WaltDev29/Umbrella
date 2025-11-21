@@ -6,7 +6,7 @@ export default function DefectReportPage() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const [done, setDone] = useState();
+    const [isDone, setIsDone] = useState();
 
     // URL 입력해서 들어오는 거 방지
     useEffect(() => {
@@ -15,18 +15,17 @@ export default function DefectReportPage() {
 
     // 완료시 Thanks 페이지로 이동
     useEffect(() => {
-            if (done) navigate("/thanks", {state : {mode : "DEFECT_REPORT"}});
-    }, [done]);
+            if (isDone) navigate("/thanks", {state : {mode : "DEFECT_REPORT"}});
+    }, [isDone]);
 
 
     // todo 이거 전달해서 State 변경하도록
-    const handleSetDone = () => setDone(true)
+    // const handleSetDone = () => setIsDone(true)
 
 
     return (
         <>
-            {!done &&<DefectReport/>}
-            <button></button>
+            {!isDone &&<DefectReport setIsDone={setIsDone}/>}
         </>
     )
 

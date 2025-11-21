@@ -2,7 +2,6 @@ import React, { useReducer } from 'react';
 import { umbrellaReducer, initialState } from './UserPageLogic';
 import { UserInfo } from '../../component/user/UserInfo';
 import { UmbrellaSelect } from '../../component/user/UmbrellaSelect';
-import DefectReport from '../../component/user/DefectReport';
 import { ConfirmRental } from '../../component/user/ConfirmRental';
 import Thanks from '../../component/user/Thanks';
 import {useNavigate} from "react-router-dom";
@@ -11,10 +10,6 @@ function UserHomePage() {
     const [state, dispatch] = useReducer(umbrellaReducer, initialState);
 
     const navigate = useNavigate();
-
-    const handleClick = (direction, mode) => {
-        navigate(`/${direction}`, { state: { mode: mode } });
-    }
 
     const renderCurrentStep = () => {
         switch (state.currentStep) {
@@ -70,13 +65,13 @@ function UserHomePage() {
                     />
                 );
 
-            case 'DEFECT_REPORT':
-                return (
-                    <DefectReport
-                        dispatch={dispatch}
-                        state={state}
-                    />
-                );
+            // case 'DEFECT_REPORT':
+            //     return (
+            //         <DefectReport
+            //             dispatch={dispatch}
+            //             state={state}
+            //         />
+            //     );
 
             case 'CONFIRM':
                 return (
