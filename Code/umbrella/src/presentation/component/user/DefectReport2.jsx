@@ -1,13 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Buttons, ErrorDisplay } from './Commonness';
 
-export default function DefectReport3({ dispatch, state }) {
-    const [formData, setFormData] = useState({
+export default function DefectReport({ dispatch, state }) {
+    const [formData, setFormData] = React.useState({
         phone: '',
         umbrella_id: ''
     });
-
-    const [error, setError] = useState()
 
     const handleChange = (e) => {
         const { name, value } = e.target;
