@@ -1,7 +1,7 @@
 import React from 'react';
 import { Buttons } from './Commonness';
 
-export function Thanks({ dispatch, rentalMode }) {
+export default function Thanks({ dispatch, rentalMode }) {
     React.useEffect(() => {
         const timer = setTimeout(() => {
             dispatch({ type: 'RESET' });

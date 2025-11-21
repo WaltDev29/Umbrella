@@ -2,12 +2,19 @@ import React, { useReducer } from 'react';
 import { umbrellaReducer, initialState } from './UserPageLogic';
 import { UserInfo } from '../../component/user/UserInfo';
 import { UmbrellaSelect } from '../../component/user/UmbrellaSelect';
-import { DefectReport } from '../../component/user/DefectReport';
+import DefectReport from '../../component/user/DefectReport';
 import { ConfirmRental } from '../../component/user/ConfirmRental';
-import { Thanks } from '../../component/user/Thanks';
+import Thanks from '../../component/user/Thanks';
+import {useNavigate} from "react-router-dom";
 
 function UserHomePage() {
     const [state, dispatch] = useReducer(umbrellaReducer, initialState);
+
+    const navigate = useNavigate();
+
+    const handleClick = (direction, mode) => {
+        navigate(`/${direction}`, { state: { mode: mode } });
+    }
 
     const renderCurrentStep = () => {
         switch (state.currentStep) {
@@ -17,21 +24,32 @@ function UserHomePage() {
                         <h1>우산 대여 시스템</h1>
 
                         {/* 4개 버튼 */}
-                        <button onClick={() => dispatch({ type: 'START_PROCESS', payload: 'BORROW' })}>
+                        <button onClick={() => navigate("/rental", { state: { mode: "RENTAL" } })}>
                             우산 대여
                         </button>
 
-                        <button onClick={() => dispatch({ type: 'START_PROCESS', payload: 'RETURN' })}>
+                        <button onClick={() => navigate("/return", { state: { mode: "RETURN" } })}>
                             우산 반납
                         </button>
 
-                        <button onClick={() => dispatch({ type: 'START_PROCESS', payload: 'LOST_REPORT' })}>
+                        <button onClick={() => navigate("/lost_report", { state: { mode: "LOST_REPORT" } })}>
                             분실 신고
                         </button>
 
-                        <button onClick={() => dispatch({ type: 'START_PROCESS', payload: 'DEFECT_REPORT' })}>
+                        <button onClick={() => navigate("/defect_report", { state: { mode: "DEFECT_REPORT" } })}>
                             고장 신고
                         </button>
+                        {/*<button onClick={() => dispatch({ type: 'START_PROCESS', payload: 'RETURN' })}>*/}
+                        {/*    우산 반납*/}
+                        {/*</button>*/}
+
+                        {/*<button onClick={() => dispatch({ type: 'START_PROCESS', payload: 'LOST_REPORT' })}>*/}
+                        {/*    분실 신고*/}
+                        {/*</button>*/}
+
+                        {/*<button onClick={() => dispatch({ type: 'START_PROCESS', payload: 'DEFECT_REPORT' })}>*/}
+                        {/*    고장 신고*/}
+                        {/*</button>*/}
                     </div>
                 );
 

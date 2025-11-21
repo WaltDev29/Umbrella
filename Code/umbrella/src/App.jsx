@@ -2,6 +2,13 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Layout from './Layout.jsx';
 import KioskStartPage from "./presentation/page/KioskStartPage.jsx";
 import UserHomePage from './presentation/page/user/UserHomePage';
+import RentalPage from "./presentation/page/user/RentalPage";
+import ReturnPage from "./presentation/page/user/ReturnPage";
+import LostReportPage from "./presentation/page/user/LostReportPage";
+import DefectReportPage from "./presentation/page/user/DefectReportPage";
+import Thanks from "./presentation/component/user/Thanks";
+
+import Warning from "./presentation/page/user/Warning";
 
 import AdminLogInPage from "./presentation/page/admin/AdminLogInPage";
 import AdminHomePage from "./presentation/page/admin/AdminHomePage";
@@ -23,7 +30,16 @@ function App() {
                     <Route path="dashboard" element={<DashBoardPage/>}/>
                     <Route path="update-admin-info" element={<UpdateAdminInfoPage/>}/>
                     <Route path="update-umbrella-info" element={<UpdateUmbrellaInfo/>}/>
+
+                    <Route path="rental" element={<RentalPage/>}/>
+                    <Route path="return" element={<ReturnPage/>}/>
+                    <Route path="lost_report" element={<LostReportPage/>}/>
+                    <Route path="defect_report" element={<DefectReportPage/>}/>
+
+                    <Route path="warning" element={<Warning/>}/>
+
                     <Route path="complete" element={<ThankYouPage/>}/>
+                    <Route path="thanks" element={<Thanks/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

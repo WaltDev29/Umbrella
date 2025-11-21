@@ -1,7 +1,7 @@
 import React from 'react';
 import { Buttons, ErrorDisplay } from './Commonness';
 
-export function DefectReport({ dispatch, state }) {
+export default function DefectReport({ dispatch, state }) {
     const [formData, setFormData] = React.useState({
         phone: '',
         umbrella_id: ''
