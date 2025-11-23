@@ -1,12 +1,21 @@
-import React, { useEffect } from 'react';
-import { Buttons, ErrorDisplay } from './Commonness';
+import React, { useEffect, useState } from 'react';
+import { Buttons } from './Commonness';
+import {getAvailableUmbrella} from "../../../repositories/UmbrellaRepository";
 
-export function UmbrellaSelect({ dispatch, state }) {
-    const [availableUmbrellas, setAvailableUmbrellas] = React.useState({
+export function UmbrellaSelect({ setUmbrellaData, setStep }) {
+    const [availableUmbrellas, setAvailableUmbrellas] = useState({
         L: [],
         S: []
     });
-    const [isLoading, setIsLoading] = React.useState(true);
+
+    const [selectedUmbrella, setSelectedUmbrella] = useState(null);
+
+    const [isLoading, setIsLoading] = useState(true);
+
+    const [error, setError] = useState({
+       state : false,
+       message : ""
+    });
 
     useEffect(() => {
         const fetchAvailableUmbrellas = async () => {
@@ -14,12 +23,10 @@ export function UmbrellaSelect({ dispatch, state }) {
 
             try {
                 // DB에서 상태 'A' (대여가능)인 우산만 조회
-                const response = await fetch('http://localhost:5000/api/umbrellas?status=A', {
-                    method: 'GET'
-                });
+                const response = await getAvailableUmbrella();
 
                 if (!response.ok) {
-                    dispatch({ type: 'SET_ERROR', payload: '우산 정보 조회 실패' });
+                    setError({state : true, message: "우산 정보 조회 실패"})
                     setIsLoading(false);
                     return;
                 }
@@ -36,41 +43,47 @@ export function UmbrellaSelect({ dispatch, state }) {
                 });
 
             } catch (error) {
-                dispatch({ type: 'SET_ERROR', payload: '네트워크 오류' });
+                setError({state: true, message: "네트워크 오류"});
             } finally {
                 setIsLoading(false);
             }
         };
 
         fetchAvailableUmbrellas();
-    }, [dispatch]);
+    },[]);
 
     const handleSelect = (type) => {
         const umbrellas = availableUmbrellas[type];
 
         // 대여가능 우산 확인
         if (umbrellas.length === 0) {
-            dispatch({
-                type: 'SET_ERROR',
-                payload: `${type === 'L' ? '장' : '단'}우산이 모두 대여중입니다.`
-            });
+            setError({state: true, message: `${type === 'L' ? '장' : '단'}우산이 모두 대여중입니다.`});
             return;
         }
 
         // 첫 번째 우산 선택
-        const selectedUmbrella = umbrellas[0];
+        setSelectedUmbrella(umbrellas[0]);
 
-        dispatch({
-            type: 'SELECT_UMBRELLA',
-            payload: {
-                type,
-                umbrellaId: selectedUmbrella.umbrella_id,
-                umbrellaData: selectedUmbrella
-            }
-        });
+        setUmbrellaData({
+            umbrella_id: umbrellas[0].umbrella_id,
+            type : type
+        })
 
-        // 확인 페이지로
-        dispatch({ type: 'NAVIGATE', payload: 'CONFIRM' });
+        // dispatch({
+        //     type: 'SELECT_UMBRELLA',
+        //     payload: {
+        //         type,
+        //         umbrella_id: selectedUmbrella.umbrella_id,
+        //         umbrellaData: selectedUmbrella
+        //     }
+        // });
+
+        // dispatch({ type: 'NAVIGATE', payload: 'CONFIRM' });
+    };
+
+    const handleSubmit = () => {
+        if (selectedUmbrella) setStep(prev => (prev+1));
+        else setError({state : true, message: "우산을 선택해주세요."});
     };
 
     if (isLoading) {
@@ -80,7 +93,7 @@ export function UmbrellaSelect({ dispatch, state }) {
     return (
         <div className="umbrella-select">
             <h2>우산 종류 선택</h2>
-            <ErrorDisplay message={state.error} />
+            {error.state && <p>{error.message}</p>}
 
             <div className="umbrella-options">
                 {/* 장우산 버튼 */}
@@ -118,6 +131,11 @@ export function UmbrellaSelect({ dispatch, state }) {
                     <p>죄송합니다. 현재 대여가능한 우산이 없습니다.</p>
                 </div>
             )}
+
+            <button onClick={() => setStep(prev => Math.max(prev-1,0))}>뒤로</button>
+            <Buttons onClick={handleSubmit} disabled={isLoading}>
+                {isLoading ? '확인 중...' : '다음'}
+            </Buttons>
         </div>
     );
 }

@@ -1,14 +1,17 @@
 import React from 'react';
-import { Buttons } from './Commonness';
+import {useLocation, useNavigate} from "react-router-dom";
 
-export default function Thanks({ dispatch, rentalMode }) {
+export default function Thanks() {
+    const location = useLocation();
+    const navigate = useNavigate();
+
     React.useEffect(() => {
         const timer = setTimeout(() => {
-            dispatch({ type: 'RESET' });
+            navigate("/");
         }, 10000);
 
         return () => clearTimeout(timer);
-    }, [dispatch]);
+    }, []);
 
     const modeMessage = {
         BORROW: '대여가',
@@ -17,13 +20,13 @@ export default function Thanks({ dispatch, rentalMode }) {
         DEFECT_REPORT: '고장 신고가'
     };
 
-    const message = modeMessage[rentalMode];
+    const message = modeMessage[location.state?.mode];
 
     return (
         <div>
             <h1>{message} 완료되었습니다. 감사합니다.</h1>
             <p>10초 뒤 초기 화면으로 돌아갑니다.</p>
-            <Buttons onClick={() => dispatch({ type: 'RESET' })}>처음으로</Buttons>
+            <button onClick={() => navigate("/")}>처음으로</button>
         </div>
     );
 }

@@ -18,7 +18,6 @@ export async function updateManagerInfoView(old_pw, new_pw) {
     const res = await fetchAPIPost(
         "managers",
         "update",
-        {'Content-Type': 'application/json'},
         {
             manager_old_pw: old_pw,
             manager_new_pw: new_pw

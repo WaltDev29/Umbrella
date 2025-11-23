@@ -4,13 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b261a67d-4b56-4d82-a5b0-2f5663bf4e4f" name="변경" comment="고장우산신고페이지 표시 방식 수정">
+    <list default="true" id="b261a67d-4b56-4d82-a5b0-2f5663bf4e4f" name="변경" comment="사용자페이지 렌더링 방식 수정">
+      <change afterPath="$PROJECT_DIR$/../backend-server/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend-server/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend-server/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend-server/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/presentation/component/user/Confirm.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/component/user/Commonness.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/component/user/Commonness.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Layout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/component/user/ConfirmRental.jsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/component/user/DefectReport.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/component/user/DefectReport.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/component/user/DefectReport2.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/component/user/DefectReport2.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/component/user/DefectReport2.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/component/user/Thanks.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/component/user/Thanks.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/component/user/UmbrellaSelect.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/component/user/UmbrellaSelect.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/component/user/UserInfo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/component/user/UserInfo.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/page/user/DefectReportPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/user/DefectReportPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/page/user/LostReportPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/user/LostReportPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/page/user/RentalPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/user/RentalPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/page/user/ReturnPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/user/ReturnPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/page/user/UserHomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/user/UserHomePage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repositories/ManagerRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/ManagerRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repositories/UmbrellaRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/UmbrellaRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repositories/UserRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/UserRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repositories/UtilRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/UtilRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/Controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/Controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/UserService.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,11 +54,11 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/WaltDev29/Umbrella&quot;,
-    &quot;accountId&quot;: &quot;b84b71e9-1d22-4a23-af96-acf7176991a8&quot;
+    &quot;accountId&quot;: &quot;6f18c962-0462-491e-9a0b-ffa0180c6397&quot;
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="보안 분석" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -55,17 +75,17 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;26-사용자-페이지-리팩토링&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Umbrella/Code/umbrella/src/presentation/component/user&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/Desktop/Umbrella/Code/backend-server&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;C:/Program Files/nodejs/node&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.npm start.executor&quot;: &quot;Run&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.3.4.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -89,7 +109,7 @@
       <scripts>
         <script value="start" />
       </scripts>
-      <node-interpreter value="project" />
+      <node-interpreter value="$APPLICATION_CONFIG_DIR$/node/versions/24.11.1/node" />
       <envs />
       <method v="2" />
     </configuration>
@@ -134,6 +154,9 @@
       <workItem from="1763688694081" duration="472000" />
       <workItem from="1763698740488" duration="7361000" />
       <workItem from="1763707873055" duration="3708000" />
+      <workItem from="1763786685798" duration="10444000" />
+      <workItem from="1763817625657" duration="10213000" />
+      <workItem from="1763901794441" duration="8829000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <option name="closed" value="true" />
@@ -206,6 +229,11 @@
     <MESSAGE value="누락된 await 추가" />
     <MESSAGE value="사용자페이지 분리, App.jsx에 Route 추가, Warning.jsx 페이지 작성" />
     <MESSAGE value="고장우산신고페이지 표시 방식 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="고장우산신고페이지 표시 방식 수정" />
+    <MESSAGE value="사용자페이지 렌더링 방식 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="사용자페이지 렌더링 방식 수정" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

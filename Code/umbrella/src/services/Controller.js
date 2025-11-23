@@ -8,6 +8,8 @@ import {updateManagerInfoView} from "../repositories/ManagerRepository";
 import {updateUmbrella} from "../repositories/UmbrellaRepository";
 import {deleteUmbrella} from "../repositories/UmbrellaRepository";
 
+const API_URL = 'http://141.147.158.235:8080/api';
+
 // ============ fetch 공통 로직 ============
 // export async function fetchAPIGet(url) {
 //     const res = await fetch(url, {method: "GET"});
@@ -244,7 +246,7 @@ export async function LossReportCheckController(phone, password) {
 // ==================== 고장 신고 ====================
 export async function DefectReportController(phone, umbrellaId) {
     try {
-        const res = await fetch('http://localhost:5000/api/umbrellas/defect-report', {
+        const res = await fetch(`${API_URL}/umbrellas/defect-report`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ phone, umbrella_id: umbrellaId })
@@ -261,9 +263,9 @@ export async function DefectReportController(phone, umbrellaId) {
 }
 
 // ==================== Helper 함수 ====================
-async function checkBorrowedUmbrella(user_id) {
+export async function checkBorrowedUmbrella(user_id) {
     try {
-        const res = await fetch('http://localhost:5000/api/umbrellas/borrowed', {
+        const res = await fetch(`${API_URL}/umbrellas/borrowed`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ user_id })

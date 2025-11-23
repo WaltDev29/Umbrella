@@ -15,9 +15,11 @@ export async function checkAllUsers() {
 export async function checkUserByTelAndPw(user_tel, user_pw) {
     const res = await fetchAPIPost("users",
         "auth",
-        { 'Content-Type': 'application/json' },
         { user_tel, user_pw }
     );
+
+    if (!res.ok) return null;
+
     const user = await res.json();
     return user ? new User(user) : null;
 }
@@ -31,9 +33,9 @@ export async function createUser(user_tel, user_pw) {
     const res = await fetchAPIPost(
         "users",
         "",
-        { 'Content-Type': 'application/json' },
         { user_tel, user_pw }
     );
+    if (!res.ok) throw new Error();
     const createdUser = await res.json();
     return new User(createdUser);
 }
