@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
-import { Buttons, ErrorDisplay } from './Commonness';
-
+import {defectReportUmbrella} from '../../../repositories/UmbrellaRepository'
+import {useNavigate} from "react-router-dom";
 
 export default function DefectReport({setIsDone}) {
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         phone: '',
         umbrella_id: ''
@@ -41,14 +43,7 @@ export default function DefectReport({setIsDone}) {
             // 하이픈 제거
             const normalizedPhone = phone.replace(/-/g, '');
 
-            const response = await fetch('http://localhost:5000/api/umbrellas/defect-report', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    phone: normalizedPhone,
-                    umbrella_id: parseInt(umbrella_id)
-                })
-            });
+            const response = await defectReportUmbrella(normalizedPhone, umbrella_id);
 
             const data = await response.json();
 
@@ -71,7 +66,7 @@ export default function DefectReport({setIsDone}) {
     return (
         <div className="defect-report">
             <h2>고장 신고</h2>
-            {error.state && <ErrorDisplay message={error.message} />}
+            {error.state && <p>{error.message}</p>}
 
             <div className="form-group">
                 <label>휴대폰 번호</label>
@@ -97,9 +92,11 @@ export default function DefectReport({setIsDone}) {
                 />
             </div>
 
-            <Buttons onClick={handleSubmit} disabled={isLoading}>
+            {/*<Footer prev={goPrev} next={handleSubmit} nextMessage="고장신고" isLoading={isLoading}/>*/}
+            <button onClick={() => navigate("/")} disabled={isLoading}>이전</button>
+            <button onClick={handleSubmit} disabled={isLoading}>
                 {isLoading ? '신고 중...' : '고장 신고'}
-            </Buttons>
+            </button>
         </div>
     );
 }

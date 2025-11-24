@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet, useNavigate, Link, useLocation } from 'react-router-dom';
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import './Layout.css';
 
 export default function Layout() {
@@ -15,6 +15,7 @@ export default function Layout() {
     return (
         <div className="layout-container">
             <header className="app-header">
+                <button onClick={() => navigate("/")}>홈</button>
                 <img src="/logo.png" alt="logo" className="app-logo" />
                 <h1>우산 대여 시스템</h1>
             </header>

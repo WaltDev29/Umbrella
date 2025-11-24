@@ -31,6 +31,8 @@ function App() {
                     <Route path="update-admin-info" element={<UpdateAdminInfoPage/>}/>
                     <Route path="update-umbrella-info" element={<UpdateUmbrellaInfo/>}/>
 
+                </Route>
+                <Route>
                     <Route path="rental" element={<RentalPage/>}/>
                     <Route path="return" element={<ReturnPage/>}/>
                     <Route path="lost_report" element={<LostReportPage/>}/>
