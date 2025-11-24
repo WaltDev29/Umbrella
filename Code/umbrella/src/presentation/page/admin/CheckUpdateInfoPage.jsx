@@ -5,15 +5,14 @@ import {updateUmbrellaStatusController,
     addUmbrellaController
 } from "../../../services/Controller";
 
-function CheckUpdateInfoPage({ title, onCancel, data }) {
+function CheckUpdateInfoPage({ title, onCancel, data, mode }) {
     const navigate = useNavigate();
 
     // data = [umbrellaId, umbrellaStatus]
-    const umbrellaId = data ? data[0] : null;
-    const umbrellaStatus = data ? data[1] : null;
+    const { id, size, status } = data || {};
 
     const handleSubmit = async () => {
-        if (title !== "등록" && !umbrellaId) {
+        if (mode !== "INSERT" && !id) {
             alert("업데이트할 우산 ID가 없습니다.");
             console.error("전달된 데이터:", data);
             return;
@@ -22,28 +21,27 @@ function CheckUpdateInfoPage({ title, onCancel, data }) {
         try {
             let result;
 
-            if (title === "삭제") {
-                console.log(`[삭제 요청] 우산 ID: ${umbrellaId}`);
-                result = await deleteUmbrellaController(umbrellaId);
+            if (mode === "DELETE") {
+                console.log(`[삭제 요청] 우산 ID: ${id}`);
+                result = await deleteUmbrellaController(id);
             } else {
-
-                // 등록 or 수정할 때 필요한 상태값이 없으면
-                if (!umbrellaStatus) {
-                    alert(title+"할 상태값이 없습니다.");
-                    return;
-                }
-
-                // 수정 로직 (상태값도 필요)
-                // 수정인데 상태값이 없으면 방어
-                if(title === "등록") {
-                    result = await addUmbrellaController(umbrellaStatus);
-                } else if(title === "상태 수정"){
-                    result = await updateUmbrellaStatusController(umbrellaStatus, umbrellaId);
+                if (mode === "INSERT") {
+                    if (!size) {
+                        alert("등록할 우산 종류가 없습니다.");
+                        return;
+                    }
+                    result = await addUmbrellaController(size);
+                } else if (mode === "UPDATE") {
+                    if (!status) {
+                        alert("수정할 상태값이 없습니다.");
+                        return;
+                    }
+                    result = await updateUmbrellaStatusController(status, id);
                 }
             }
 
             // 3. 결과 처리 (공통)
-            if (result.success) {
+            if (result && result.success) {
                 navigate('/complete', {
                     state: {
                         message: `${title} 처리가 완료되었습니다.`,
@@ -51,7 +49,7 @@ function CheckUpdateInfoPage({ title, onCancel, data }) {
                     }
                 });
             } else {
-                alert("처리 실패: " + result.error);
+                alert("처리 실패: " + (result?.error || "알 수 없는 오류"));
             }
         } catch (error) {
             console.error("처리 중 에러 발생:", error);
@@ -65,10 +63,16 @@ function CheckUpdateInfoPage({ title, onCancel, data }) {
             <div>해당 우산을 {title} 하시겠습니까?</div>
 
             <div style={{ margin: "20px 0", padding: "10px", border: "1px solid #ddd" }}>
-                <p><strong>우산 번호:</strong> {umbrellaId}</p>
+                {mode !== "INSERT" && (
+                    <p><strong>우산 번호:</strong> {id}</p>
+                )}
 
-                {title === "상태 수정" && (
-                    <p><strong>변경될 상태:</strong> {umbrellaStatus}</p>
+                {mode === "INSERT" && (
+                    <p><strong>생성할 종류:</strong> {size === "L" ? "장우산" : "단우산"}</p>
+                )}
+
+                {mode === "UPDATE" && (
+                    <p><strong>변경될 상태:</strong> {status}</p>
                 )}
             </div>
 
