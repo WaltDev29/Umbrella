@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import "./ThankYouPage.css"; // CSS 파일 import
 
 export default function ThankYouPage() {
     const navigate = useNavigate();
@@ -34,12 +35,24 @@ export default function ThankYouPage() {
     }, [navigate, prevMode]);
 
     return (
-        <div
-            onClick={backToHome}
-            style={{ cursor: 'pointer', height: '100%', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
-        >
-            <h1>{message}</h1>
-            <p>{countdown}초 뒤 홈으로 돌아갑니다.</p>
+        <div className="thankyou-container" onClick={backToHome}>
+            {/* 성공 체크 아이콘 */}
+            <div className="success-icon-circle">
+                <span className="success-checkmark">✔</span>
+            </div>
+
+            {/* 메시지 */}
+            <h1 className="thankyou-message">{message}</h1>
+
+            {/* 카운트다운 */}
+            <p className="countdown-text">
+                <span className="countdown-number">{countdown}</span>초 뒤 홈으로 돌아갑니다.
+            </p>
+
+            {/* 터치 힌트 */}
+            <div className="touch-hint">
+                화면을 터치하면 바로 이동합니다 👆
+            </div>
         </div>
     );
 }

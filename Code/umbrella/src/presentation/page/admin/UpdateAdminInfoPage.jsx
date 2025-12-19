@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import {updateManagerInfoView} from "../../database/view/ManagersView"; // 컨트롤러를 사용하므로 View는 직접 import 안 해도 됩니다.
 import { updateManagerInfoController } from "../../../services/Controller";
+import "./UpdateAdminInfoPage.css"; // CSS 파일 import
 
 function UpdateAdminInfoPage() {
     const navigate = useNavigate();
@@ -34,29 +35,31 @@ function UpdateAdminInfoPage() {
     }
 
     return (
-        <div>
-            <h1>관리자 비밀번호 수정</h1>
-            {error && <h2>{error}</h2>}
-            <form onSubmit={handleSubmit}>
-                <label>
-                    기존 비밀번호 :
-                    <input type="password" onChange={e => setOriginalPw(e.target.value)} />
-                </label>
-                <br />
-                <label>
-                    새 비밀번호 :
-                    <input type="password" onChange={e => setPw(e.target.value)} />
-                </label>
-                <br />
-                <label>
-                    비밀번호 확인 :
-                    <input type="password" onChange={e => setCheckPw(e.target.value)} />
-                </label>
-                <div>
-                    <button type="submit">비밀번호 변경</button>
-                    <button type="button" onClick={() => navigate("/admin-home")}>취소</button>
-                </div>
-            </form>
+        <div className="admin-update-container">
+            <div className="admin-update-card">
+                <h1 className="admin-title">관리자 비밀번호 수정</h1>
+                {error && <h2 className="error-text">{error}</h2>}
+                <form onSubmit={handleSubmit}>
+                    <label className="form-label">
+                        기존 비밀번호
+                        <input type="password" onChange={e => setOriginalPw(e.target.value)} className="form-input" placeholder="기존 비밀번호 입력"/>
+                    </label>
+
+                    <label className="form-label">
+                        새 비밀번호
+                        <input type="password" onChange={e => setPw(e.target.value)} className="form-input" placeholder="새 비밀번호 입력"/>
+                    </label>
+
+                    <label className="form-label">
+                        비밀번호 확인
+                        <input type="password" onChange={e => setCheckPw(e.target.value)} className="form-input" placeholder="새 비밀번호 재입력"/>
+                    </label>
+                    <div className="btn-group">
+                        <button type="submit" className="btn-action btn-submit">비밀번호 변경</button>
+                        <button type="button" onClick={() => navigate("/admin-home")} className="btn-action btn-cancel">취소</button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

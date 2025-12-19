@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import CheckUpdateInfoPage from "./CheckUpdateInfoPage";
+import "./UpdateUmbrellaInfo.css"; // CSS 파일 import
 
 const titleMap = { "INSERT": "등록", "UPDATE": "상태 수정", "DELETE": "삭제" };
 const sizeMap = { "L": "장우산", "S": "단우산" };
@@ -64,18 +65,18 @@ function UpdateUmbrellaInfo() {
     }
 
     return (
-        <div>
+        <div className="update-container">
             {!showConfirmModal &&
-                <form onSubmit={handleSubmit}>
-                    <h1>우산 {title}</h1>
-                    <div>우산 번호 : {item?.umbrella_id || newItemId}</div>
+                <form onSubmit={handleSubmit} className="update-card">
+                    <h1 className="page-title">우산 {title}</h1>
+                    <div className="info-text">우산 번호 : {item?.umbrella_id || newItemId}</div>
 
                     {/* INSERT 모드: 우산 종류 선택 */}
                     {mode === "INSERT" &&
-                        <div>
-                            <span>우산 종류</span>
+                        <div className="input-group">
+                            <span className="input-label">우산 종류</span>
                             {/* 👇 value와 onChange를 연결해줍니다 */}
-                            <select value={selectedSize} onChange={handleSizeChange}>
+                            <select value={selectedSize} onChange={handleSizeChange} className="kiosk-select">
                                 <option value="L">장우산</option>
                                 <option value="S">단우산</option>
                             </select>
@@ -84,10 +85,10 @@ function UpdateUmbrellaInfo() {
 
                     {/* UPDATE 모드: 우산 상태 수정 */}
                     {mode === "UPDATE" &&
-                        <div>
-                            <div>우산 종류 : {itemSize}</div>
-                            <span>우산 상태</span>
-                            <select value={selectedStatus} onChange={handleStatusChange}>
+                        <div className="input-group">
+                            <div className="info-text" style={{marginBottom: "20px"}}>우산 종류 : {itemSize}</div>
+                            <span className="input-label">우산 상태 변경</span>
+                            <select value={selectedStatus} onChange={handleStatusChange} className="kiosk-select">
                                 <option value="A">대여 가능(반납)</option> {/* RENTAL -> A */}
                                 <option value="B">고장</option>         {/* BROKEN -> B */}
                                 <option value="L">분실</option>         {/* LOST -> L */}
@@ -96,13 +97,13 @@ function UpdateUmbrellaInfo() {
                     }
 
                     {mode === "DELETE" &&
-                        <div>
-                            <div>우산 종류 : {itemSize}</div>
-                            <div>우산 상태 : {itemStat}</div>
+                        <div className="input-group">
+                            <div className="info-text">우산 종류 : {itemSize}</div>
+                            <div className="info-text">우산 상태 : {itemStat}</div>
                         </div>
                     }
 
-                    <button type="submit">{title}</button>
+                    <button type="submit" className="submit-btn">{title}</button>
 
                 </form>
             }

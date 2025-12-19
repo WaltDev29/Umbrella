@@ -4,6 +4,7 @@ import {updateUmbrellaStatusController,
     deleteUmbrellaController,
     addUmbrellaController
 } from "../../../services/Controller";
+import "./CheckUpdateInfoPage.css"; // CSS 파일 import
 
 function CheckUpdateInfoPage({ title, onCancel, data, mode }) {
     const navigate = useNavigate();
@@ -58,27 +59,29 @@ function CheckUpdateInfoPage({ title, onCancel, data, mode }) {
     }
 
     return (
-        <div>
-            <h1>{title}</h1>
-            <div>해당 우산을 {title} 하시겠습니까?</div>
+        <div className="modal-overlay">
+            <div className="modal-content">
+                <h1 className="modal-title">{title} 확인</h1>
+                <div className="modal-question">해당 우산을 {title} 하시겠습니까?</div>
 
-            <div style={{ margin: "20px 0", padding: "10px", border: "1px solid #ddd" }}>
-                {mode !== "INSERT" && (
-                    <p><strong>우산 번호:</strong> {id}</p>
-                )}
+                <div className="info-summary-box">
+                    {mode !== "INSERT" && (
+                        <p className="info-item"><strong>우산 번호:</strong> {id}</p>
+                    )}
 
-                {mode === "INSERT" && (
-                    <p><strong>생성할 종류:</strong> {size === "L" ? "장우산" : "단우산"}</p>
-                )}
+                    {mode === "INSERT" && (
+                        <p className="info-item"><strong>생성할 종류:</strong> {size === "L" ? "장우산" : "단우산"}</p>
+                    )}
 
-                {mode === "UPDATE" && (
-                    <p><strong>변경될 상태:</strong> {status}</p>
-                )}
-            </div>
+                    {mode === "UPDATE" && (
+                        <p className="info-item"><strong>변경될 상태:</strong> {status}</p>
+                    )}
+                </div>
 
-            <div>
-                <button onClick={handleSubmit}>확인</button>
-                <button onClick={onCancel}>취소</button>
+                <div className="modal-btn-group">
+                    <button className="modal-btn btn-confirm" onClick={handleSubmit}>확인</button>
+                    <button className="modal-btn btn-cancel" onClick={onCancel}>취소</button>
+                </div>
             </div>
         </div>
     )

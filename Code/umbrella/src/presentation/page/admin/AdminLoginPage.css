@@ -1,0 +1,113 @@
+/* AdminLogInPage.css - Blue/Yellow 테마 & 반응형 Fix */
+
+/* ================================================================
+   [기본값] 키오스크 / 모바일 (터치 환경 우선)
+   - 큼직한 입력창과 버튼, 파랑/노랑 브랜드 컬러 유지
+   ================================================================ */
+.admin-login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f2f5; /* 밝은 회색 배경 */
+}
+
+.login-card {
+    width: 100%;
+    max-width: 700px; /* 키오스크용 넓은 너비 */
+    padding: 60px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    /* 부드러운 그림자 (첫 번째 버전 스타일) */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.login-title {
+    margin: 0 0 50px 0;
+    color: #333333;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.login-input {
+    width: 100%;
+    height: 80px; /* 터치하기 좋은 높이 */
+    padding: 0 20px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 28px;
+    box-sizing: border-box;
+}
+
+.login-input:focus {
+    outline: none;
+    border-color: #007bff; /* 포커스 시 파란색 */
+}
+
+.login-button {
+    width: 100%;
+    height: 80px;
+    background-color: #007bff; /* 메인 블루 */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
+
+.error-message {
+    margin-top: 20px;
+    color: #dc3545;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* ================================================================
+   ★ [PC 모드 수정] 화면이 넓고, 가로형일 때 ★
+   - 로그인 박스와 입력창 크기를 웹사이트 규격으로 줄임
+   ================================================================ */
+@media screen and (min-width: 1024px) and (orientation: landscape) {
+    .login-card {
+        max-width: 450px; /* PC에서는 아담하게 (700 -> 450) */
+        padding: 40px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* 그림자 더 깊게 */
+    }
+
+    .login-title {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+
+    .login-form {
+        gap: 20px;
+    }
+
+    .login-input {
+        height: 50px; /* 마우스용 높이 (80 -> 50) */
+        font-size: 16px;
+        border-width: 1px;
+    }
+
+    .login-button {
+        height: 50px;
+        font-size: 18px;
+    }
+
+    .error-message {
+        font-size: 16px;
+    }
+}

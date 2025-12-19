@@ -1,0 +1,122 @@
+/* AdminHomePage.css - 높이 대폭 확대 버전 */
+
+/* --- 공통 레이아웃 --- */
+.admin-home-container {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.home-title {
+    font-size: 48px;
+    color: #0056b3;
+    font-weight: 900;
+    margin: 0;
+    padding-bottom: 15px;
+    border-bottom: 4px solid #ffc107;
+    display: inline-block;
+}
+
+/* --- 버튼 & 카드 기본 스타일 --- */
+.nav-card-btn {
+    border: none;
+    border-radius: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.stat-label { color: #666; margin-bottom: 10px; font-weight: 600; }
+.stat-value { font-weight: 800; }
+.user-stat-text { text-align: center; font-weight: bold; color: #333; padding-bottom: 10px; border-bottom: 2px dashed #ddd; }
+.user-stat-text .highlight { color: #28a745; margin-left: 15px; }
+
+
+/* ================================================================
+   [키오스크 모드] 화면이 좁거나 세로형일 때
+   - 2x2 배치
+   ================================================================ */
+@media screen and (max-width: 1023px), screen and (orientation: portrait) {
+    .nav-grid, .stats-grid-responsive {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .nav-card-btn { height: 140px; font-size: 26px; }
+    .stat-card { height: 180px; padding: 20px; }
+    .stat-label { font-size: 22px; }
+    .stat-value { font-size: 56px; }
+    .user-stat-text { font-size: 30px; }
+    .user-stat-text .highlight { font-size: 48px; }
+
+    .nav-card-btn:active { opacity: 0.8; transform: scale(0.98); }
+}
+
+
+/* ================================================================
+   ★ [PC 모드 강제 적용] 화면 너비 1024px 이상 ★
+   - 4열 배치 + 높이 대폭 확대 (휑한 느낌 제거)
+   ================================================================ */
+@media screen and (min-width: 1024px) {
+    .nav-grid, .stats-grid-responsive {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* 4열 */
+        gap: 30px;
+    }
+
+    /* 1. 네비게이션 버튼: 높이 200px로 확대 */
+    .nav-card-btn {
+        height: 200px !important; /* 강제 적용 */
+        font-size: 26px;
+        border-radius: 20px;
+        flex-direction: column; /* 아이콘 위, 글자 아래 */
+        gap: 15px;
+    }
+
+    /* 2. 통계 카드: 높이 240px로 확대 */
+    .stat-card {
+        height: 240px !important; /* 강제 적용 */
+        padding: 30px;
+    }
+
+    .stat-label { font-size: 22px; }
+    .stat-value { font-size: 60px; }
+    .user-stat-text { font-size: 28px; }
+    .user-stat-text .highlight { font-size: 48px; }
+
+    /* PC 전용 호버 효과 */
+    .nav-card-btn:hover { transform: translateY(-7px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+    .stat-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+}
+
+
+/* --- 색상 유틸리티 (Design 1) --- */
+.btn-umbrella { background: linear-gradient(135deg, #0056b3, #004494); }
+.btn-user { background: linear-gradient(135deg, #17a2b8, #117a8b); }
+.btn-log { background: linear-gradient(135deg, #6c757d, #545b62); }
+.btn-admin { background: linear-gradient(135deg, #ffc107, #d39e00); color: #333; }
+
+.card-total { border-bottom: 8px solid #0056b3; } .card-total .stat-value { color: #0056b3; }
+.card-rented { border-bottom: 8px solid #17a2b8; } .card-rented .stat-value { color: #17a2b8; }
+.card-broken { border-bottom: 8px solid #dc3545; background-color: #fffbfb; } .card-broken .stat-value { color: #dc3545; }
+.card-lost { border-bottom: 8px solid #fd7e14; } .card-lost .stat-value { color: #fd7e14; }
