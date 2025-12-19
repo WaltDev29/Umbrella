@@ -27,7 +27,7 @@ export default function ThankYouPage() {
             setCountdown((prev) => prev - 1);
         }, 1000);
 
-        // 컴포넌트가 언마운트될 때 타이머와 인터벌을 정리합니다.
+        // 컴포넌트가 언마운트될 때 타이머와 인터벌을 정리
         return () => {
             clearTimeout(timerId);
             clearInterval(intervalId);

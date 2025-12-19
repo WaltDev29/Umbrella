@@ -27,7 +27,6 @@ function DashBoardPage() {
             columns: [
                 { label: "우산 ID", key: "umbrella_id" },
                 { label: "우산 종류", key: "umbrella_type", render: (val) => sizeMap[val] || val },
-                /* ★ 핵심 수정: 상태값에 따라 색상 클래스(st-값) 적용 */
                 { label: "우산 상태", key: "umbrella_status", render: (val) => (
                         <span className={`status-text st-${val}`}>{statMap[val] || val}</span>
                     )},

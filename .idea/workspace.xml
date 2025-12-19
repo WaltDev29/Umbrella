@@ -4,23 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9192bf72-1256-4f08-943b-0f0831d7c4ad" name="변경" comment="주석 달기">
-      <change afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/AdminCommon.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/AdminHomePage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/AdminLoginPage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/CheckUpdateInfoPage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/DashBoardPage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/ThankYouPage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/UpdateAdminInfoPage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/UpdateUmbrellaInfo.css" afterDir="false" />
+    <list default="true" id="9192bf72-1256-4f08-943b-0f0831d7c4ad" name="변경" comment="어드민 페이지 css 스타일 적용">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/umbrella/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Code/umbrella/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/AdminCommon.css" beforeDir="false" afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/AdminCommon.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/AdminHomePage.css" beforeDir="false" afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/AdminHomePage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/AdminHomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/AdminHomePage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/AdminLogInPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/AdminLogInPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/AdminLoginPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/AdminLoginPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/CheckUpdateInfoPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/CheckUpdateInfoPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/CheckUpdateInfoPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/CheckUpdateInfoPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/DashBoardPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/DashBoardPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/DashBoardPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/DashBoardPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/ThankYouPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/ThankYouPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/ThankYouPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/ThankYouPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/UpdateAdminInfoPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/UpdateAdminInfoPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/UpdateAdminInfoPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/UpdateAdminInfoPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/UpdateUmbrellaInfo.css" beforeDir="false" afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/UpdateUmbrellaInfo.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/UpdateUmbrellaInfo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/UpdateUmbrellaInfo.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,8 +140,17 @@
       <workItem from="1763625885356" duration="127000" />
       <workItem from="1763626873495" duration="67000" />
       <workItem from="1766113475206" duration="8655000" />
-      <workItem from="1766130643215" duration="2721000" />
+      <workItem from="1766130643215" duration="4311000" />
     </task>
+    <task id="LOCAL-00001" summary="어드민 페이지 css 스타일 적용">
+      <option name="closed" value="true" />
+      <created>1766133458653</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1766133458653</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,5 +166,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="어드민 페이지 css 스타일 적용" />
+    <option name="LAST_COMMIT_MESSAGE" value="어드민 페이지 css 스타일 적용" />
   </component>
 </project>

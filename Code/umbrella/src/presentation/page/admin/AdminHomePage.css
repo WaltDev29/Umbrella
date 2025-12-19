@@ -1,6 +1,3 @@
-/* AdminHomePage.css - 높이 대폭 확대 버전 */
-
-/* --- 공통 레이아웃 --- */
 .admin-home-container {
     padding: 40px;
     display: flex;
@@ -18,7 +15,6 @@
     display: inline-block;
 }
 
-/* --- 버튼 & 카드 기본 스타일 --- */
 .nav-card-btn {
     border: none;
     border-radius: 16px;
@@ -50,11 +46,6 @@
 .user-stat-text { text-align: center; font-weight: bold; color: #333; padding-bottom: 10px; border-bottom: 2px dashed #ddd; }
 .user-stat-text .highlight { color: #28a745; margin-left: 15px; }
 
-
-/* ================================================================
-   [키오스크 모드] 화면이 좁거나 세로형일 때
-   - 2x2 배치
-   ================================================================ */
 @media screen and (max-width: 1023px), screen and (orientation: portrait) {
     .nav-grid, .stats-grid-responsive {
         display: grid;
@@ -72,11 +63,6 @@
     .nav-card-btn:active { opacity: 0.8; transform: scale(0.98); }
 }
 
-
-/* ================================================================
-   ★ [PC 모드 강제 적용] 화면 너비 1024px 이상 ★
-   - 4열 배치 + 높이 대폭 확대 (휑한 느낌 제거)
-   ================================================================ */
 @media screen and (min-width: 1024px) {
     .nav-grid, .stats-grid-responsive {
         display: grid;
@@ -84,18 +70,16 @@
         gap: 30px;
     }
 
-    /* 1. 네비게이션 버튼: 높이 200px로 확대 */
     .nav-card-btn {
-        height: 200px !important; /* 강제 적용 */
+        height: 200px !important;
         font-size: 26px;
         border-radius: 20px;
-        flex-direction: column; /* 아이콘 위, 글자 아래 */
+        flex-direction: column;
         gap: 15px;
     }
 
-    /* 2. 통계 카드: 높이 240px로 확대 */
     .stat-card {
-        height: 240px !important; /* 강제 적용 */
+        height: 240px !important;
         padding: 30px;
     }
 
@@ -104,13 +88,12 @@
     .user-stat-text { font-size: 28px; }
     .user-stat-text .highlight { font-size: 48px; }
 
-    /* PC 전용 호버 효과 */
+    /* 호버 효과 (PC 규격에서만 사용됨.) */
     .nav-card-btn:hover { transform: translateY(-7px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
     .stat-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
 }
 
 
-/* --- 색상 유틸리티 (Design 1) --- */
 .btn-umbrella { background: linear-gradient(135deg, #0056b3, #004494); }
 .btn-user { background: linear-gradient(135deg, #17a2b8, #117a8b); }
 .btn-log { background: linear-gradient(135deg, #6c757d, #545b62); }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUmbrellaStatsController } from "../../../services/Controller";
 import "./AdminHomePage.css";
-import "./AdminCommon.css"; // ★ 공통 CSS 추가
+import "./AdminCommon.css";
 
 function AdminHomePage() {
     const navigate = useNavigate();
@@ -35,7 +35,6 @@ function AdminHomePage() {
     }
 
     return (
-        // ★ admin-layout 클래스 추가
         <div className="admin-home-container admin-layout">
             <header>
                 <h1 className="home-title">관리자 대시보드</h1>

@@ -1,5 +1,3 @@
-/* ThankYouPage.css */
-
 /* 전체 화면 컨테이너 */
 .thankyou-container {
     height: 100vh;
@@ -8,8 +6,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #f8f9fa; /* 편안한 배경색 */
-    cursor: pointer; /* 클릭 가능함을 커서로 암시 */
+    background-color: #f8f9fa;
+    cursor: pointer;
     text-align: center;
     user-select: none; /* 텍스트 드래그 방지 */
 }
@@ -26,7 +24,7 @@
     margin-bottom: 40px;
     box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
 
-    /* 팝! 하고 튀어나오는 애니메이션 */
+    /* 애니메이션 효과 */
     animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 

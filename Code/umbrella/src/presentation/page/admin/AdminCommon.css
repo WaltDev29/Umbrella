@@ -1,5 +1,3 @@
-/* AdminCommon.css - PC 전체화면 채우기 */
-
 .admin-layout {
     width: 100%;
     min-height: 100vh;
@@ -11,7 +9,7 @@
     flex-direction: column;
 }
 
-/* 모바일/키오스크일 때도 꽉 채우기 (기본값과 동일) */
+/* 1024px 이하면 키오스크 규격 적용. */
 @media screen and (max-width: 1024px) {
     .admin-layout {
         max-width: 100%;

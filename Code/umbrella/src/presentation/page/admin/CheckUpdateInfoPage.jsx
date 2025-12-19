@@ -1,10 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import {updateUmbrellaStatusController,
-    deleteUmbrellaController,
-    addUmbrellaController
-} from "../../../services/Controller";
-import "./CheckUpdateInfoPage.css"; // CSS 파일 import
+import {updateUmbrellaStatusController, deleteUmbrellaController, addUmbrellaController} from "../../../services/Controller";
+import "./CheckUpdateInfoPage.css";
 
 function CheckUpdateInfoPage({ title, onCancel, data, mode }) {
     const navigate = useNavigate();

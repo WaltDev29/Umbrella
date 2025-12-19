@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AdminLoginPage.css";
-import "./AdminCommon.css"; // ★ 공통 CSS 추가
+import "./AdminCommon.css";
 
 
 function AdminLogInPage() {
@@ -22,7 +22,6 @@ function AdminLogInPage() {
     }
 
     return (
-        // ★ admin-layout 클래스 추가
         <div className="admin-login-container admin-layout">
             <div className="login-card">
                 <h1 className="login-title">관리자 로그인</h1>

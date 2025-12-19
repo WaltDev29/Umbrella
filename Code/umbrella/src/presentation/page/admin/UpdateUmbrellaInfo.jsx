@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import CheckUpdateInfoPage from "./CheckUpdateInfoPage";
-import "./UpdateUmbrellaInfo.css"; // CSS 파일 import
+import "./UpdateUmbrellaInfo.css";
 
 const titleMap = { "INSERT": "등록", "UPDATE": "상태 수정", "DELETE": "삭제" };
 const sizeMap = { "L": "장우산", "S": "단우산" };
