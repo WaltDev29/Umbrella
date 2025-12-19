@@ -10,8 +10,10 @@ function DashBoardPage() {
     const mode = location.state?.mode || "UMBRELLA";
 
     const sizeMap = { "L": "장우산", "S": "단우산" };
-    // DB 코드값 기준
-    const statMap = { "R": "대여중", "B": "고장", "L": "분실", "A": "대여 가능" };
+
+    // DB 코드값 기준 매핑
+    const statMap_umb = { "R": "대여중", "B": "고장", "L": "분실", "A": "대여 가능" };
+    const statMap_log = { "R": "대여", "T": "반납", "B": "고장", "L": "분실" };
 
     const formatDate = (dateString) => {
         if (dateString == null) return "-";
@@ -28,7 +30,7 @@ function DashBoardPage() {
                 { label: "우산 ID", key: "umbrella_id" },
                 { label: "우산 종류", key: "umbrella_type", render: (val) => sizeMap[val] || val },
                 { label: "우산 상태", key: "umbrella_status", render: (val) => (
-                        <span className={`status-text st-${val}`}>{statMap[val] || val}</span>
+                        <span className={`status-text st-${val}`}>{statMap_umb[val] || val}</span>
                     )},
                 { label: "생성일시", key: "created_at", render: formatDate },
                 { label: "최종수정일", key: "updated_at", render: formatDate }
@@ -53,7 +55,10 @@ function DashBoardPage() {
             id: "history_id",
             columns: [
                 { label: "기록 ID", key: "history_id" },
-                { label: "유형", key: "history_type" },
+                /* 이용 기록 유형에 한글 매핑 & 색상 클래스 적용 */
+                { label: "유형", key: "history_type", render: (val) => (
+                        <span className={`status-text st-log-${val}`}>{statMap_log[val] || val}</span>
+                    )},
                 { label: "우산 ID", key: "umbrella_id" },
                 { label: "사용자 ID", key: "user_id" },
                 { label: "발생일시", key: "created_at", render: formatDate }
@@ -190,7 +195,7 @@ function DashBoardPage() {
                                         onChange={(e) => setFilterStatus(e.target.value)}
                                     >
                                         <option value="ALL">상태 (전체)</option>
-                                        {Object.entries(statMap).map(([key, label]) => (
+                                        {Object.entries(statMap_umb).map(([key, label]) => (
                                             <option key={key} value={key}>{label}</option>
                                         ))}
                                     </select>
