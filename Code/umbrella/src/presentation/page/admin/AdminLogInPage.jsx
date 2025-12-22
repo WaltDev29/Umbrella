@@ -1,18 +1,19 @@
-import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./AdminLoginPage.css";
+import "./AdminCommon.css";
+
 
 function AdminLogInPage() {
     const navigate = useNavigate();
-    const [password, setPassword] = useState("");   // 사용자가 입력한 패스워드
-    const [error, setError] = useState();   // 에러 메시지
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState();
 
-    const adminPw = "1234"; // 더미 패스워드
+    const adminPw = "1234";
 
-    // 제출이벤트
     const handleSubmit = e => {
         e.preventDefault();
 
-        // 비밀번호 검사 (실제로는 DB랑 체크해주세요)
         if (password === adminPw) {
             setError("");
             navigate("/admin-home");
@@ -20,16 +21,23 @@ function AdminLogInPage() {
         else setError("비밀번호가 올바르지 않습니다.");
     }
 
-    return(
-        <div>
-            <h1>관리자 로그인</h1>
-            <form onSubmit={handleSubmit}>
-                <label>
-                <input type="password" placeholder="비밀번호 입력" onChange={e => setPassword(e.target.value)}/>
-                </label>
-                <button type="submit">로그인</button>
-            </form>
-            {error && <div>{error}</div>}
+    return (
+        <div className="admin-login-container admin-layout">
+            <div className="login-card">
+                <h1 className="login-title">관리자 로그인</h1>
+                <form onSubmit={handleSubmit} className="login-form">
+                    <input
+                        type="password"
+                        placeholder="비밀번호를 입력하세요"
+                        onChange={e => setPassword(e.target.value)}
+                        className="login-input"
+                    />
+                    <button type="submit" className="login-button">
+                        로그인
+                    </button>
+                </form>
+                {error && <div className="error-message">{error}</div>}
+            </div>
         </div>
     )
 }

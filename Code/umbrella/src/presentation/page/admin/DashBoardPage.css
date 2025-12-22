@@ -1,0 +1,142 @@
+/* --- 공통 레이아웃 & 테마 --- */
+:root {
+    --main-blue: #0056b3;
+    --light-blue: #e7f1ff;
+    --accent-yellow: #ffc107;
+    --text-dark: #333;
+    --white: #ffffff;
+    --danger-red: #dc3545;
+}
+
+.dashboard-container {
+    padding: 30px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.page-title {
+    font-size: 48px;
+    color: var(--main-blue);
+    font-weight: 900;
+    margin-bottom: 30px;
+    border-bottom: 4px solid var(--accent-yellow);
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+/* --- 상단 조작 버튼 --- */
+.action-button-group {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.action-btn {
+    flex: 1;
+    height: 70px;
+    font-size: 24px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.action-btn:active { transform: scale(0.98); }
+.btn-insert { background-color: var(--main-blue); color: var(--white); }
+.btn-update { background-color: var(--accent-yellow); color: var(--text-dark); }
+.btn-delete { background-color: var(--danger-red); color: var(--white); }
+
+/* --- 선택된 아이템 정보 박스 --- */
+.selected-info-box {
+    background-color: var(--white);
+    border: 3px solid var(--main-blue);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: var(--main-blue);
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* --- 데이터 테이블 --- */
+.table-container {
+    overflow-x: auto;
+    background-color: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.kiosk-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 22px;
+}
+
+.kiosk-table thead th {
+    background-color: var(--main-blue);
+    color: var(--white);
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    border-right: 1px solid rgba(255,255,255,0.2);
+}
+
+.kiosk-select {
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--white);
+    color: var(--main-blue);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.sort-btn {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 100%;
+}
+
+.kiosk-table tbody td {
+    padding: 25px 15px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    color: var(--text-dark);
+}
+
+.kiosk-table tbody tr:nth-child(even) { background-color: #f9f9f9; }
+
+.kiosk-table tbody tr.selected-row {
+    background-color: #fff3cd;
+    border-left: 8px solid var(--main-blue);
+    font-weight: bold;
+}
+
+.status-text { font-weight: 800; }
+
+/* --- 우산 상태(Umbrella Status) 컬러 --- */
+.st-R { color: #0891b2; } /* 대여중 - 청록 */
+.st-B { color: #dc2626; } /* 고장 - 빨강 */
+.st-L { color: #d97706; } /* 분실 - 주황 */
+.st-A { color: #059669; } /* 대여가능 - 초록 */
+
+
+/*  이용 기록(Log) 상태별 텍스트 컬러 */
+
+.st-log-R { color: #059669; } /* 대여 (Rent) - 초록 */
+.st-log-T { color: #0891b2; } /* 반납 (Turn-in) - 청록 */
+.st-log-B { color: #dc2626; } /* 고장 (Broken) - 빨강 */
+.st-log-L { color: #d97706; } /* 분실 (Lost) - 주황 */

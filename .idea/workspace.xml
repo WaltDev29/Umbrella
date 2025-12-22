@@ -4,13 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9192bf72-1256-4f08-943b-0f0831d7c4ad" name="변경" comment="" />
+    <list default="true" id="9192bf72-1256-4f08-943b-0f0831d7c4ad" name="변경" comment="불필요한 주석문 정리">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/DashBoardPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/DashBoardPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/DashBoardPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Code/umbrella/src/presentation/page/admin/DashBoardPage.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -21,8 +38,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/WaltDev29/Umbrella&quot;,
-    &quot;accountId&quot;: &quot;b84b71e9-1d22-4a23-af96-acf7176991a8&quot;
+    &quot;url&quot;: &quot;https://github.com/WaltDev29/Umbrella.git&quot;,
+    &quot;accountId&quot;: &quot;3a6c7063-91da-46d3-8401-809f48e452bb&quot;
   }
 }</component>
   <component name="KubernetesApiPersistence">{}</component>
@@ -33,34 +50,65 @@
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="35bbF4oZxfji2rQCupbP4Rs1pYj" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Node.js.AdminHomePage.jsx.executor": "Debug",
     "Node.js.App.jsx.executor": "Run",
     "Node.js.ConfirmRental.jsx.executor": "Run",
     "Node.js.UserHomePage.jsx.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "main__admin__css",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/AI-510-170/OneDrive - 한국폴리텍대학/바탕 화면/Umbrella/Code",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.3.4.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "npm.start.executor": "Run",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.1.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager" selected="npm.start">
+    <configuration name="App.jsx" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/Code/umbrella/src/App.jsx" working-dir="$PROJECT_DIR$/Code/umbrella/src">
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/Code/backend-server/api_code/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Node.js.App.jsx" />
+      <item itemvalue="npm.start" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.App.jsx" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.59" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26094.121" />
+        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-IU-251.26094.121" />
       </set>
     </attachedChunks>
   </component>
@@ -78,7 +126,26 @@
       <workItem from="1763526054509" duration="8845000" />
       <workItem from="1763625885356" duration="127000" />
       <workItem from="1763626873495" duration="67000" />
+      <workItem from="1766113475206" duration="8655000" />
+      <workItem from="1766130643215" duration="5610000" />
     </task>
+    <task id="LOCAL-00001" summary="어드민 페이지 css 스타일 적용">
+      <option name="closed" value="true" />
+      <created>1766133458653</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1766133458653</updated>
+    </task>
+    <task id="LOCAL-00002" summary="불필요한 주석문 정리">
+      <option name="closed" value="true" />
+      <created>1766135068433</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1766135068433</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -94,5 +161,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="어드민 페이지 css 스타일 적용" />
+    <MESSAGE value="불필요한 주석문 정리" />
+    <option name="LAST_COMMIT_MESSAGE" value="불필요한 주석문 정리" />
   </component>
 </project>

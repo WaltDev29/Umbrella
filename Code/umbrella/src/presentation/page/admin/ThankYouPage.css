@@ -1,0 +1,84 @@
+/* 전체 화면 컨테이너 */
+.thankyou-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    text-align: center;
+    user-select: none; /* 텍스트 드래그 방지 */
+}
+
+/* 체크 아이콘 원형 배경 */
+.success-icon-circle {
+    width: 120px;
+    height: 120px;
+    background-color: #0056b3; /* 메인 블루 */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
+
+    /* 애니메이션 효과 */
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 체크 모양 (✔) */
+.success-checkmark {
+    font-size: 60px;
+    color: white;
+    font-weight: bold;
+}
+
+/* 완료 메시지 (h1) */
+.thankyou-message {
+    font-size: 48px;
+    color: #333;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+/* 카운트다운 텍스트 */
+.countdown-text {
+    font-size: 24px;
+    color: #666;
+    margin-bottom: 60px;
+}
+
+/* 초 부분 강조 */
+.countdown-number {
+    color: #0056b3;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+/* 하단 터치 힌트 */
+.touch-hint {
+    font-size: 20px;
+    color: #999;
+    background-color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+
+    /* 깜빡이는 애니메이션 */
+    animation: blink 2s infinite;
+}
+
+/* 애니메이션 정의 */
+@keyframes popIn {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
