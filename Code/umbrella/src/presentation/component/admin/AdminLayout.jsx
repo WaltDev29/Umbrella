@@ -2,17 +2,20 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-    padding: 40px;
     display: flex;
     flex-direction: column;
-    gap: 40px;
-
     width: 100%;
     min-height: 100vh;
     margin: 0;
-
     background-color: #ffffff;
     box-sizing: border-box;
+    
+    &.login {
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        //background-color: #f0f2f5; /* 밝은 회색 배경 */
+    }
     
     &.home {
         padding: 40px;
@@ -28,7 +31,7 @@ const Container = styled.div`
 
 export default function AdminLayout(props) {
     return (
-        <Container ClassName={props.page}>
+        <Container className={props.page}>
             {props.children}
         </Container>
     )
