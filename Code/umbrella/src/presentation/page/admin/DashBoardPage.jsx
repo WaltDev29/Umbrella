@@ -107,57 +107,16 @@ const StatusText = styled.span`
     font-weight: 800;
 
     /* --- 우산 상태(Umbrella Status) 컬러 --- */
-
-    &.st-R {
-        color: #0891b2;
-    }
-
-    /* 대여중 - 청록 */
-
-    &.st-B {
-        color: #dc2626;
-    }
-
-    /* 고장 - 빨강 */
-
-    &.st-L {
-        color: #d97706;
-    }
-
-    /* 분실 - 주황 */
-
-    &.st-A {
-        color: #059669;
-    }
-
-    /* 대여가능 - 초록 */
-
-
+    &.st-R {color: #0891b2;} /* 대여중 - 청록 */
+    &.st-B {color: #dc2626;} /* 고장 - 빨강 */
+    &.st-L {color: #d97706;} /* 분실 - 주황 */
+    &.st-A {color: #059669;} /* 대여가능 - 초록 */
+    
     /*  이용 기록(Log) 상태별 텍스트 컬러 */
-
-    &.st-log-R {
-        color: #059669;
-    }
-
-    /* 대여 (Rent) - 초록 */
-
-    &.st-log-T {
-        color: #0891b2;
-    }
-
-    /* 반납 (Turn-in) - 청록 */
-
-    &.st-log-B {
-        color: #dc2626;
-    }
-
-    /* 고장 (Broken) - 빨강 */
-
-    &.st-log-L {
-        color: #d97706;
-    }
-
-    /* 분실 (Lost) - 주황 */
+    &.st-log-R {color: #059669;} /* 대여 (Rent) - 초록 */
+    &.st-log-T {color: #0891b2;} /* 반납 (Turn-in) - 청록 */
+    &.st-log-B {color: #dc2626;} /* 고장 (Broken) - 빨강 */
+    &.st-log-L {color: #d97706;} /* 분실 (Lost) - 주황 */
 `;
 
 function DashBoardPage() {
