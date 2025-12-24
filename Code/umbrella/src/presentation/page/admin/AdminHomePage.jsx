@@ -6,25 +6,7 @@ import "./AdminCommon.css";
 import styled from "styled-components";
 import NavCardBtn from "../../component/admin/NavCardBtn";
 import StatCard from "../../component/admin/StatCard";
-
-const Container = styled.div`
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-
-    width: 100%;
-    min-height: 100vh;
-    margin: 0;
-
-    background-color: #ffffff;
-    box-sizing: border-box;
-
-    @media screen and (max-width: 1024px) {
-        max-width: 100%;
-        box-shadow: none;
-    }
-`;
+import AdminLayout from "../../component/admin/AdminLayout";
 
 const HomeTitle = styled.h1`
     font-size: 48px;
@@ -102,7 +84,7 @@ function AdminHomePage() {
     }
 
     return (
-        <Container>
+        <AdminLayout page="home">
             <header>
                 <HomeTitle>관리자 대시보드</HomeTitle>
             </header>
@@ -162,7 +144,7 @@ function AdminHomePage() {
                     />
                 </Grid>
             </section>
-        </Container>
+        </AdminLayout>
     )
 }
 
