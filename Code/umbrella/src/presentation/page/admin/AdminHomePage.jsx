@@ -1,8 +1,75 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { getUmbrellaStatsController } from "../../../services/Controller";
+import React, {useState, useEffect} from "react";
+import {useNavigate} from "react-router-dom";
+import {getUmbrellaStatsController} from "../../../services/Controller";
 import "./AdminHomePage.css";
 import "./AdminCommon.css";
+import styled from "styled-components";
+import NavCardBtn from "../../component/admin/NavCardBtn";
+import StatCard from "../../component/admin/StatCard";
+
+const Container = styled.div`
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+
+    background-color: #ffffff;
+    box-sizing: border-box;
+
+    @media screen and (max-width: 1024px) {
+        max-width: 100%;
+        box-shadow: none;
+    }
+`;
+
+const HomeTitle = styled.h1`
+    font-size: 48px;
+    color: #0056b3;
+    font-weight: 900;
+    margin: 0;
+    padding-bottom: 15px;
+    border-bottom: 4px solid #ffc107;
+    display: inline-block;
+`;
+
+const Grid = styled.section`
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+
+    @media (max-width: 1023px) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+`;
+
+const UserStatText = styled.div`
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    padding-bottom: 10px;
+    //border-bottom: 2px dashed #ddd;
+
+    @media screen and (max-width: 1023px), screen and (orientation: portrait) {
+        font-size: 30px;
+    }
+`;
+
+const Highlight = styled.span`
+    color: #28a745;
+    margin-left: 15px;
+    font-size: 48px;
+
+    @media screen and (max-width: 1023px), screen and (orientation: portrait) {
+        font-size: 48px;
+    }
+`;
 
 function AdminHomePage() {
     const navigate = useNavigate();
@@ -31,58 +98,71 @@ function AdminHomePage() {
     }, []);
 
     const moveToDashBoard = mode => {
-        navigate("/dashboard", { state: { mode: mode } });
+        navigate("/dashboard", {state: {mode: mode}});
     }
 
     return (
-        <div className="admin-home-container admin-layout">
+        <Container>
             <header>
-                <h1 className="home-title">관리자 대시보드</h1>
+                <HomeTitle>관리자 대시보드</HomeTitle>
             </header>
 
-            <section className="nav-grid">
-                <button className="nav-card-btn btn-umbrella" onClick={() => moveToDashBoard("UMBRELLA")}>
-                    🌂 우산 목록 관리
-                </button>
-                <button className="nav-card-btn btn-user" onClick={() => moveToDashBoard("USER")}>
-                    👥 회원 목록 관리
-                </button>
-                <button className="nav-card-btn btn-log" onClick={() => moveToDashBoard("LOG")}>
-                    📋 이용 기록 조회
-                </button>
-                <button className="nav-card-btn btn-admin" onClick={() => navigate("/update-admin-info")}>
-                    ⚙️ 관리자 정보 수정
-                </button>
+            <Grid>
+                <NavCardBtn
+                    variant="umbrella"
+                    moveToDashboard={moveToDashBoard}
+                    direction="UMBRELLA"
+                    text="🌂 우산 목록 관리"
+                />
+                <NavCardBtn
+                    variant="user"
+                    moveToDashboard={moveToDashBoard}
+                    direction="USER"
+                    text="👥 회원 목록 관리"
+                />
+                <NavCardBtn
+                    variant="log"
+                    moveToDashboard={moveToDashBoard}
+                    direction="LOG"
+                    text="📋 이용 기록 조회"
+                />
+                <NavCardBtn
+                    variant="admin"
+                    moveToDashboard={navigate}
+                    direction="/update-admin-info"
+                    text="⚙️ 관리자 정보 수정"
+                />
+            </Grid>
+
+            <section>
+                <UserStatText>
+                    금일 방문 이용자 <Highlight>{stats.todayUserCount}명</Highlight>
+                </UserStatText>
+
+                <Grid>
+                    <StatCard
+                        variant="total"
+                        label="전체 우산"
+                        data={stats.total}
+                    />
+                    <StatCard
+                        variant="rented"
+                        label="대여 중"
+                        data={stats.R}
+                    />
+                    <StatCard
+                        variant="broken"
+                        label="고장"
+                        data={stats.B}
+                    />
+                    <StatCard
+                        variant="lost"
+                        label="분실"
+                        data={stats.L}
+                    />
+                </Grid>
             </section>
-
-            <section className="stats-container">
-                <div className="user-stat-text">
-                    금일 방문 이용자 <span className="highlight">{stats.todayUserCount}명</span>
-                </div>
-
-                <div className="stats-grid-responsive">
-                    <div className="stat-card card-total">
-                        <span className="stat-label">전체 우산</span>
-                        <span className="stat-value">{stats.total}</span>
-                    </div>
-
-                    <div className="stat-card card-rented">
-                        <span className="stat-label">대여 중</span>
-                        <span className="stat-value">{stats.R}</span>
-                    </div>
-
-                    <div className="stat-card card-broken">
-                        <span className="stat-label">고장</span>
-                        <span className="stat-value">{stats.B}</span>
-                    </div>
-
-                    <div className="stat-card card-lost">
-                        <span className="stat-label">분실</span>
-                        <span className="stat-value">{stats.L}</span>
-                    </div>
-                </div>
-            </section>
-        </div>
+        </Container>
     )
 }
 
