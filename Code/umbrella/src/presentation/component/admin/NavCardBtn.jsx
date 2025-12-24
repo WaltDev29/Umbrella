@@ -16,7 +16,6 @@ const Btn = styled.button`
     gap: 15px;
     border: none;
     font-weight: bold;
-    color: white;
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     display: flex;

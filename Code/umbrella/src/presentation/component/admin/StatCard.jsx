@@ -27,7 +27,6 @@ const cardStyles = {
 const Card = styled.div`
     height: 240px !important;
     padding: 30px;
-    background-color: #ffffff;
     border-radius: 16px;
     text-align: center;
     border: 1px solid #e0e0e0;
