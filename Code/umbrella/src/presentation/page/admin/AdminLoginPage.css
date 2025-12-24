@@ -69,34 +69,34 @@
 /*    font-weight: bold;*/
 /*}*/
 
-@media screen and (min-width: 1024px) and (orientation: landscape) {
-    .login-card {
-        max-width: 450px;
-        padding: 40px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* 그림자 더 깊게 */
-    }
+/*@media screen and (min-width: 1024px) and (orientation: landscape) {*/
+/*    .login-card {*/
+/*        max-width: 450px;*/
+/*        padding: 40px;*/
+/*        box-shadow: 0 10px 25px rgba(0,0,0,0.1); !* 그림자 더 깊게 *!*/
+/*    }*/
 
-    .login-title {
-        font-size: 28px;
-        margin-bottom: 30px;
-    }
+/*    .login-title {*/
+/*        font-size: 28px;*/
+/*        margin-bottom: 30px;*/
+/*    }*/
 
-    .login-form {
-        gap: 20px;
-    }
+/*    .login-form {*/
+/*        gap: 20px;*/
+/*    }*/
 
-    .login-input {
-        height: 50px;
-        font-size: 16px;
-        border-width: 1px;
-    }
+/*    .login-input {*/
+/*        height: 50px;*/
+/*        font-size: 16px;*/
+/*        border-width: 1px;*/
+/*    }*/
 
-    .login-button {
-        height: 50px;
-        font-size: 18px;
-    }
+/*    .login-button {*/
+/*        height: 50px;*/
+/*        font-size: 18px;*/
+/*    }*/
 
-    .error-message {
-        font-size: 16px;
-    }
-}
+/*    .error-message {*/
+/*        font-size: 16px;*/
+/*    }*/
+/*}*/
