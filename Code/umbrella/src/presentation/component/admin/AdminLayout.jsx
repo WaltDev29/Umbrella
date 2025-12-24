@@ -22,6 +22,12 @@ const Container = styled.div`
         gap: 40px;
     }
 
+    &.dashboard {
+        padding: 30px;
+        background-color: #f8f9fa;
+        min-height: 100vh;
+        font-family: 'Noto Sans KR', sans-serif;
+    }
 
     @media screen and (max-width: 1024px) {
         max-width: 100%;
