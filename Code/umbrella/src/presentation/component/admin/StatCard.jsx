@@ -38,7 +38,7 @@ const Card = styled.div`
     transition: transform 0.2s, box-shadow 0.2s;
 
     background-color: ${({variant}) =>
-    cardStyles[variant]?.bg || "#ffffff"};
+            cardStyles[variant]?.bg || "#ffffff"};
 
     border-bottom: 8px solid ${({variant}) => cardStyles[variant]?.border || "#ccc"};
 
