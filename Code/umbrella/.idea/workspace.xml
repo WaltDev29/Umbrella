@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9aa9c309-9ea2-4433-ba51-052d799a724f" name="변경" comment="관리자 로그인 페이지 css 리팩토링">
-      <change afterPath="$PROJECT_DIR$/src/presentation/component/admin/DashboardBtn.jsx" afterDir="false" />
+    <list default="true" id="9aa9c309-9ea2-4433-ba51-052d799a724f" name="변경" comment="관리자 대시보드 페이지 css 리팩토링 및 컴포넌트 분리">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/component/admin/AdminLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/component/admin/AdminLayout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/component/admin/NavCardBtn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/component/admin/NavCardBtn.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/component/admin/StatCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/component/admin/StatCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/AdminLoginPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/AdminLoginPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/DashBoardPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/DashBoardPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/DashBoardPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/DashBoardPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,7 +101,7 @@
       <option name="presentableId" value="Default" />
       <updated>1751362959683</updated>
       <workItem from="1766411949323" duration="587000" />
-      <workItem from="1766459544994" duration="14344000" />
+      <workItem from="1766459544994" duration="14631000" />
     </task>
     <task id="LOCAL-00001" summary="관리자 홈페이지 css 리팩토링 (styeld component, 컴포넌트 분리)">
       <option name="closed" value="true" />
@@ -141,7 +135,39 @@
       <option name="project" value="LOCAL" />
       <updated>1766587243167</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="관리자 홈 페이지 오류 수정">
+      <option name="closed" value="true" />
+      <created>1766591302615</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1766591302615</updated>
+    </task>
+    <task id="LOCAL-00006" summary="들여쓰기 수정">
+      <option name="closed" value="true" />
+      <created>1766591320071</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1766591320071</updated>
+    </task>
+    <task id="LOCAL-00007" summary="관리자 로그인 페이지 css 리팩토링">
+      <option name="closed" value="true" />
+      <created>1766591337721</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1766591337721</updated>
+    </task>
+    <task id="LOCAL-00008" summary="관리자 대시보드 페이지 css 리팩토링 및 컴포넌트 분리">
+      <option name="closed" value="true" />
+      <created>1766591359022</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1766591359022</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,8 +176,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="관리자 홈페이지 css 리팩토링 (styeld component, 컴포넌트 분리)" />
     <MESSAGE value="AdminLayout.jsx 생성" />
+    <MESSAGE value="관리자 홈 페이지 오류 수정" />
+    <MESSAGE value="들여쓰기 수정" />
     <MESSAGE value="관리자 로그인 페이지 css 리팩토링" />
-    <option name="LAST_COMMIT_MESSAGE" value="관리자 로그인 페이지 css 리팩토링" />
+    <MESSAGE value="관리자 대시보드 페이지 css 리팩토링 및 컴포넌트 분리" />
+    <option name="LAST_COMMIT_MESSAGE" value="관리자 대시보드 페이지 css 리팩토링 및 컴포넌트 분리" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
