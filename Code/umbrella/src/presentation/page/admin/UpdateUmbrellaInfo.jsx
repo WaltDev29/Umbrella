@@ -2,6 +2,96 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import CheckUpdateInfoPage from "./CheckUpdateInfoPage";
 import "./UpdateUmbrellaInfo.css";
+import styled from "styled-components";
+
+const Container = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /*background-color: #f8f9fa;*/
+`;
+
+const Form = styled.form`
+    width: 100%;
+    max-width: 600px;
+    background-color: #ffffff;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border: 1px solid #eee;
+`;
+
+const Title = styled.h1`
+    font-size: 40px;
+    color: #0056b3; /* 메인 블루 */
+    font-weight: 900;
+    margin-bottom: 40px;
+    padding-bottom: 15px;
+    border-bottom: 4px solid #ffc107; /* 노란색 포인트 */
+    display: inline-block;
+`;
+
+const InfoText = styled.div`
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-align: left;
+    padding: 15px;
+    background-color: #f1f3f5;
+    border-radius: 10px;
+`;
+
+const InputGroup = styled.div`
+    margin-bottom: 30px;
+    text-align: left;
+`;
+
+const InputLabel = styled.span`
+    display: block;
+    font-size: 22px;
+    color: #0056b3;
+    font-weight: bold;
+    margin-bottom: 10px
+`;
+
+const Select = styled.select`
+    width: 100%;
+    height: 70px;
+    font-size: 24px;
+    padding: 0 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: white;
+    cursor: pointer;
+    color: #333;
+
+    &:focus {
+        border-color: #0056b3;
+        outline: none;
+    }
+`;
+
+const Btn = styled.button`
+    width: 100%;
+    height: 80px;
+    background-color: #0056b3;
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    
+    &:active {
+        transform: scale(0.98);
+    }
+`;
 
 const titleMap = { "INSERT": "등록", "UPDATE": "상태 수정", "DELETE": "삭제" };
 const sizeMap = { "L": "장우산", "S": "단우산" };
@@ -65,52 +155,51 @@ function UpdateUmbrellaInfo() {
     }
 
     return (
-        <div className="update-container">
+        <Container>
             {!showConfirmModal &&
-                <form onSubmit={handleSubmit} className="update-card">
-                    <h1 className="page-title">우산 {title}</h1>
-                    <div className="info-text">우산 번호 : {item?.umbrella_id || newItemId}</div>
+                <Form onSubmit={handleSubmit}>
+                    <Title>우산 {title}</Title>
+                    <InfoText>우산 번호 : {item?.umbrella_id || newItemId}</InfoText>
 
                     {/* INSERT 모드: 우산 종류 선택 */}
                     {mode === "INSERT" &&
-                        <div className="input-group">
-                            <span className="input-label">우산 종류</span>
+                        <InputGroup>
+                            <InputLabel>우산 종류</InputLabel>
                             {/* 👇 value와 onChange를 연결해줍니다 */}
-                            <select value={selectedSize} onChange={handleSizeChange} className="kiosk-select">
+                            <Select value={selectedSize} onChange={handleSizeChange}>
                                 <option value="L">장우산</option>
                                 <option value="S">단우산</option>
-                            </select>
-                        </div>
+                            </Select>
+                        </InputGroup>
                     }
 
                     {/* UPDATE 모드: 우산 상태 수정 */}
                     {mode === "UPDATE" &&
-                        <div className="input-group">
-                            <div className="info-text" style={{marginBottom: "20px"}}>우산 종류 : {itemSize}</div>
-                            <span className="input-label">우산 상태 변경</span>
-                            <select value={selectedStatus} onChange={handleStatusChange} className="kiosk-select">
+                        <InputGroup>
+                            <InfoText style={{marginBottom: "20px"}}>우산 종류 : {itemSize}</InfoText>
+                            <InputLabel>우산 상태 변경</InputLabel>
+                            <Select value={selectedStatus} onChange={handleStatusChange}>
                                 <option value="A">대여 가능(반납)</option> {/* RENTAL -> A */}
                                 <option value="B">고장</option>         {/* BROKEN -> B */}
                                 <option value="L">분실</option>         {/* LOST -> L */}
-                            </select>
-                        </div>
+                            </Select>
+                        </InputGroup>
                     }
 
                     {mode === "DELETE" &&
-                        <div className="input-group">
-                            <div className="info-text">우산 종류 : {itemSize}</div>
-                            <div className="info-text">우산 상태 : {itemStat}</div>
-                        </div>
+                        <InputGroup>
+                            <InfoText>우산 종류 : {itemSize}</InfoText>
+                            <InfoText>우산 상태 : {itemStat}</InfoText>
+                        </InputGroup>
                     }
 
-                    <button type="submit" className="submit-btn">{title}</button>
-
-                </form>
+                    <Btn type="submit">{title}</Btn>
+                </Form>
             }
             {showConfirmModal &&
                 <CheckUpdateInfoPage title={title} mode={mode} onCancel={handleCancel} data={selectedValue}/>
             }
-        </div>
+        </Container>
     )
 }
 
