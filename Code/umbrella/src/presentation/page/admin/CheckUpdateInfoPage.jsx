@@ -2,6 +2,105 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import {updateUmbrellaStatusController, deleteUmbrellaController, addUmbrellaController} from "../../../services/Controller";
 import "./CheckUpdateInfoPage.css";
+import styled, {keyframes} from "styled-components";
+
+const Modal = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 뒤 배경을 어둡게 처리 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* 제일 위에 뜨도록 설정 */
+`;
+
+const popIn = keyframes`
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+`;
+
+const Wrapper = styled.div`
+    background-color: white;
+    padding: 40px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
+    animation: ${popIn} 0.3s ease-out;
+`;
+
+const Title = styled.h1`
+    font-size: 32px;
+    color: #0056b3;
+    font-weight: 900;
+    margin-bottom: 10px;
+    border-bottom: 4px solid #ffc107;
+    display: inline-block;
+    padding-bottom: 10px;
+`;
+
+const Question = styled.div`
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: bold;
+`;
+
+const SummaryBox = styled.div`
+    background-color: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0 40px 0; /* 위아래 여백 */
+    text-align: left; /* 정보는 왼쪽 정렬 */
+`;
+
+const InfoItem = styled.p`
+    font-size: 20px;
+    color: #555;
+    margin: 10px 0;
+    line-height: 1.5;
+`;
+
+const Strong = styled.strong`
+    color: #0056b3;
+    margin-right: 10px;
+`;
+
+const BtnGroup = styled.div`
+    display: flex;
+    gap: 15px;
+`;
+
+const Btn = styled.button`
+    flex: 1;
+    height: 60px;
+    font-size: 22px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    
+    &.confirm {
+        background-color: #0056b3;
+        color: white;
+    }
+    
+    &.cancel {
+        background-color: #6c757d;
+        color: white;
+    }
+    
+    &:active {
+        opacity: 0.8;
+    }
+`;
 
 function CheckUpdateInfoPage({ title, onCancel, data, mode }) {
     const navigate = useNavigate();
@@ -56,31 +155,31 @@ function CheckUpdateInfoPage({ title, onCancel, data, mode }) {
     }
 
     return (
-        <div className="modal-overlay">
-            <div className="modal-content">
-                <h1 className="modal-title">{title} 확인</h1>
-                <div className="modal-question">해당 우산을 {title} 하시겠습니까?</div>
+        <Modal>
+            <Wrapper>
+                <Title>{title} 확인</Title>
+                <Question>해당 우산을 {title} 하시겠습니까?</Question>
 
-                <div className="info-summary-box">
+                <SummaryBox>
                     {mode !== "INSERT" && (
-                        <p className="info-item"><strong>우산 번호:</strong> {id}</p>
+                        <InfoItem><Strong>우산 번호:</Strong> {id}</InfoItem>
                     )}
 
                     {mode === "INSERT" && (
-                        <p className="info-item"><strong>생성할 종류:</strong> {size === "L" ? "장우산" : "단우산"}</p>
+                        <InfoItem><Strong>생성할 종류:</Strong> {size === "L" ? "장우산" : "단우산"}</InfoItem>
                     )}
 
                     {mode === "UPDATE" && (
-                        <p className="info-item"><strong>변경될 상태:</strong> {status}</p>
+                        <InfoItem><Strong>변경될 상태:</Strong> {status}</InfoItem>
                     )}
-                </div>
+                </SummaryBox>
 
-                <div className="modal-btn-group">
-                    <button className="modal-btn btn-confirm" onClick={handleSubmit}>확인</button>
-                    <button className="modal-btn btn-cancel" onClick={onCancel}>취소</button>
-                </div>
-            </div>
-        </div>
+                <BtnGroup>
+                    <Btn className="confirm" onClick={handleSubmit}>확인</Btn>
+                    <Btn className="cancel" onClick={onCancel}>취소</Btn>
+                </BtnGroup>
+            </Wrapper>
+        </Modal>
     )
 }
 
