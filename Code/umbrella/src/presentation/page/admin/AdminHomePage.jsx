@@ -8,6 +8,7 @@ import NavCardBtn from "../../component/admin/NavCardBtn";
 import StatCard from "../../component/admin/StatCard";
 import AdminLayout from "../../component/admin/AdminLayout";
 
+// todo Title 겹치는 것들 컴포넌트화 (UpdateUmbrellaInfo, DashBoard, CheckUpdateInfo, UpdateAdminInfo)
 const HomeTitle = styled.h1`
     font-size: 48px;
     color: #0056b3;

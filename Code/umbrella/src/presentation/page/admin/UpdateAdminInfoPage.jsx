@@ -54,6 +54,7 @@ const Label = styled.label`
     margin-top: 20px;
 `;
 
+// todo Input 겹치는 것들 컴포넌트화 (AdminLogIn, UpdateAdminInfo)
 const Input = styled.input`
     width: 100%;
     height: 60px;

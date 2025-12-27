@@ -64,6 +64,7 @@ const Input = styled.input`
     }
 `;
 
+// todo Submit Button 겹치는 것들 컴포넌트화 (UpdateUmbrellaInfo)
 const Button = styled.button`
     width: 100%;
     height: 80px;
@@ -105,6 +106,7 @@ function AdminLogInPage() {
 
     const adminPw = "1234";
 
+    // todo 여기에 state 전달, 각 페이지 비정상 접속 차단 구현
     const handleSubmit = e => {
         e.preventDefault();
 

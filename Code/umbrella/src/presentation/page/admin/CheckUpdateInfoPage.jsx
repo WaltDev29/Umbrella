@@ -77,6 +77,7 @@ const BtnGroup = styled.div`
     gap: 15px;
 `;
 
+// todo Button 겹치는 것들 컴포넌트화 (UpdateAdminInfo)
 const Btn = styled.button`
     flex: 1;
     height: 60px;

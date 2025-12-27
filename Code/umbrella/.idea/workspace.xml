@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9aa9c309-9ea2-4433-ba51-052d799a724f" name="변경" comment="관리자 데이터수정 페이지 css 리팩토링">
+    <list default="true" id="9aa9c309-9ea2-4433-ba51-052d799a724f" name="변경" comment="관리자 우산 정보수정 페이지 css 리팩토링">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/ThankYouPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/ThankYouPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/ThankYouPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/ThankYouPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/AdminHomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/AdminHomePage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/AdminLogInPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/AdminLogInPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/CheckUpdateInfoPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/CheckUpdateInfoPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/UpdateAdminInfoPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/UpdateAdminInfoPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +36,7 @@
   &quot;isMigrated&quot;: true
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -110,7 +111,7 @@
       <workItem from="1766411949323" duration="587000" />
       <workItem from="1766459544994" duration="14631000" />
       <workItem from="1766842096481" duration="1182000" />
-      <workItem from="1766844680736" duration="2357000" />
+      <workItem from="1766844680736" duration="5828000" />
     </task>
     <task id="LOCAL-00001" summary="관리자 홈페이지 css 리팩토링 (styeld component, 컴포넌트 분리)">
       <option name="closed" value="true" />
@@ -184,11 +185,54 @@
       <option name="project" value="LOCAL" />
       <updated>1766845808131</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="관리자 완료 페이지 css 리팩토링 및 비정상 접근 차단 로직 구현">
+      <option name="closed" value="true" />
+      <created>1766847114531</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1766847114531</updated>
+    </task>
+    <task id="LOCAL-00011" summary="관리자 완료 페이지 css 리팩토링 및 비정상 접근 차단 로직 구현">
+      <option name="closed" value="true" />
+      <created>1766848929648</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1766848929648</updated>
+    </task>
+    <task id="LOCAL-00012" summary="관리자 정보수정 페이지 css 리팩토링">
+      <option name="closed" value="true" />
+      <created>1766849014891</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1766849014891</updated>
+    </task>
+    <task id="LOCAL-00013" summary="관리자 우산 정보수정 페이지 css 리팩토링">
+      <option name="closed" value="true" />
+      <created>1766849031496</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1766849031496</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="관리자 홈페이지 css 리팩토링 (styeld component, 컴포넌트 분리)" />
@@ -199,7 +243,10 @@
     <MESSAGE value="관리자 대시보드 페이지 css 리팩토링 및 컴포넌트 분리" />
     <MESSAGE value="사용자페이지 렌더링 방식 수정" />
     <MESSAGE value="관리자 데이터수정 페이지 css 리팩토링" />
-    <option name="LAST_COMMIT_MESSAGE" value="관리자 데이터수정 페이지 css 리팩토링" />
+    <MESSAGE value="관리자 완료 페이지 css 리팩토링 및 비정상 접근 차단 로직 구현" />
+    <MESSAGE value="관리자 정보수정 페이지 css 리팩토링" />
+    <MESSAGE value="관리자 우산 정보수정 페이지 css 리팩토링" />
+    <option name="LAST_COMMIT_MESSAGE" value="관리자 우산 정보수정 페이지 css 리팩토링" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
