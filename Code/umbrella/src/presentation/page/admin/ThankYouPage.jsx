@@ -10,7 +10,7 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #f8f9fa;
+    //background-color: #f8f9fa;
     cursor: pointer;
     text-align: center;
     user-select: none; /* 텍스트 드래그 방지 */
