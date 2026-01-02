@@ -44,7 +44,7 @@ const Btn = styled.button`
 
 export default function NavCardBtn(props) {
     return (
-        <Btn variant={props.variant} onClick={() => props.moveToDashboard(props.direction)}>
+        <Btn variant={props.variant} onClick={() => props.moveToDashboard(props.direction, {state: {valid : true}})}>
             {props.text}
         </Btn>
     )

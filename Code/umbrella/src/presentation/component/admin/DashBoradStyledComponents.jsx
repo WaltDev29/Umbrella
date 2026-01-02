@@ -46,19 +46,6 @@ export const Th = styled.th`
     border-right: 1px solid rgba(255, 255, 255, 0.2);
 `;
 
-export const Select = styled.select`
-    width: 100%;
-    height: 70px;
-    font-size: 20px;
-    padding: 5px 10px;
-    border-radius: 8px;
-    border: none;
-    background-color: #ffffff;
-    color: #0056b3;
-    font-weight: bold;
-    cursor: pointer;
-`;
-
 export const SortBtn = styled.button`
     background: none;
     border: none;

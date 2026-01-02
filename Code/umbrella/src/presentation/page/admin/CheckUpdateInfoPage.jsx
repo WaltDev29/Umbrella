@@ -6,6 +6,7 @@ import styled from "styled-components";
 import ConfirmCancelBtn from "../../component/admin/ConfirmCancelBtn";
 import Title from "../../component/admin/Title";
 import Card from "../../component/admin/Card";
+import BtnGroup from "../../component/admin/BtnGroup";
 
 const Modal = styled.div`
     position: fixed;
@@ -46,11 +47,6 @@ const InfoItem = styled.p`
 const Strong = styled.strong`
     color: #0056b3;
     margin-right: 10px;
-`;
-
-const BtnGroup = styled.div`
-    display: flex;
-    gap: 15px;
 `;
 
 function CheckUpdateInfoPage({ title, onCancel, data, mode }) {

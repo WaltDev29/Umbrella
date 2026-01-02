@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {getUmbrellaStatsController} from "../../../services/Controller";
 import styled from "styled-components";
 
@@ -45,6 +45,12 @@ const Highlight = styled.span`
 
 function AdminHomePage() {
     const navigate = useNavigate();
+    const location = useLocation();
+    const valid = location.state?.valid;
+
+    useEffect(() => {
+        if (!valid) navigate("/");
+    }, [location, valid]);
 
     const [stats, setStats] = useState({
         total: 0,

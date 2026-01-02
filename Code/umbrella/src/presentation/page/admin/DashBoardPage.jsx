@@ -1,19 +1,13 @@
 import React, {useEffect, useState, useMemo} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import {getUmbrellaListController, getUserListController, getHistoryListController} from "../../../services/Controller";
-import styled from "styled-components";
-import {SelectedItemBox, TableWrapper, Table, Tr, Th, Select, SortBtn, Td, StatusText} from "../../component/admin/DashBoradStyledComponents"
+import {SelectedItemBox, TableWrapper, Table, Tr, Th, SortBtn, Td, StatusText} from "../../component/admin/DashBoradStyledComponents"
 
 import AdminLayout from "../../component/admin/AdminLayout";
 import DashboardBtn from "../../component/admin/DashboardBtn";
 import Title from "../../component/admin/Title";
-
-// todo 이거 컴포넌트화 (UpdateAdminInfo, CheckUpdateInfoPage)
-const BtnGroup = styled.div`
-    display: flex;
-    gap: 20px;
-    margin-bottom: 30px;
-`;
+import BtnGroup from "../../component/admin/BtnGroup";
+import Select from "../../component/admin/Select";
 
 function DashBoardPage() {
     const navigate = useNavigate();
@@ -91,6 +85,7 @@ function DashBoardPage() {
     const [sizeConfig, setSizeConfig] = useState({key: null, direction: "asc", column: ""});
 
     useEffect(() => {
+        if (!location.state) navigate("/");
         const fetchData = async () => {
             setIsLoading(true);
             try {
@@ -187,7 +182,7 @@ function DashBoardPage() {
             <Title className="dashboard">{current_config.title}</Title>
 
             {mode === "UMBRELLA" && (
-                <BtnGroup>
+                <BtnGroup className="dashboard">
                     <DashboardBtn
                         method={handleUmbrellaEdit}
                         direction="INSERT"
@@ -220,6 +215,7 @@ function DashBoardPage() {
                             <Th key={column.label}>
                                 {column.label === "우산 종류" ? (
                                     <Select
+                                        className="dashboard"
                                         value={filterType}
                                         onChange={(e) => setFilterType(e.target.value)}
                                     >
@@ -229,6 +225,7 @@ function DashBoardPage() {
                                     </Select>
                                 ) : column.label === "우산 상태" ? (
                                     <Select
+                                        className="dashboard"
                                         value={filterStatus}
                                         onChange={(e) => setFilterStatus(e.target.value)}
                                     >

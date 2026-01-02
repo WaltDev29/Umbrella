@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {useLocation} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {useLocation, useNavigate} from "react-router-dom";
 import styled from "styled-components";
 
 import CheckUpdateInfoPage from "./CheckUpdateInfoPage";
@@ -7,6 +7,8 @@ import SubmitBtn from "../../component/admin/SubmitBtn";
 import Title from "../../component/admin/Title";
 import AdminLayout from "../../component/admin/AdminLayout";
 import Card from "../../component/admin/Card";
+import Select from "../../component/admin/Select";
+import InputLabel from "../../component/admin/InputLabel";
 
 const InfoText = styled.div`
     font-size: 24px;
@@ -24,42 +26,22 @@ const InputGroup = styled.div`
     text-align: left;
 `;
 
-// todo label 겹치는 거 컴포넌트화 (updateAdminInfo)
-const InputLabel = styled.span`
-    display: block;
-    font-size: 22px;
-    color: #0056b3;
-    font-weight: bold;
-    margin-bottom: 10px
-`;
 
-// todo DashBoardStyledComponents에 있는 Select랑 합치기
-const Select = styled.select`
-    width: 100%;
-    height: 70px;
-    font-size: 24px;
-    padding: 0 20px;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    background-color: white;
-    cursor: pointer;
-    color: #333;
-
-    &:focus {
-        border-color: #0056b3;
-        outline: none;
-    }
-`;
 
 const titleMap = {"INSERT": "등록", "UPDATE": "상태 수정", "DELETE": "삭제"};
 const sizeMap = {"L": "장우산", "S": "단우산"};
 const statMap = {"R": "대여중", "B": "고장", "L": "분실", "A": "대여 가능"}; // DB 코드값 기준
 
 function UpdateUmbrellaInfo() {
+    const navigate = useNavigate();
     const location = useLocation();
 
     const mode = location.state?.mode || null;
     const item = location.state?.selectedItem || null;
+
+    useEffect(() => {
+        if (mode == null) navigate("/");
+    }, [location, mode]);
 
     const [showConfirmModal, setShowConfirmModal] = useState(false); // state 이름 변경 (제안사항 반영)
     const [selectedSize, setSelectedSize] = useState("L");
@@ -125,7 +107,7 @@ function UpdateUmbrellaInfo() {
                             <InputGroup>
                                 <InputLabel>우산 종류</InputLabel>
                                 {/* 👇 value와 onChange를 연결해줍니다 */}
-                                <Select value={selectedSize} onChange={handleSizeChange}>
+                                <Select className="update-umbrella-info" value={selectedSize} onChange={handleSizeChange}>
                                     <option value="L">장우산</option>
                                     <option value="S">단우산</option>
                                 </Select>
@@ -137,7 +119,7 @@ function UpdateUmbrellaInfo() {
                             <InputGroup>
                                 <InfoText style={{marginBottom: "20px"}}>우산 종류 : {itemSize}</InfoText>
                                 <InputLabel>우산 상태 변경</InputLabel>
-                                <Select value={selectedStatus} onChange={handleStatusChange}>
+                                <Select className="update-umbrella-info" value={selectedStatus} onChange={handleStatusChange}>
                                     <option value="A">대여 가능(반납)</option>
                                     {/* RENTAL -> A */}
                                     <option value="B">고장</option>

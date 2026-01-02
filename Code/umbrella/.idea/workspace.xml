@@ -4,29 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9aa9c309-9ea2-4433-ba51-052d799a724f" name="변경" comment="css 파일 삭제, styled components 겹치는 것들 병합, DashBoardPage styled components jsx파일로 분리">
-      <change afterPath="$PROJECT_DIR$/src/presentation/component/admin/AdminInput.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/presentation/component/admin/Card.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/presentation/component/admin/ConfirmCancelBtn.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/presentation/component/admin/DashBoradStyledComponents.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/presentation/component/admin/SubmitBtn.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/presentation/component/admin/Title.jsx" afterDir="false" />
+    <list default="true" id="9aa9c309-9ea2-4433-ba51-052d799a724f" name="변경" comment="styled components 겹치는 것들 병합, url로 직접 접속 차단">
+      <change afterPath="$PROJECT_DIR$/src/presentation/component/admin/BtnGroup.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/presentation/component/admin/InputLabel.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/presentation/component/admin/Select.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/component/admin/AdminLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/component/admin/AdminLayout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/AdminCommon.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/AdminHomePage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/component/admin/DashBoradStyledComponents.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/component/admin/DashBoradStyledComponents.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/component/admin/NavCardBtn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/component/admin/NavCardBtn.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/AdminHomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/AdminHomePage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/AdminLogInPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/AdminLogInPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/AdminLoginPage.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/CheckUpdateInfoPage.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/CheckUpdateInfoPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/CheckUpdateInfoPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/DashBoardPage.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/DashBoardPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/DashBoardPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/ThankYouPage.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/ThankYouPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/ThankYouPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/UpdateAdminInfoPage.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/UpdateAdminInfoPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/UpdateAdminInfoPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/UpdateUmbrellaInfo.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/UpdateUmbrellaInfo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/UpdateUmbrellaInfo.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -131,6 +120,7 @@
       <workItem from="1766842096481" duration="1182000" />
       <workItem from="1766844680736" duration="6985000" />
       <workItem from="1767092302653" duration="8118000" />
+      <workItem from="1767338392531" duration="2583000" />
     </task>
     <task id="LOCAL-00001" summary="관리자 홈페이지 css 리팩토링 (styeld component, 컴포넌트 분리)">
       <option name="closed" value="true" />
@@ -244,7 +234,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766854023767</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="css 파일 삭제, styled components 겹치는 것들 병합, DashBoardPage styled components jsx파일로 분리">
+      <option name="closed" value="true" />
+      <created>1767338763919</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1767338763919</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,7 +273,8 @@
     <MESSAGE value="관리자 우산 정보수정 페이지 css 리팩토링" />
     <MESSAGE value="관리자 페이지 Todo 작성" />
     <MESSAGE value="css 파일 삭제, styled components 겹치는 것들 병합, DashBoardPage styled components jsx파일로 분리" />
-    <option name="LAST_COMMIT_MESSAGE" value="css 파일 삭제, styled components 겹치는 것들 병합, DashBoardPage styled components jsx파일로 분리" />
+    <MESSAGE value="styled components 겹치는 것들 병합, url로 직접 접속 차단" />
+    <option name="LAST_COMMIT_MESSAGE" value="styled components 겹치는 것들 병합, url로 직접 접속 차단" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
