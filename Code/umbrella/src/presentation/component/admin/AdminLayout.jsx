@@ -28,11 +28,19 @@ const Container = styled.div`
         min-height: 100vh;
         font-family: 'Noto Sans KR', sans-serif;
     }
-
+    
+    &.update-umbrella-info, &.update-admin-info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+    
     @media screen and (max-width: 1024px) {
         max-width: 100%;
         box-shadow: none;
     }
+
 `;
 
 export default function AdminLayout(props) {

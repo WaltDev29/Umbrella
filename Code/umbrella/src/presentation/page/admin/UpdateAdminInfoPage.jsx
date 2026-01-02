@@ -1,38 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { updateManagerInfoController } from "../../../services/Controller";
-import "./UpdateAdminInfoPage.css";
-import styled from "styled-components"; // CSS 파일 import
+import styled from "styled-components";
 
-const Container = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    //background-color: #f8f9fa;
-`;
-
-const Card = styled.div`
-    width: 100%;
-    max-width: 600px;
-    background-color: #ffffff;
-    padding: 50px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    border: 1px solid #eee;
-    text-align: left;
-`;
-
-const Title = styled.h1`
-    font-size: 40px;
-    color: #0056b3;
-    font-weight: 900;
-    margin-bottom: 40px;
-    text-align: center;
-    border-bottom: 4px solid #ffc107;
-    padding-bottom: 15px;
-    display: block; /* 가운데 정렬을 위해 block 처리 */
-`;
+import ConfirmCancelBtn from "../../component/admin/ConfirmCancelBtn";
+import Title from "../../component/admin/Title";
+import AdminInput from "../../component/admin/AdminInput";
+import AdminLayout from "../../component/admin/AdminLayout";
+import Card from "../../component/admin/Card"; // CSS 파일 import
 
 const ErrorMessage = styled.h2`
     color: #dc3545;
@@ -54,51 +29,10 @@ const Label = styled.label`
     margin-top: 20px;
 `;
 
-// todo Input 겹치는 것들 컴포넌트화 (AdminLogIn, UpdateAdminInfo)
-const Input = styled.input`
-    width: 100%;
-    height: 60px;
-    padding: 0 15px;
-    font-size: 20px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    box-sizing: border-box; /* 패딩 포함 너비 계산 */
-    
-    &:focus {
-        border-color: #0056b3;
-        outline: none;
-    }
-`;
-
 const BtnGroup = styled.div`
     display: flex;
     gap: 15px; /* 버튼 사이 간격 */
     margin-top: 40px;
-`;
-
-const Btn = styled.button`
-    flex: 1; /* 너비 균등 분배 */
-    height: 70px;
-    font-size: 24px;
-    font-weight: bold;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: opacity 0.2s;
-    
-    &.submit {
-        background-color: #0056b3; /* 메인 블루 */
-        color: white;
-    }
-
-    &.cancel {
-        background-color: #6c757d; /* 회색 (취소 의미) */
-        color: white;
-    }
-    
-    &:active {
-        opacity: 0.8;
-    }
 `;
 
 function UpdateAdminInfoPage() {
@@ -132,32 +66,32 @@ function UpdateAdminInfoPage() {
     }
 
     return (
-        <Container>
-            <Card>
-                <Title>관리자 비밀번호 수정</Title>
+        <AdminLayout page="update-admin-info">
+            <Card className="update-admin-info">
+                <Title className="update-admin-info">관리자 비밀번호 수정</Title>
                 {error && <ErrorMessage>{error}</ErrorMessage>}
                 <form onSubmit={handleSubmit}>
                     <Label>
                         기존 비밀번호
-                        <Input type="password" onChange={e => setOriginalPw(e.target.value)} placeholder="기존 비밀번호 입력"/>
+                        <AdminInput className="update-admin-info" type="password" onChange={e => setOriginalPw(e.target.value)} placeholder="기존 비밀번호 입력"/>
                     </Label>
 
                     <Label>
                         새 비밀번호
-                        <Input type="password" onChange={e => setPw(e.target.value)} placeholder="새 비밀번호 입력"/>
+                        <AdminInput className="update-admin-info" type="password" onChange={e => setPw(e.target.value)} placeholder="새 비밀번호 입력"/>
                     </Label>
 
                     <Label>
                         비밀번호 확인
-                        <Input type="password" onChange={e => setCheckPw(e.target.value)} placeholder="새 비밀번호 재입력"/>
+                        <AdminInput className="update-admin-info" type="password" onChange={e => setCheckPw(e.target.value)} placeholder="새 비밀번호 재입력"/>
                     </Label>
                     <BtnGroup>
-                        <Btn type="submit" className="submit">비밀번호 변경</Btn>
-                        <Btn type="button" onClick={() => navigate("/admin-home")} className="cancel">취소</Btn>
+                        <ConfirmCancelBtn type="submit" className="update-admin-info" sort="confirm">비밀번호 변경</ConfirmCancelBtn>
+                        <ConfirmCancelBtn type="button" className="update-admin-info" sort="cancel" onClick={() => navigate("/admin-home")}>취소</ConfirmCancelBtn>
                     </BtnGroup>
                 </form>
             </Card>
-        </Container>
+        </AdminLayout>
     )
 }
 

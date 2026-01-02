@@ -1,122 +1,18 @@
 import React, {useEffect, useState, useMemo} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
-import "./DashBoardPage.css";
-import "./AdminCommon.css";
 import {getUmbrellaListController, getUserListController, getHistoryListController} from "../../../services/Controller";
-import AdminLayout from "../../component/admin/AdminLayout";
 import styled from "styled-components";
+import {SelectedItemBox, TableWrapper, Table, Tr, Th, Select, SortBtn, Td, StatusText} from "../../component/admin/DashBoradStyledComponents"
+
+import AdminLayout from "../../component/admin/AdminLayout";
 import DashboardBtn from "../../component/admin/DashboardBtn";
+import Title from "../../component/admin/Title";
 
-const Title = styled.h1`
-    font-size: 48px;
-    color: #0056b3;
-    font-weight: 900;
-    margin-bottom: 30px;
-    border-bottom: 4px solid #ffc107;
-    display: inline-block;
-    padding-bottom: 10px;
-`;
-
+// todo 이거 컴포넌트화 (UpdateAdminInfo, CheckUpdateInfoPage)
 const BtnGroup = styled.div`
     display: flex;
     gap: 20px;
     margin-bottom: 30px;
-`;
-
-const SelectedItemBox = styled.div`
-    background-color: #ffffff;
-    border: 3px solid #0056b3;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 30px;
-    font-size: 24px;
-    color: #0056b3;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-`;
-
-const TableWrapper = styled.div`
-    overflow-x: auto;
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-`;
-
-const Table = styled.table`
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 22px;
-`;
-
-const Tr = styled.tr`
-    &:nth-child(even) {
-        background-color: #f9f9f9;
-    }
-
-    &.selected-row {
-        background-color: #fff3cd;
-        border-left: 8px solid #0056b3;
-        font-weight: bold;
-    }
-`;
-
-const Th = styled.th`
-    background-color: #0056b3;
-    color: #ffffff;
-    padding: 20px;
-    text-align: center;
-    font-weight: bold;
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
-`;
-
-const Select = styled.select`
-    width: 100%;
-    height: 70px;
-    font-size: 20px;
-    padding: 5px 10px;
-    border-radius: 8px;
-    border: none;
-    background-color: #ffffff;
-    color: #0056b3;
-    font-weight: bold;
-    cursor: pointer;
-`;
-
-const SortBtn = styled.button`
-    background: none;
-    border: none;
-    color: #ffffff;
-    font-size: 22px;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    width: 100%;
-`;
-
-const Td = styled.td`
-    padding: 25px 15px;
-    text-align: center;
-    border-bottom: 1px solid #eee;
-    color: #333;
-`;
-
-const StatusText = styled.span`
-    font-weight: 800;
-
-    /* --- 우산 상태(Umbrella Status) 컬러 --- */
-    &.st-R {color: #0891b2;} /* 대여중 - 청록 */
-    &.st-B {color: #dc2626;} /* 고장 - 빨강 */
-    &.st-L {color: #d97706;} /* 분실 - 주황 */
-    &.st-A {color: #059669;} /* 대여가능 - 초록 */
-    
-    /*  이용 기록(Log) 상태별 텍스트 컬러 */
-    &.st-log-R {color: #059669;} /* 대여 (Rent) - 초록 */
-    &.st-log-T {color: #0891b2;} /* 반납 (Turn-in) - 청록 */
-    &.st-log-B {color: #dc2626;} /* 고장 (Broken) - 빨강 */
-    &.st-log-L {color: #d97706;} /* 분실 (Lost) - 주황 */
 `;
 
 function DashBoardPage() {
@@ -288,7 +184,7 @@ function DashBoardPage() {
 
     return (
         <AdminLayout page="dashboard">
-            <Title>{current_config.title}</Title>
+            <Title className="dashboard">{current_config.title}</Title>
 
             {mode === "UMBRELLA" && (
                 <BtnGroup>

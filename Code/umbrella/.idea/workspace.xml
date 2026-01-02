@@ -4,12 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9aa9c309-9ea2-4433-ba51-052d799a724f" name="변경" comment="관리자 우산 정보수정 페이지 css 리팩토링">
+    <list default="true" id="9aa9c309-9ea2-4433-ba51-052d799a724f" name="변경" comment="css 파일 삭제, styled components 겹치는 것들 병합, DashBoardPage styled components jsx파일로 분리">
+      <change afterPath="$PROJECT_DIR$/src/presentation/component/admin/AdminInput.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/presentation/component/admin/Card.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/presentation/component/admin/ConfirmCancelBtn.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/presentation/component/admin/DashBoradStyledComponents.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/presentation/component/admin/SubmitBtn.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/presentation/component/admin/Title.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/component/admin/AdminLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/component/admin/AdminLayout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/AdminCommon.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/AdminHomePage.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/AdminHomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/AdminHomePage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/AdminLogInPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/AdminLogInPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/AdminLoginPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/CheckUpdateInfoPage.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/CheckUpdateInfoPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/CheckUpdateInfoPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/DashBoardPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/DashBoardPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/DashBoardPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/ThankYouPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/ThankYouPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/ThankYouPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/UpdateAdminInfoPage.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/UpdateAdminInfoPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/UpdateAdminInfoPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/UpdateUmbrellaInfo.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/page/admin/UpdateUmbrellaInfo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/page/admin/UpdateUmbrellaInfo.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +129,8 @@
       <workItem from="1766411949323" duration="587000" />
       <workItem from="1766459544994" duration="14631000" />
       <workItem from="1766842096481" duration="1182000" />
-      <workItem from="1766844680736" duration="5828000" />
+      <workItem from="1766844680736" duration="6985000" />
+      <workItem from="1767092302653" duration="8118000" />
     </task>
     <task id="LOCAL-00001" summary="관리자 홈페이지 css 리팩토링 (styeld component, 컴포넌트 분리)">
       <option name="closed" value="true" />
@@ -217,7 +236,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766849031496</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="관리자 페이지 Todo 작성">
+      <option name="closed" value="true" />
+      <created>1766854023767</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1766854023767</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,7 +273,9 @@
     <MESSAGE value="관리자 완료 페이지 css 리팩토링 및 비정상 접근 차단 로직 구현" />
     <MESSAGE value="관리자 정보수정 페이지 css 리팩토링" />
     <MESSAGE value="관리자 우산 정보수정 페이지 css 리팩토링" />
-    <option name="LAST_COMMIT_MESSAGE" value="관리자 우산 정보수정 페이지 css 리팩토링" />
+    <MESSAGE value="관리자 페이지 Todo 작성" />
+    <MESSAGE value="css 파일 삭제, styled components 겹치는 것들 병합, DashBoardPage styled components jsx파일로 분리" />
+    <option name="LAST_COMMIT_MESSAGE" value="css 파일 삭제, styled components 겹치는 것들 병합, DashBoardPage styled components jsx파일로 분리" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

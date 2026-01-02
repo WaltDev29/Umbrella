@@ -1,8 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import {updateUmbrellaStatusController, deleteUmbrellaController, addUmbrellaController} from "../../../services/Controller";
-import "./CheckUpdateInfoPage.css";
-import styled, {keyframes} from "styled-components";
+import styled from "styled-components";
+
+import ConfirmCancelBtn from "../../component/admin/ConfirmCancelBtn";
+import Title from "../../component/admin/Title";
+import Card from "../../component/admin/Card";
 
 const Modal = styled.div`
     position: fixed;
@@ -15,33 +18,6 @@ const Modal = styled.div`
     justify-content: center;
     align-items: center;
     z-index: 1000; /* 제일 위에 뜨도록 설정 */
-`;
-
-const popIn = keyframes`
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-`;
-
-const Wrapper = styled.div`
-    background-color: white;
-    padding: 40px;
-    border-radius: 20px;
-    width: 90%;
-    max-width: 500px;
-    text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    border: 1px solid #ddd;
-    animation: ${popIn} 0.3s ease-out;
-`;
-
-const Title = styled.h1`
-    font-size: 32px;
-    color: #0056b3;
-    font-weight: 900;
-    margin-bottom: 10px;
-    border-bottom: 4px solid #ffc107;
-    display: inline-block;
-    padding-bottom: 10px;
 `;
 
 const Question = styled.div`
@@ -75,32 +51,6 @@ const Strong = styled.strong`
 const BtnGroup = styled.div`
     display: flex;
     gap: 15px;
-`;
-
-// todo Button 겹치는 것들 컴포넌트화 (UpdateAdminInfo)
-const Btn = styled.button`
-    flex: 1;
-    height: 60px;
-    font-size: 22px;
-    font-weight: bold;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    
-    &.confirm {
-        background-color: #0056b3;
-        color: white;
-    }
-    
-    &.cancel {
-        background-color: #6c757d;
-        color: white;
-    }
-    
-    &:active {
-        opacity: 0.8;
-    }
 `;
 
 function CheckUpdateInfoPage({ title, onCancel, data, mode }) {
@@ -157,8 +107,8 @@ function CheckUpdateInfoPage({ title, onCancel, data, mode }) {
 
     return (
         <Modal>
-            <Wrapper>
-                <Title>{title} 확인</Title>
+            <Card className="check-update-info">
+                <Title className="check-update-info">{title} 확인</Title>
                 <Question>해당 우산을 {title} 하시겠습니까?</Question>
 
                 <SummaryBox>
@@ -176,10 +126,10 @@ function CheckUpdateInfoPage({ title, onCancel, data, mode }) {
                 </SummaryBox>
 
                 <BtnGroup>
-                    <Btn className="confirm" onClick={handleSubmit}>확인</Btn>
-                    <Btn className="cancel" onClick={onCancel}>취소</Btn>
+                    <ConfirmCancelBtn sort="confirm" onClick={handleSubmit}>확인</ConfirmCancelBtn>
+                    <ConfirmCancelBtn sort="cancel" onClick={onCancel}>취소</ConfirmCancelBtn>
                 </BtnGroup>
-            </Wrapper>
+            </Card>
         </Modal>
     )
 }

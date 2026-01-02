@@ -1,37 +1,12 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
-import CheckUpdateInfoPage from "./CheckUpdateInfoPage";
-import "./UpdateUmbrellaInfo.css";
+import React, {useState} from "react";
+import {useLocation} from "react-router-dom";
 import styled from "styled-components";
 
-const Container = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    /*background-color: #f8f9fa;*/
-`;
-
-const Form = styled.form`
-    width: 100%;
-    max-width: 600px;
-    background-color: #ffffff;
-    padding: 50px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    border: 1px solid #eee;
-`;
-
-const Title = styled.h1`
-    font-size: 40px;
-    color: #0056b3; /* 메인 블루 */
-    font-weight: 900;
-    margin-bottom: 40px;
-    padding-bottom: 15px;
-    border-bottom: 4px solid #ffc107; /* 노란색 포인트 */
-    display: inline-block;
-`;
+import CheckUpdateInfoPage from "./CheckUpdateInfoPage";
+import SubmitBtn from "../../component/admin/SubmitBtn";
+import Title from "../../component/admin/Title";
+import AdminLayout from "../../component/admin/AdminLayout";
+import Card from "../../component/admin/Card";
 
 const InfoText = styled.div`
     font-size: 24px;
@@ -49,6 +24,7 @@ const InputGroup = styled.div`
     text-align: left;
 `;
 
+// todo label 겹치는 거 컴포넌트화 (updateAdminInfo)
 const InputLabel = styled.span`
     display: block;
     font-size: 22px;
@@ -57,6 +33,7 @@ const InputLabel = styled.span`
     margin-bottom: 10px
 `;
 
+// todo DashBoardStyledComponents에 있는 Select랑 합치기
 const Select = styled.select`
     width: 100%;
     height: 70px;
@@ -74,28 +51,9 @@ const Select = styled.select`
     }
 `;
 
-const Btn = styled.button`
-    width: 100%;
-    height: 80px;
-    background-color: #0056b3;
-    color: white;
-    font-size: 32px;
-    font-weight: bold;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: background-color 0.2s;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    
-    &:active {
-        transform: scale(0.98);
-    }
-`;
-
-const titleMap = { "INSERT": "등록", "UPDATE": "상태 수정", "DELETE": "삭제" };
-const sizeMap = { "L": "장우산", "S": "단우산" };
-const statMap = { "R": "대여중", "B": "고장", "L": "분실", "A": "대여 가능" }; // DB 코드값 기준
+const titleMap = {"INSERT": "등록", "UPDATE": "상태 수정", "DELETE": "삭제"};
+const sizeMap = {"L": "장우산", "S": "단우산"};
+const statMap = {"R": "대여중", "B": "고장", "L": "분실", "A": "대여 가능"}; // DB 코드값 기준
 
 function UpdateUmbrellaInfo() {
     const location = useLocation();
@@ -143,7 +101,7 @@ function UpdateUmbrellaInfo() {
             console.log(`[등록 요청] 종류: `, submitData);
         } else if (mode === "UPDATE") {
             submitData.status = selectedStatus;
-        } else if(mode=="DELETE"){
+        } else if (mode == "DELETE") {
             // DELETE는 ID값만 있어도 됨.
         }
         setSelectedValue(submitData);
@@ -155,51 +113,56 @@ function UpdateUmbrellaInfo() {
     }
 
     return (
-        <Container>
-            {!showConfirmModal &&
-                <Form onSubmit={handleSubmit}>
-                    <Title>우산 {title}</Title>
-                    <InfoText>우산 번호 : {item?.umbrella_id || newItemId}</InfoText>
+        <AdminLayout page="update-umbrella-info">
+            <Card className="update-umbrella-info">
+                {!showConfirmModal &&
+                    <form onSubmit={handleSubmit}>
+                        <Title className="update-umbrella-info">우산 {title}</Title>
+                        <InfoText>우산 번호 : {item?.umbrella_id || newItemId}</InfoText>
 
-                    {/* INSERT 모드: 우산 종류 선택 */}
-                    {mode === "INSERT" &&
-                        <InputGroup>
-                            <InputLabel>우산 종류</InputLabel>
-                            {/* 👇 value와 onChange를 연결해줍니다 */}
-                            <Select value={selectedSize} onChange={handleSizeChange}>
-                                <option value="L">장우산</option>
-                                <option value="S">단우산</option>
-                            </Select>
-                        </InputGroup>
-                    }
+                        {/* INSERT 모드: 우산 종류 선택 */}
+                        {mode === "INSERT" &&
+                            <InputGroup>
+                                <InputLabel>우산 종류</InputLabel>
+                                {/* 👇 value와 onChange를 연결해줍니다 */}
+                                <Select value={selectedSize} onChange={handleSizeChange}>
+                                    <option value="L">장우산</option>
+                                    <option value="S">단우산</option>
+                                </Select>
+                            </InputGroup>
+                        }
 
-                    {/* UPDATE 모드: 우산 상태 수정 */}
-                    {mode === "UPDATE" &&
-                        <InputGroup>
-                            <InfoText style={{marginBottom: "20px"}}>우산 종류 : {itemSize}</InfoText>
-                            <InputLabel>우산 상태 변경</InputLabel>
-                            <Select value={selectedStatus} onChange={handleStatusChange}>
-                                <option value="A">대여 가능(반납)</option> {/* RENTAL -> A */}
-                                <option value="B">고장</option>         {/* BROKEN -> B */}
-                                <option value="L">분실</option>         {/* LOST -> L */}
-                            </Select>
-                        </InputGroup>
-                    }
+                        {/* UPDATE 모드: 우산 상태 수정 */}
+                        {mode === "UPDATE" &&
+                            <InputGroup>
+                                <InfoText style={{marginBottom: "20px"}}>우산 종류 : {itemSize}</InfoText>
+                                <InputLabel>우산 상태 변경</InputLabel>
+                                <Select value={selectedStatus} onChange={handleStatusChange}>
+                                    <option value="A">대여 가능(반납)</option>
+                                    {/* RENTAL -> A */}
+                                    <option value="B">고장</option>
+                                    {/* BROKEN -> B */}
+                                    <option value="L">분실</option>
+                                    {/* LOST -> L */}
+                                </Select>
+                            </InputGroup>
+                        }
 
-                    {mode === "DELETE" &&
-                        <InputGroup>
-                            <InfoText>우산 종류 : {itemSize}</InfoText>
-                            <InfoText>우산 상태 : {itemStat}</InfoText>
-                        </InputGroup>
-                    }
+                        {mode === "DELETE" &&
+                            <InputGroup>
+                                <InfoText>우산 종류 : {itemSize}</InfoText>
+                                <InfoText>우산 상태 : {itemStat}</InfoText>
+                            </InputGroup>
+                        }
 
-                    <Btn type="submit">{title}</Btn>
-                </Form>
-            }
-            {showConfirmModal &&
-                <CheckUpdateInfoPage title={title} mode={mode} onCancel={handleCancel} data={selectedValue}/>
-            }
-        </Container>
+                        <SubmitBtn className="update-umbrella-info">{title}</SubmitBtn>
+                    </form>
+                }
+                {showConfirmModal &&
+                    <CheckUpdateInfoPage title={title} mode={mode} onCancel={handleCancel} data={selectedValue}/>
+                }
+            </Card>
+        </AdminLayout>
     )
 }
 

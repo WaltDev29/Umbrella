@@ -1,23 +1,12 @@
 import React, {useState, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import {getUmbrellaStatsController} from "../../../services/Controller";
-import "./AdminHomePage.css";
-import "./AdminCommon.css";
 import styled from "styled-components";
+
 import NavCardBtn from "../../component/admin/NavCardBtn";
 import StatCard from "../../component/admin/StatCard";
 import AdminLayout from "../../component/admin/AdminLayout";
-
-// todo Title 겹치는 것들 컴포넌트화 (UpdateUmbrellaInfo, DashBoard, CheckUpdateInfo, UpdateAdminInfo)
-const HomeTitle = styled.h1`
-    font-size: 48px;
-    color: #0056b3;
-    font-weight: 900;
-    margin: 0;
-    padding-bottom: 15px;
-    border-bottom: 4px solid #ffc107;
-    display: inline-block;
-`;
+import Title from "../../component/admin/Title";
 
 const Grid = styled.section`
     display: grid;
@@ -87,7 +76,7 @@ function AdminHomePage() {
     return (
         <AdminLayout page="home">
             <header>
-                <HomeTitle>관리자 대시보드</HomeTitle>
+                <Title>관리자 대시보드</Title>
             </header>
 
             <Grid>

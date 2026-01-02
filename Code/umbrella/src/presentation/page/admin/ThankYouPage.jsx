@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import "./ThankYouPage.css";
 import styled, {keyframes} from "styled-components"; // CSS 파일 import
 
 const Container = styled.div`
