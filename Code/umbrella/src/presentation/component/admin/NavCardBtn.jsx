@@ -9,8 +9,9 @@ const gradients = {
 };
 
 const Btn = styled.button`
-    height: 200px !important;
-    font-size: 26px;
+    min-height: clamp(132px, 14vw, 200px);
+    padding: 24px 18px;
+    font-size: clamp(20px, 2.1vw, 26px);
     border-radius: 20px;
     flex-direction: column;
     gap: 15px;
@@ -27,12 +28,15 @@ const Btn = styled.button`
     color: ${({variant}) => (variant === "admin" ? "#333" : "white")};
 
     @media screen and (max-width: 1023px), screen and (orientation: portrait) {
-        height: 140px;
-        font-size: 26px;
+        min-height: 128px;
         &:active {
             opacity: 0.8;
             transform: scale(0.98);
         }
+    }
+    @media screen and (max-width: 560px) {
+        min-height: 104px;
+        border-radius: 16px;
     }
     @media screen and (min-width: 1024px) {
         &:hover {

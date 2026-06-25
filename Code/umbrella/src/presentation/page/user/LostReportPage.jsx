@@ -27,7 +27,7 @@ export default function LostReportPage() {
     ][step]
 
     useEffect(() => {
-        if (step == 0) navigate("/");
+        if (step == 0) navigate("/userhomepage");
         else if (step == 3) navigate("/thanks", {state: {mode: "LOST_REPORT"}});
     }, [step]);
 

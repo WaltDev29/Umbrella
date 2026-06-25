@@ -1,0 +1,687 @@
+.neumorphism-container,
+.umbrella-select-container,
+.confirm-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 100px);
+    min-height: calc(100vh - 100px);
+    padding: clamp(28px, 5vh, 64px) clamp(18px, 5vw, 56px);
+    background:
+        radial-gradient(circle at 16% 10%, rgba(126, 216, 223, 0.24), transparent 28%),
+        radial-gradient(circle at 86% 8%, rgba(231, 236, 160, 0.22), transparent 25%),
+        linear-gradient(180deg, var(--baro-bg-soft) 0%, var(--baro-bg) 72%);
+    color: var(--baro-ink);
+    font-family: 'Cafe24Surround', sans-serif;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.neu-bg-circle {
+    position: absolute;
+    width: min(1220px, 150%);
+    height: auto;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(180deg);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.16;
+}
+
+.neu-header-texts,
+.confirm-header-texts {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    width: min(860px, 100%);
+    margin: 0 auto clamp(26px, 4vh, 48px);
+}
+
+.neumorphism-container .neu-error-msg,
+.umbrella-select-container .no-umbrella-msg,
+.confirm-page-container .confirm-error-msg {
+    position: absolute;
+    top: clamp(190px, 15vh, 280px);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.neu-main-text,
+.confirm-main-text {
+    font-size: clamp(2.15rem, 5vw, 3.55rem);
+    font-weight: 800;
+    line-height: 1.24;
+    margin-bottom: 16px;
+    color: var(--baro-heading);
+}
+
+.neu-sub-text,
+.confirm-sub-text {
+    font-size: clamp(1.24rem, 3vw, 1.9rem);
+    font-weight: 600;
+    line-height: 1.42;
+    color: var(--baro-muted);
+}
+
+.neu-input-container {
+    width: min(820px, 100%);
+    margin: 0 auto;
+    padding: clamp(32px, 6vw, 64px);
+    border-radius: 34px;
+    background: var(--baro-surface-gradient);
+    border: 0;
+    box-shadow: var(--baro-raised), var(--baro-edge);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(34px, 5.6vh, 68px);
+    position: relative;
+    z-index: 2;
+}
+
+.neu-form-group,
+.confirm-form-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.neu-label-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: auto;
+    padding: 0 8px;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.neu-label-text,
+.confirm-label-text {
+    font-size: clamp(1.35rem, 3.5vw, 2.1rem);
+    font-weight: 900;
+    line-height: 1.2;
+    color: var(--baro-label);
+    background: var(--baro-text-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.neu-asset-icon {
+    width: clamp(58px, 12vw, 92px);
+    height: clamp(58px, 12vw, 92px);
+    object-fit: contain;
+    position: static;
+    transform: none;
+    filter: drop-shadow(4px 7px 9px rgba(38, 61, 99, 0.12));
+    z-index: 3;
+    pointer-events: none;
+}
+
+.user-neu-input-container {
+    width: 100%;
+    display: flex;
+}
+
+.user-neu-input-container input,
+.confirm-input-container input {
+    width: 100%;
+    min-height: 82px;
+    border: 0;
+    border-radius: 22px;
+    padding: 22px 24px;
+    background: linear-gradient(145deg, #e0eaf7 0%, #f1f7ff 100%);
+    box-shadow: var(--baro-inset);
+    font-size: clamp(1.3rem, 3.8vw, 2rem);
+    font-weight: 800;
+    color: var(--baro-ink);
+    caret-color: var(--baro-blue-dark);
+    text-align: center;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    outline: none;
+}
+
+.user-neu-input-container input::placeholder,
+.confirm-input-container input::placeholder {
+    color: #98a6bd;
+    font-weight: 600;
+}
+
+.user-neu-input-container input:focus,
+.user-neu-input-container input:hover,
+.confirm-input-container:hover {
+    box-shadow: var(--baro-inset), var(--baro-ring);
+}
+
+.user-neu-input-container input.sec-pin {
+    font-size: clamp(2rem, 6vw, 3.35rem);
+    letter-spacing: 0.22em;
+    padding-left: 0.22em;
+    color: #17213a;
+    -webkit-text-fill-color: #17213a;
+}
+
+.user-neu-input-container input.pin-mask {
+    -webkit-text-security: disc;
+    text-security: disc;
+    font-family: Arial, sans-serif;
+    font-weight: 900;
+}
+
+.neu-error-msg,
+.confirm-error-msg,
+.no-umbrella-msg {
+    width: min(760px, 100%);
+    margin: 0 auto clamp(16px, 2vh, 24px);
+    padding: 16px 22px;
+    border-radius: 18px;
+    color: var(--baro-danger);
+    background: rgba(226, 77, 77, 0.09);
+    border: 1px solid rgba(226, 77, 77, 0.18);
+    font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+    font-weight: 800;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.neu-footer {
+    display: flex;
+    justify-content: center;
+    width: min(680px, 100%);
+    gap: clamp(14px, 3vw, 24px);
+    margin-top: clamp(26px, 4vh, 44px);
+    position: relative;
+    z-index: 2;
+}
+
+.neu-btn {
+    flex: 1 1 0;
+    min-height: 76px;
+    padding: 20px 24px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--baro-surface-gradient);
+    color: var(--baro-blue-dark);
+    box-shadow: var(--baro-raised-soft), var(--baro-edge);
+    font-size: clamp(1.25rem, 3vw, 1.8rem);
+    font-weight: 800;
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.neu-btn:hover {
+    transform: none;
+    box-shadow: var(--baro-raised-soft), var(--baro-ring), var(--baro-edge);
+}
+
+.neu-btn-next {
+    background: var(--baro-primary-gradient);
+    color: #fff;
+    box-shadow:
+        9px 9px 18px rgba(101, 135, 190, 0.34),
+        -7px -7px 16px rgba(247, 251, 255, 0.48),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.neu-btn:active {
+    transform: scale(0.97);
+    box-shadow: var(--baro-inset);
+}
+
+.neu-btn:disabled {
+    opacity: 0.58;
+    cursor: not-allowed;
+    transform: none;
+}
+
+::placeholder {
+    font-family: 'Cafe24Surround', sans-serif;
+}
+
+@media (max-width: 720px) {
+    .neumorphism-container,
+    .umbrella-select-container,
+    .confirm-page-container {
+        min-height: calc(100vh - 82px);
+        height: calc(100vh - 82px);
+        padding: 26px 18px 34px;
+        overflow-y: auto;
+    }
+
+    .neumorphism-container .neu-error-msg,
+    .umbrella-select-container .no-umbrella-msg,
+    .confirm-page-container .confirm-error-msg {
+        position: static;
+        transform: none;
+        width: 100%;
+        margin: 0 0 18px;
+    }
+
+    .neu-header-texts,
+    .confirm-header-texts {
+        margin-bottom: 26px;
+    }
+
+    .neu-main-text,
+    .confirm-main-text {
+        font-size: clamp(2rem, 9vw, 2.78rem);
+        line-height: 1.18;
+        margin-bottom: 14px;
+    }
+
+    .neu-sub-text,
+    .confirm-sub-text {
+        font-size: clamp(1.08rem, 4.6vw, 1.32rem);
+        line-height: 1.38;
+    }
+
+    .neu-input-container {
+        width: 100%;
+        min-height: auto;
+        padding: 30px 24px;
+        gap: 30px;
+        border-radius: 28px;
+    }
+
+    .neu-form-group,
+    .confirm-form-group {
+        gap: 14px;
+    }
+
+    .neu-label-container {
+        padding: 0 4px;
+    }
+
+    .neu-label-text,
+    .confirm-label-text {
+        font-size: clamp(1.45rem, 6vw, 1.82rem);
+    }
+
+    .neu-asset-icon {
+        width: 66px;
+        height: 66px;
+    }
+
+    .user-neu-input-container input,
+    .confirm-input-container input {
+        min-height: 74px;
+        padding: 18px 20px;
+        border-radius: 20px;
+        font-size: clamp(1.22rem, 5vw, 1.56rem);
+    }
+
+    .user-neu-input-container input.sec-pin {
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+    }
+
+    .neu-footer {
+        width: 100%;
+        gap: 16px;
+        margin-top: 28px;
+    }
+
+    .neu-btn {
+        width: 100%;
+        min-height: 68px;
+        font-size: 1.35rem;
+    }
+}
+
+@media (min-width: 900px) and (min-aspect-ratio: 4/3) {
+    .neumorphism-container,
+    .umbrella-select-container,
+    .confirm-page-container {
+        min-height: calc(100vh - 86px);
+        height: auto;
+        padding: 36px 64px;
+        overflow-y: auto;
+    }
+
+    .neumorphism-container {
+        display: grid;
+        grid-template-columns: minmax(360px, 520px) minmax(520px, 620px);
+        grid-template-rows: auto auto;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        gap: 22px 60px;
+    }
+
+    .neumorphism-container .neu-header-texts {
+        width: 100%;
+        margin: 0;
+        text-align: left;
+    }
+
+    .neu-main-text {
+        font-size: clamp(2.8rem, 3.9vw, 4rem);
+        line-height: 1.16;
+    }
+
+    .neu-sub-text {
+        font-size: clamp(1.25rem, 1.55vw, 1.6rem);
+    }
+
+    .neumorphism-container .neu-error-msg {
+        top: 104px;
+        width: min(620px, 42vw);
+    }
+
+    .neu-input-container {
+        width: 100%;
+        min-height: auto;
+        padding: 34px 40px;
+        gap: 26px;
+        border-radius: 32px;
+    }
+
+    .neu-form-group,
+    .confirm-form-group {
+        gap: 12px;
+    }
+
+    .neu-label-text,
+    .confirm-label-text {
+        font-size: clamp(1.5rem, 1.75vw, 1.78rem);
+    }
+
+    .neu-asset-icon {
+        width: 64px;
+        height: 64px;
+    }
+
+    .user-neu-input-container input,
+    .confirm-input-container input {
+        min-height: 72px;
+        padding: 17px 22px;
+        border-radius: 20px;
+        font-size: 1.42rem;
+    }
+
+    .user-neu-input-container input.sec-pin {
+        font-size: 2.15rem;
+    }
+
+    .neumorphism-container .neu-footer {
+        grid-column: 2;
+        width: 100%;
+        margin-top: 0;
+        justify-self: end;
+    }
+
+    .neu-btn {
+        min-height: 64px;
+        font-size: 1.36rem;
+    }
+}
+
+@media (max-height: 820px) and (min-width: 900px) and (orientation: portrait) {
+    .neumorphism-container,
+    .umbrella-select-container,
+    .confirm-page-container {
+        padding-top: 22px;
+        padding-bottom: 22px;
+    }
+
+    .neu-header-texts,
+    .confirm-header-texts {
+        margin-bottom: 18px;
+    }
+
+    .neu-main-text,
+    .confirm-main-text {
+        font-size: 2.05rem;
+        margin-bottom: 8px;
+    }
+
+    .neu-sub-text,
+    .confirm-sub-text {
+        font-size: 1.08rem;
+    }
+
+    .neu-input-container {
+        padding: 26px 32px;
+        gap: 20px;
+        border-radius: 26px;
+    }
+
+    .neu-form-group,
+    .confirm-form-group {
+        gap: 10px;
+    }
+
+    .neu-label-container {
+        min-height: 54px;
+        padding: 8px 16px 8px 20px;
+        border-radius: 18px;
+    }
+
+    .neu-label-text,
+    .confirm-label-text {
+        font-size: 1.28rem;
+    }
+
+    .neu-asset-icon {
+        width: 70px;
+        height: 70px;
+        bottom: 6px;
+    }
+
+    .user-neu-input-container input,
+    .confirm-input-container input {
+        min-height: 58px;
+        padding: 14px 18px;
+        border-radius: 16px;
+        font-size: 1.24rem;
+    }
+
+    .user-neu-input-container input.sec-pin {
+        font-size: 1.9rem;
+    }
+
+    .neu-footer {
+        margin-top: 18px;
+    }
+
+    .neu-btn {
+        min-height: 58px;
+        padding: 14px 20px;
+        font-size: 1.22rem;
+    }
+}
+
+@media (min-width: 900px) and (min-height: 1000px) and (orientation: portrait) {
+    .neumorphism-container,
+    .umbrella-select-container,
+    .confirm-page-container {
+        height: calc(100vh - 104px);
+        min-height: calc(100vh - 104px);
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        justify-items: center;
+        align-items: start;
+        padding: 86px 50px 88px;
+        overflow: hidden;
+    }
+
+    .neu-header-texts,
+    .confirm-header-texts {
+        width: 960px;
+        margin-bottom: 0;
+    }
+
+    .neu-main-text,
+    .confirm-main-text {
+        font-size: 3.72rem;
+        line-height: 1.2;
+        margin-bottom: 24px;
+    }
+
+    .neu-sub-text,
+    .confirm-sub-text {
+        font-size: 2rem;
+        line-height: 1.35;
+        font-weight: 800;
+    }
+
+    .neu-input-container {
+        width: 860px;
+        align-self: center;
+        min-height: 980px;
+        padding: 82px 72px;
+        gap: 78px;
+        border-radius: 38px;
+        justify-content: center;
+    }
+
+    .neu-form-group,
+    .confirm-form-group {
+        gap: 26px;
+    }
+
+    .neu-label-container {
+        min-height: auto;
+        padding: 0 10px;
+        border-radius: 0;
+    }
+
+    .neu-label-text,
+    .confirm-label-text {
+        font-size: 2.42rem;
+        line-height: 1.12;
+    }
+
+    .neu-asset-icon {
+        width: 112px;
+        height: 112px;
+    }
+
+    .user-neu-input-container input,
+    .confirm-input-container input {
+        min-height: 126px;
+        padding: 30px 32px;
+        border-radius: 28px;
+        font-size: 2.32rem;
+    }
+
+    .user-neu-input-container input.sec-pin {
+        font-size: 3.35rem;
+    }
+
+    .neu-footer {
+        width: 700px;
+        gap: 32px;
+        align-self: end;
+        margin-top: 0;
+    }
+
+    .neu-btn {
+        min-height: 82px;
+        padding: 20px 28px;
+        font-size: 1.9rem;
+    }
+}
+
+@media (min-width: 900px) and (min-aspect-ratio: 4/3) {
+    .neumorphism-container,
+    .umbrella-select-container,
+    .confirm-page-container {
+        min-height: calc(100vh - 72px) !important;
+        height: calc(100vh - 72px) !important;
+        padding: 30px clamp(42px, 5vw, 78px) !important;
+        overflow: hidden !important;
+    }
+
+    .neumorphism-container {
+        display: grid !important;
+        grid-template-columns: minmax(360px, 500px) minmax(480px, 590px) !important;
+        grid-template-rows: auto auto !important;
+        justify-content: center !important;
+        align-content: center !important;
+        align-items: center !important;
+        gap: 20px clamp(42px, 5vw, 68px) !important;
+    }
+
+    .neumorphism-container .neu-header-texts,
+    .confirm-header-texts {
+        width: 100% !important;
+        margin: 0 !important;
+        text-align: left !important;
+    }
+
+    .neu-main-text,
+    .confirm-main-text {
+        font-size: clamp(2.55rem, 3.35vw, 3.6rem) !important;
+        line-height: 1.14 !important;
+        margin-bottom: 18px !important;
+    }
+
+    .neu-sub-text,
+    .confirm-sub-text {
+        font-size: clamp(1.12rem, 1.35vw, 1.42rem) !important;
+        line-height: 1.42 !important;
+    }
+
+    .neu-input-container {
+        width: 100% !important;
+        min-height: auto !important;
+        padding: 30px 36px !important;
+        gap: 22px !important;
+        border-radius: 28px !important;
+    }
+
+    .neu-form-group,
+    .confirm-form-group {
+        gap: 10px !important;
+    }
+
+    .neu-label-container {
+        padding: 0 2px !important;
+    }
+
+    .neu-label-text,
+    .confirm-label-text {
+        font-size: clamp(1.35rem, 1.55vw, 1.62rem) !important;
+        line-height: 1.15 !important;
+    }
+
+    .neu-asset-icon {
+        width: 56px !important;
+        height: 56px !important;
+    }
+
+    .user-neu-input-container input,
+    .confirm-input-container input {
+        min-height: 64px !important;
+        padding: 15px 20px !important;
+        border-radius: 18px !important;
+        font-size: 1.25rem !important;
+    }
+
+    .user-neu-input-container input.sec-pin {
+        font-size: 1.95rem !important;
+    }
+
+    .neumorphism-container .neu-footer,
+    .confirm-page-container .neu-footer,
+    .umbrella-select-container .neu-footer {
+        width: 100% !important;
+        max-width: 590px !important;
+        margin-top: 0 !important;
+        justify-self: end !important;
+        align-self: start !important;
+    }
+
+    .neu-btn {
+        min-height: 58px !important;
+        padding: 14px 22px !important;
+        font-size: 1.22rem !important;
+    }
+}

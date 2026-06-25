@@ -1,9 +1,13 @@
-import React, {useState} from 'react';
-import {BorrowCheckController} from '../../../services/Controller';
-import {checkUserByTelAndPw} from "../../../repositories/UserRepository";
-import {checkBorrowedUmbrella} from "../../../services/Controller";
+import React, { useState } from 'react';
+import { BorrowCheckController } from '../../../services/Controller';
+import { checkUserByTelAndPw } from "../../../repositories/UserRepository";
+import { checkBorrowedUmbrella } from "../../../services/Controller";
+import './UserInfo.css';
+import phoneImg from '../../../assets/phone.png';
+import lockImg from '../../../assets/lock.png';
+import keyImg from '../../../assets/key.png';
 
-export function UserInfo({mode, setUserData, setUmbrellaData, setStep }) {
+export function UserInfo({ mode, setUserData, setUmbrellaData, setStep }) {
     const [formData, setFormData] = useState({
         phone: '',
         password: '',
@@ -11,11 +15,10 @@ export function UserInfo({mode, setUserData, setUmbrellaData, setStep }) {
     });
 
     const [isLoading, setIsLoading] = useState(false);
-
     const [error, setError] = useState({
-        state : false,
-        message : ""
-    })
+        state: false,
+        message: ""
+    });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,23 +29,24 @@ export function UserInfo({mode, setUserData, setUmbrellaData, setStep }) {
     };
 
     const validateInfo = (phone, password, passwordConfirm) => {
-        let result = true;
         if (!phone) {
-            setError({state: true, message: "휴대폰 번호를 입력해주세요."});
-            result = false;
+            setError({ state: true, message: "전화번호를 입력해주세요." });
+            return false;
         }
 
         if (!password) {
-            setError({state: true, message: "PIN을 입력해주세요."});
-            result = false;
+            setError({ state: true, message: "PIN 번호를 입력해주세요." });
+            return false;
         }
 
         if (mode === 'BORROW' && password !== passwordConfirm) {
-            setError({state: true, message: "PIN이 일치하지 않습니다."});
-            result = false;
+            setError({ state: true, message: "PIN 번호가 일치하지 않습니다." });
+            return false;
         }
-        return result;
-    }
+
+        setError({ state: false, message: "" });
+        return true;
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -54,178 +58,149 @@ export function UserInfo({mode, setUserData, setUmbrellaData, setStep }) {
         setIsLoading(true);
 
         try {
-            // ==================== 대여 ====================
             if (mode === 'BORROW') {
                 const result = await BorrowCheckController(phone, password);
 
                 if (!result.valid) {
-                    setError({state: true, message: result.error})
+                    setError({ state: true, message: result.error });
                     setIsLoading(false);
                     return;
                 }
 
-                // 대여중이면 중단
                 if (result.hasActiveLoan) {
-                    setError({state : true, message : result.message})
+                    setError({ state: true, message: result.message });
                     setIsLoading(false);
                     return;
                 }
-
-                // dispatch({
-                //     type: 'UPDATE_CACHE_USER_INFO',
-                //     payload: {
-                //         phone,
-                //         password,
-                //         user_id: result.user.user_id,
-                //         isNewUser: result.isNewUser
-                //     }
-                // });
 
                 setUserData({
                     user_id: result.user.user_id,
-                    phone: phone,
-                    password: password
-                })
+                    phone,
+                    password
+                });
 
-                setStep(prev => (prev+1));
-
-                // ==================== 반납 / 분실 신고 ====================
+                setStep(prev => (prev + 1));
             } else if (mode === 'RETURN' || mode === 'LOST_REPORT') {
-                // 1. 사용자 인증
-                // const authResponse = await fetch('http://localhost:5000/api/users/auth', {
-                //     method: 'POST',
-                //     headers: { 'Content-Type': 'application/json' },
-                //     body: JSON.stringify({ user_tel: phone, user_pw: password })
-                // });
-
                 const user = await checkUserByTelAndPw(phone, password);
 
                 if (!user) {
-                    setError({state: true, message: "사용자 정보가 일치하지 않습니다."});
+                    setError({ state: true, message: "사용자 정보가 일치하지 않습니다." });
                     setIsLoading(false);
                     return;
                 }
-
-                // const user = await authResponse.json();
-
-                // 2. 사용자의 대여 우산 조회
-                // const borrowedResponse = await fetch('http://localhost:5000/api/umbrellas/borrowed', {
-                //     method: 'POST',
-                //     headers: { 'Content-Type': 'application/json' },
-                //     body: JSON.stringify({ user_id: user.user_id })
-                // });
 
                 const umbrella = await checkBorrowedUmbrella(user.user_id);
 
                 if (!umbrella) {
-                    setError({state: true, message: "대여 중인 우산이 없습니다."});
+                    setError({ state: true, message: "대여 중인 우산이 없습니다." });
                     setIsLoading(false);
                     return;
                 }
 
-                // 3. 캐시 저장
-                // dispatch({
-                //     type: 'UPDATE_CACHE_USER_INFO',
-                //     payload: {
-                //         phone,
-                //         password,
-                //         user_id: user.user_id
-                //     }
-                // });
-
                 setUserData({
                     user_id: user.user_id,
-                    phone: phone,
-                    password: password
-                })
+                    phone,
+                    password
+                });
 
-                // setStep("SELECT_UMBRELLA");
-
-                // 4. 우산 선택
                 setUmbrellaData({
                     umbrella_id: umbrella.umbrella_id,
                     type: umbrella.umbrella_type,
                 });
 
-                // dispatch({
-                //     type: 'SELECT_UMBRELLA',
-                //     payload: {
-                //         type: umbrella.umbrella_type,
-                //         umbrellaId: umbrella.umbrella_id,
-                //         umbrellaData: umbrella
-                //     }
-                // });
-
-                // 5. 확인 페이지로
-                setStep(prev => (prev+1));
-                // dispatch({ type: 'NAVIGATE', payload: 'CONFIRM' });
+                setStep(prev => (prev + 1));
             }
-
         } catch (error) {
-
-            console.error('에러:', error);
-            setError({state: true, message: "처리 중 오류 발생"});
-        }
-        finally {
+            console.error('사용자 정보 처리 오류:', error);
+            setError({ state: true, message: "처리 중 오류가 발생했습니다." });
+        } finally {
             setIsLoading(false);
         }
     };
 
-    const titleMap = {
-        'BORROW': '대여 정보',
-        'RETURN': '반납 정보',
-        'LOST_REPORT': '분실 신고'
-    };
+    const dynamicText = mode === 'BORROW' ? "대여에 사용할" : "확인을 위한";
 
     return (
-        <form className="user-info" onSubmit={handleSubmit}>
-            <h2>{titleMap[mode]}</h2>
-            {error.state && <p>{error.message}</p>}
-
-            <div className="form-group">
-                <label>휴대폰 번호</label>
-                <input
-                    type="tel"
-                    name="phone"
-                    placeholder="01012345678"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    disabled={isLoading}
-                />
+        <form className="neumorphism-container" onSubmit={handleSubmit}>
+            <div className="neu-header-texts">
+                <div className="neu-main-text">서비스 이용 정보를 입력해주세요.</div>
+                <div className="neu-sub-text">{dynamicText} 전화번호와 PIN 번호를 입력해주세요.</div>
             </div>
 
-            <div className="form-group">
-                <label>4자리 PIN</label>
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="••••"
-                    value={formData.password}
-                    onChange={handleChange}
-                    maxLength="4"
-                    disabled={isLoading}
-                />
-            </div>
+            {error.state && <div className="neu-error-msg">{error.message}</div>}
 
-            {mode === 'BORROW' && (
-                <div className="form-group">
-                    <label>PIN 확인</label>
-                    <input
-                        type="password"
-                        name="passwordConfirm"
-                        placeholder="••••"
-                        value={formData.passwordConfirm}
-                        onChange={handleChange}
-                        maxLength="4"
-                        disabled={isLoading}
-                    />
+            <div className="neu-input-container">
+                <div className="neu-form-group">
+                    <div className="neu-label-container">
+                        <div className="neu-label-text">전화번호</div>
+                        <img src={phoneImg} alt="전화번호" className="neu-asset-icon" />
+                    </div>
+                    <div className="user-neu-input-container">
+                        <input
+                            type="tel"
+                            name="phone"
+                            className="neu-input-box"
+                            placeholder="전화번호 입력"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            disabled={isLoading}
+                        />
+                    </div>
                 </div>
-            )}
 
-            <button type="button" onClick={() => setStep(prev => Math.max(prev-1,0))}>뒤로</button>
-            <button type="submit" disabled={isLoading}>
-                {isLoading ? '확인 중...' : '다음'}
-            </button>
+                <div className="neu-form-group">
+                    <div className="neu-label-container">
+                        <div className="neu-label-text">PIN 번호 4자리</div>
+                        <img src={lockImg} alt="PIN 번호" className="neu-asset-icon" />
+                    </div>
+                    <div className="user-neu-input-container">
+                        <input
+                            type="text"
+                            inputMode="numeric"
+                            autoComplete="off"
+                            name="password"
+                            className={formData.password ? "sec-pin pin-mask" : "sec-pin"}
+                            placeholder="4자리 PIN"
+                            value={formData.password}
+                            onChange={handleChange}
+                            maxLength="4"
+                            disabled={isLoading}
+                        />
+                    </div>
+                </div>
+
+                {mode === 'BORROW' && (
+                    <div className="neu-form-group">
+                        <div className="neu-label-container">
+                            <div className="neu-label-text">PIN 번호 확인</div>
+                            <img src={keyImg} alt="PIN 번호 확인" className="neu-asset-icon" />
+                        </div>
+                        <div className="user-neu-input-container">
+                            <input
+                                type="text"
+                                inputMode="numeric"
+                                autoComplete="off"
+                                name="passwordConfirm"
+                                className={formData.passwordConfirm ? "sec-pin pin-mask" : "sec-pin"}
+                                placeholder="PIN 다시 입력"
+                                value={formData.passwordConfirm}
+                                onChange={handleChange}
+                                maxLength="4"
+                                disabled={isLoading}
+                            />
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            <div className="neu-footer">
+                <button type="button" className="neu-btn" onClick={() => setStep(prev => Math.max(prev - 1, 0))}>
+                    이전
+                </button>
+                <button type="submit" className="neu-btn neu-btn-next" disabled={isLoading}>
+                    {isLoading ? '조회 중...' : '다음'}
+                </button>
+            </div>
         </form>
     );
 }

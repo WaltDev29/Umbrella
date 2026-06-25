@@ -1,32 +1,185 @@
+@font-face {
+    font-family: 'Cafe24Surround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
 .layout-container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background: var(--baro-bg);
 }
 
 .app-header {
-    display: flex;
+    display: grid;
+    grid-template-columns: 84px 1fr 84px;
     align-items: center;
-    padding: 10px 20px;
-    border-bottom: 1px solid #ccc;
-    background-color: #f8f9fa;
+    min-height: 100px;
+    padding: 14px 28px;
+    background: var(--baro-primary-gradient);
+    box-shadow:
+        0 6px 14px rgba(101, 135, 190, 0.16),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.24);
+    position: relative;
+    z-index: 20;
 }
 
-.app-logo {
-    height: 40px;
-    margin-right: 15px;
+@media (min-height: 1000px) and (min-width: 900px) {
+    .app-header {
+        height: 104px;
+        min-height: 104px;
+        padding: 12px 28px;
+    }
+
+    .home-btn,
+    .header-right-spacer {
+        width: 64px;
+        height: 64px;
+    }
+
+    .logo-container,
+    .app-logo-center {
+        height: 70px;
+    }
+}
+
+@media (min-width: 900px) and (min-aspect-ratio: 4/3) {
+    .app-header {
+        height: 86px;
+        min-height: 86px;
+        grid-template-columns: 64px 1fr 64px;
+        padding: 10px 32px;
+    }
+
+    .home-btn,
+    .header-right-spacer {
+        width: 52px;
+        height: 52px;
+    }
+
+    .home-btn svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    .logo-container,
+    .app-logo-center {
+        height: 58px;
+    }
+}
+
+.home-btn {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    border: 0;
+    background: rgba(255, 255, 255, 0.13);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        4px 4px 9px rgba(88, 122, 180, 0.16),
+        -3px -3px 8px rgba(247, 251, 255, 0.18),
+        inset 1px 1px 2px rgba(247, 251, 255, 0.18);
+    transition: transform 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.home-btn:hover {
+    background-color: rgba(255, 255, 255, 0.18);
+    box-shadow:
+        4px 4px 9px rgba(88, 122, 180, 0.18),
+        -3px -3px 8px rgba(255, 255, 255, 0.18);
+    transform: none;
+}
+
+.home-btn:active {
+    transform: scale(0.96);
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 0;
+    height: 72px;
+}
+
+.app-logo-center {
+    height: 72px;
+    width: auto;
+    max-width: min(360px, 72vw);
+    object-fit: contain;
+    filter: drop-shadow(2px 4px 7px rgba(38, 61, 99, 0.14));
+}
+
+.header-right-spacer {
+    width: 62px;
+    height: 62px;
 }
 
 .app-main {
-    flex-grow: 1;
-    padding: 20px;
-    height: 100%;
+    flex: 1;
+    min-height: 0;
+    padding: 0;
+    background: var(--baro-bg);
+}
+
+.app-main:not(.index-main) {
+    font-family: 'Cafe24Surround', sans-serif;
+}
+
+.app-main.index-main {
+    font-family: 'Cafe24Surround', sans-serif;
 }
 
 .app-footer {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-    border-top: 1px solid #ccc;
-    background-color: #f8f9fa;
+    display: none;
+}
+
+@media (max-width: 720px) {
+    .app-header {
+        grid-template-columns: 64px 1fr 64px;
+        min-height: 82px;
+        padding: 10px 16px;
+    }
+
+    .home-btn,
+    .header-right-spacer {
+        width: 50px;
+        height: 50px;
+    }
+
+    .logo-container,
+    .app-logo-center {
+        height: 56px;
+    }
+}
+
+@media (min-width: 900px) and (min-aspect-ratio: 4/3) {
+    .app-header {
+        height: 72px !important;
+        min-height: 72px !important;
+        grid-template-columns: 56px 1fr 56px !important;
+        padding: 8px 28px !important;
+    }
+
+    .home-btn,
+    .header-right-spacer {
+        width: 44px !important;
+        height: 44px !important;
+    }
+
+    .home-btn svg {
+        width: 24px !important;
+        height: 24px !important;
+    }
+
+    .logo-container,
+    .app-logo-center {
+        height: 46px !important;
+    }
 }

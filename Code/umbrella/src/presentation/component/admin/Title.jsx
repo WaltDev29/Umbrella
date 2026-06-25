@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const H1 = styled.h1`
-    font-size: 48px;
+    font-size: clamp(30px, 5vw, 48px);
     color: #0056b3;
     font-weight: 900;
     margin: 0;
@@ -16,19 +16,19 @@ const H1 = styled.h1`
     }
 
     &.update-umbrella-info {
-        font-size: 40px;
+        font-size: clamp(28px, 4vw, 40px);
         margin-bottom: 40px;
     }
 
     &.update-admin-info {
-        font-size: 40px;
+        font-size: clamp(28px, 4vw, 40px);
         margin-bottom: 40px;
         text-align: center;
         display: block; /* 가운데 정렬을 위해 block 처리 */
     }
 
     &.check-update-info {
-        font-size: 32px;
+        font-size: clamp(24px, 4vw, 32px);
         margin-bottom: 10px;
         padding-bottom: 10px;
     }

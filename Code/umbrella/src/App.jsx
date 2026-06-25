@@ -1,4 +1,5 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import Layout from './Layout.jsx';
 import KioskStartPage from "./presentation/page/KioskStartPage.jsx";
 import UserHomePage from './presentation/page/user/UserHomePage';
@@ -17,31 +18,49 @@ import UpdateAdminInfoPage from "./presentation/page/admin/UpdateAdminInfoPage";
 import UpdateUmbrellaInfo from "./presentation/page/admin/UpdateUmbrellaInfo";
 import ThankYouPage from "./presentation/page/admin/ThankYouPage";
 
+function GlobalScrollHandler() {
+    const location = useLocation();
+
+    useEffect(() => {
+        document.body.style.overflow = 'auto';
+        document.body.style.touchAction = 'auto';
+        document.documentElement.style.overflow = 'auto';
+
+        return () => {
+            document.body.style.overflow = '';
+            document.body.style.touchAction = '';
+            document.documentElement.style.overflow = '';
+        };
+    }, [location.pathname]);
+
+    return null;
+}
 
 function App() {
     return (
         <BrowserRouter>
+            <GlobalScrollHandler />
             <Routes>
-                <Route path="/" element={<Layout/>}>
-                    <Route index element={<KioskStartPage/>}/>
-                    <Route path="userhomepage" element={<UserHomePage/>}/>
-                    <Route path="login" element={<AdminLogInPage/>}/>
-                    <Route path="admin-home" element={<AdminHomePage/>}/>
-                    <Route path="dashboard" element={<DashBoardPage/>}/>
-                    <Route path="update-admin-info" element={<UpdateAdminInfoPage/>}/>
-                    <Route path="update-umbrella-info" element={<UpdateUmbrellaInfo/>}/>
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<KioskStartPage />} />
+                    <Route path="userhomepage" element={<UserHomePage />} />
 
+                    <Route path="rental" element={<RentalPage />} />
+                    <Route path="return" element={<ReturnPage />} />
+                    <Route path="lost_report" element={<LostReportPage />} />
+                    <Route path="defect_report" element={<DefectReportPage />} />
+                    <Route path="thanks" element={<Thanks />} />
+
+                    <Route path="login" element={<AdminLogInPage />} />
+                    <Route path="admin-home" element={<AdminHomePage />} />
+                    <Route path="dashboard" element={<DashBoardPage />} />
+                    <Route path="update-admin-info" element={<UpdateAdminInfoPage />} />
+                    <Route path="update-umbrella-info" element={<UpdateUmbrellaInfo />} />
                 </Route>
                 <Route>
-                    <Route path="rental" element={<RentalPage/>}/>
-                    <Route path="return" element={<ReturnPage/>}/>
-                    <Route path="lost_report" element={<LostReportPage/>}/>
-                    <Route path="defect_report" element={<DefectReportPage/>}/>
-
-                    <Route path="warning" element={<Warning/>}/>
-
-                    <Route path="complete" element={<ThankYouPage/>}/>
-                    <Route path="thanks" element={<Thanks/>}/>
+                    <Route path="warning" element={<Warning />} />
+                    <Route path="complete" element={<ThankYouPage />} />
+                    <Route path="thanks" element={<Thanks />} />
                 </Route>
             </Routes>
         </BrowserRouter>

@@ -10,19 +10,21 @@ import Title from "../../component/admin/Title";
 
 const Grid = styled.section`
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(16px, 2.4vw, 30px);
 
-    @media (max-width: 1023px) {
-        display: grid;
+    @media (max-width: 1180px) {
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+    }
+
+    @media (max-width: 560px) {
+        grid-template-columns: 1fr;
     }
 `;
 
 const UserStatText = styled.div`
     text-align: center;
-    font-size: 28px;
+    font-size: clamp(20px, 3vw, 28px);
     font-weight: bold;
     color: #333;
     padding-bottom: 10px;
@@ -35,8 +37,8 @@ const UserStatText = styled.div`
 
 const Highlight = styled.span`
     color: #28a745;
-    margin-left: 15px;
-    font-size: 48px;
+    margin-left: 12px;
+    font-size: clamp(32px, 5vw, 48px);
 
     @media screen and (max-width: 1023px), screen and (orientation: portrait) {
         font-size: 48px;

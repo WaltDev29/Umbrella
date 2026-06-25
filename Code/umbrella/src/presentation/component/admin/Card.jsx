@@ -9,7 +9,7 @@ const popIn = keyframes`
 const Container = styled.div`
     width: 100%;
     max-width: 700px;
-    padding: 60px;
+    padding: clamp(28px, 6vw, 60px);
     background-color: #ffffff;
     border-radius: 16px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
@@ -44,6 +44,10 @@ const Container = styled.div`
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         border: 1px solid #ddd;
         animation: ${popIn} 0.3s ease-out;
+    }
+
+    @media screen and (max-width: 560px) {
+        border-radius: 14px;
     }
 `;
 
