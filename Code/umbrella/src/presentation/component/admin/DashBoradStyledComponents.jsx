@@ -6,7 +6,7 @@ export const SelectedItemBox = styled.div`
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 30px;
-    font-size: 24px;
+    font-size: clamp(18px, 2vw, 24px);
     color: #0056b3;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -17,12 +17,14 @@ export const TableWrapper = styled.div`
     background-color: #ffffff;
     border-radius: 16px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    -webkit-overflow-scrolling: touch;
 `;
 
 export const Table = styled.table`
     width: 100%;
+    min-width: 760px;
     border-collapse: collapse;
-    font-size: 22px;
+    font-size: clamp(15px, 1.6vw, 22px);
 `;
 
 export const Tr = styled.tr`
@@ -40,7 +42,7 @@ export const Tr = styled.tr`
 export const Th = styled.th`
     background-color: #0056b3;
     color: #ffffff;
-    padding: 20px;
+    padding: clamp(12px, 1.8vw, 20px);
     text-align: center;
     font-weight: bold;
     border-right: 1px solid rgba(255, 255, 255, 0.2);
@@ -50,7 +52,7 @@ export const SortBtn = styled.button`
     background: none;
     border: none;
     color: #ffffff;
-    font-size: 22px;
+    font-size: clamp(15px, 1.6vw, 22px);
     font-weight: bold;
     cursor: pointer;
     display: flex;
@@ -61,7 +63,7 @@ export const SortBtn = styled.button`
 `;
 
 export const Td = styled.td`
-    padding: 25px 15px;
+    padding: clamp(14px, 2vw, 25px) clamp(10px, 1.4vw, 15px);
     text-align: center;
     border-bottom: 1px solid #eee;
     color: #333;

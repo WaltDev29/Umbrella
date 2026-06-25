@@ -1,10 +1,64 @@
+:root {
+  --baro-blue: #63a8f6;
+  --baro-blue-dark: #3274c6;
+  --baro-blue-soft: #a8c9f5;
+  --baro-cyan: #7ed8df;
+  --baro-lime: #e7eca0;
+  --baro-bg: #e5eefb;
+  --baro-bg-soft: #f6faff;
+  --baro-surface: #eaf2fc;
+  --baro-ink: #263d63;
+  --baro-muted: #71829e;
+  --baro-heading: #223a60;
+  --baro-label: #2f8ee9;
+  --baro-danger: #e24d4d;
+  --baro-shadow: #c4d0e1;
+  --baro-shadow-deep: rgba(174, 190, 213, 0.62);
+  --baro-shadow-soft: rgba(247, 251, 255, 0.72);
+  --baro-light: #ffffff;
+  --baro-text-gradient: linear-gradient(135deg, #2f8ee9 0%, #28b7d4 62%, #3fc7ba 100%);
+  --baro-accent-gradient: linear-gradient(135deg, #6fa8f4 0%, #71d7df 54%, #dce89b 100%);
+  --baro-primary-gradient: linear-gradient(135deg, #7db1f1 0%, #6198df 100%);
+  --baro-surface-gradient: linear-gradient(145deg, #f3f8ff 0%, #e4edf9 100%);
+  --baro-raised: 14px 14px 28px var(--baro-shadow-deep), -10px -10px 22px var(--baro-shadow-soft);
+  --baro-raised-soft: 9px 9px 18px rgba(174, 190, 213, 0.54), -7px -7px 16px rgba(247, 251, 255, 0.66);
+  --baro-raised-tight: 5px 5px 11px rgba(174, 190, 213, 0.54), -4px -4px 10px rgba(247, 251, 255, 0.62);
+  --baro-inset: inset 9px 9px 18px rgba(174, 190, 213, 0.62), inset -7px -7px 15px rgba(247, 251, 255, 0.72);
+  --baro-inset-soft: inset 5px 5px 11px rgba(174, 190, 213, 0.52), inset -4px -4px 10px rgba(247, 251, 255, 0.66);
+  --baro-ring: 0 0 0 3px rgba(111, 168, 244, 0.18);
+  --baro-edge: 0 0 0 0 transparent;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
 body {
   margin: 0;
+  background: var(--baro-bg);
+  color: var(--baro-ink);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
 }
 
 code {

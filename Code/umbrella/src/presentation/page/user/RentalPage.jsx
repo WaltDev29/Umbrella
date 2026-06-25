@@ -30,7 +30,7 @@ export default function RentalPage() {
     ][step]
 
     useEffect(() => {
-        if (step == 0) navigate("/");
+        if (step == 0) navigate("/userhomepage");
         else if (step == 4) navigate("/thanks", {state : {mode : "BORROW"}});
     }, [step]);
 

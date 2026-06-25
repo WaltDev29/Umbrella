@@ -1,0 +1,410 @@
+.confirm-page-container {
+    overflow-y: auto;
+}
+
+.confirm-bg-circle {
+    position: absolute;
+    width: min(1120px, 150%);
+    height: auto;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(180deg);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.14;
+}
+
+.confirm-info-card {
+    width: min(800px, 100%);
+    padding: clamp(32px, 6vw, 60px);
+    border-radius: 34px;
+    background: var(--baro-surface-gradient);
+    border: 0;
+    box-shadow: var(--baro-raised), var(--baro-edge);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.confirm-asset-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(18px, 3vh, 28px);
+}
+
+.confirm-icon-wrapper {
+    width: min(280px, 56vw);
+    aspect-ratio: 1;
+    padding: clamp(20px, 5vw, 34px);
+    border-radius: 50%;
+    background: linear-gradient(145deg, #e0eaf7 0%, #f2f7ff 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--baro-inset);
+}
+
+.confirm-asset-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(5px 8px 10px rgba(38, 61, 99, 0.13));
+}
+
+.confirm-umbrella-id {
+    min-width: min(320px, 80%);
+    padding: 14px 28px;
+    border-radius: 999px;
+    background: linear-gradient(145deg, #e0eaf7 0%, #f2f7ff 100%);
+    box-shadow: var(--baro-inset);
+    color: var(--baro-blue);
+    position: relative;
+    z-index: 1;
+    font-size: clamp(1.7rem, 4vw, 2.35rem);
+    font-weight: 800;
+    text-align: center;
+}
+
+.receipt-divider {
+    width: 100%;
+    padding: clamp(28px, 5vh, 44px) 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.receipt-groove {
+    width: 100%;
+    height: 8px;
+    border-radius: 999px;
+    background-color: var(--baro-surface);
+    box-shadow: var(--baro-inset-soft);
+    position: relative;
+}
+
+.receipt-groove::after {
+    content: "";
+    position: absolute;
+    inset: 3px 10px auto;
+    border-top: 2px dashed rgba(111, 168, 244, 0.2);
+}
+
+.confirm-details-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(18px, 3vh, 28px);
+    position: relative;
+    z-index: 1;
+}
+
+.confirm-input-container {
+    display: flex;
+    align-items: center;
+    border: 0;
+    border-radius: 24px;
+    background: transparent;
+    transition: box-shadow 0.2s ease;
+}
+
+.confirm-input-container input {
+    cursor: default;
+}
+
+.neu-barcode-section {
+    width: 100%;
+    margin-top: clamp(32px, 5vh, 52px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.neu-barcode-lines {
+    width: min(420px, 72%);
+    height: 42px;
+    background: repeating-linear-gradient(
+        90deg,
+        #8fa1bd 0,
+        #8fa1bd 4px,
+        transparent 4px,
+        transparent 9px,
+        #8fa1bd 9px,
+        #8fa1bd 12px,
+        transparent 12px,
+        transparent 18px
+    );
+    opacity: 0.52;
+}
+
+.neu-barcode-text {
+    color: #8293af;
+    font-size: clamp(0.78rem, 2vw, 1.05rem);
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    text-align: center;
+}
+
+@media (max-height: 820px) and (min-width: 900px) and (orientation: portrait) {
+    .confirm-info-card {
+        padding: 26px 34px;
+        border-radius: 26px;
+    }
+
+    .confirm-icon-wrapper {
+        width: 150px;
+        padding: 18px;
+    }
+
+    .confirm-umbrella-id {
+        padding: 10px 20px;
+        font-size: 1.4rem;
+    }
+
+    .receipt-divider {
+        padding: 18px 0;
+    }
+
+    .confirm-details-section {
+        gap: 14px;
+    }
+
+    .neu-barcode-section {
+        margin-top: 20px;
+    }
+
+    .neu-barcode-lines {
+        height: 28px;
+    }
+}
+
+@media (max-width: 720px) {
+    .confirm-info-card {
+        width: 100%;
+        padding: 30px 24px;
+        border-radius: 28px;
+    }
+
+    .confirm-icon-wrapper {
+        width: min(220px, 58vw);
+        padding: 24px;
+    }
+
+    .confirm-umbrella-id {
+        min-width: min(260px, 82%);
+        font-size: clamp(1.55rem, 7vw, 2rem);
+    }
+
+    .receipt-divider {
+        padding: 30px 0;
+    }
+
+    .confirm-details-section {
+        gap: 22px;
+    }
+
+    .neu-barcode-section {
+        margin-top: 30px;
+    }
+}
+
+@media (min-width: 900px) and (min-aspect-ratio: 4/3) {
+    .confirm-page-container {
+        display: grid;
+        grid-template-columns: minmax(360px, 500px) minmax(520px, 640px);
+        grid-template-rows: auto auto;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        gap: 30px 70px;
+    }
+
+    .confirm-header-texts {
+        width: 100%;
+        margin: 0;
+        text-align: left;
+    }
+
+    .confirm-main-text {
+        font-size: clamp(3rem, 4vw, 4.2rem);
+    }
+
+    .confirm-sub-text {
+        font-size: clamp(1.35rem, 1.7vw, 1.75rem);
+    }
+
+    .confirm-info-card {
+        width: 100%;
+        min-height: auto;
+        padding: 44px 48px;
+        border-radius: 34px;
+    }
+
+    .confirm-asset-section {
+        gap: 22px;
+    }
+
+    .confirm-icon-wrapper {
+        width: 210px;
+        padding: 26px;
+    }
+
+    .confirm-umbrella-id {
+        padding: 12px 26px;
+        font-size: 1.85rem;
+    }
+
+    .receipt-divider {
+        padding: 30px 0;
+    }
+
+    .confirm-details-section {
+        gap: 22px;
+    }
+
+    .confirm-input-container input {
+        min-height: 72px;
+        font-size: 1.45rem;
+    }
+
+    .neu-barcode-section {
+        margin-top: 32px;
+        gap: 12px;
+    }
+
+    .neu-barcode-lines {
+        height: 34px;
+    }
+
+    .confirm-page-container .neu-footer {
+        grid-column: 2;
+        width: 100%;
+        margin-top: 0;
+    }
+}
+
+@media (min-width: 900px) and (min-height: 1000px) and (orientation: portrait) {
+    .confirm-page-container {
+        padding-top: 76px;
+    }
+
+    .confirm-header-texts {
+        margin-bottom: 58px;
+    }
+
+    .confirm-info-card {
+        width: 820px;
+        min-height: 1120px;
+        align-self: center;
+        padding: 64px 64px 56px;
+        border-radius: 34px;
+        justify-content: start;
+    }
+
+    .confirm-asset-section {
+        gap: 28px;
+    }
+
+    .confirm-icon-wrapper {
+        width: 300px;
+        padding: 34px;
+    }
+
+    .confirm-umbrella-id {
+        min-width: 320px;
+        padding: 16px 30px;
+        font-size: 2.25rem;
+    }
+
+    .receipt-divider {
+        padding: 54px 0;
+    }
+
+    .confirm-details-section {
+        gap: 34px;
+    }
+
+    .confirm-input-container input {
+        min-height: 92px;
+        font-size: 2rem;
+    }
+
+    .neu-barcode-section {
+        margin-top: 54px;
+        gap: 16px;
+    }
+
+    .neu-barcode-lines {
+        width: 520px;
+        height: 46px;
+    }
+
+    .neu-barcode-text {
+        font-size: 1rem;
+    }
+
+    .confirm-page-container .neu-footer {
+        margin-top: 0;
+    }
+}
+
+@media (min-width: 900px) and (min-aspect-ratio: 4/3) {
+    .confirm-page-container {
+        display: grid !important;
+        grid-template-columns: minmax(360px, 500px) minmax(480px, 590px) !important;
+        grid-template-rows: auto auto !important;
+        justify-content: center !important;
+        align-content: center !important;
+        align-items: center !important;
+        gap: 20px clamp(42px, 5vw, 68px) !important;
+    }
+
+    .confirm-info-card {
+        width: 100% !important;
+        min-height: auto !important;
+        padding: 30px 36px !important;
+        border-radius: 28px !important;
+    }
+
+    .confirm-asset-section {
+        gap: 16px !important;
+    }
+
+    .confirm-icon-wrapper {
+        width: 170px !important;
+        padding: 22px !important;
+    }
+
+    .confirm-umbrella-id {
+        min-width: 250px !important;
+        padding: 10px 22px !important;
+        font-size: 1.48rem !important;
+    }
+
+    .receipt-divider {
+        padding: 22px 0 !important;
+    }
+
+    .confirm-details-section {
+        gap: 16px !important;
+    }
+
+    .confirm-input-container input {
+        min-height: 62px !important;
+        font-size: 1.22rem !important;
+    }
+
+    .neu-barcode-section {
+        margin-top: 22px !important;
+        gap: 8px !important;
+    }
+
+    .neu-barcode-lines {
+        width: 380px !important;
+        height: 28px !important;
+    }
+}

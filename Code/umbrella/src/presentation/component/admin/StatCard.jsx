@@ -25,8 +25,8 @@ const cardStyles = {
 };
 
 const Card = styled.div`
-    height: 240px !important;
-    padding: 30px;
+    min-height: clamp(150px, 16vw, 240px);
+    padding: clamp(20px, 3vw, 30px);
     border-radius: 16px;
     text-align: center;
     border: 1px solid #e0e0e0;
@@ -43,8 +43,11 @@ const Card = styled.div`
     border-bottom: 8px solid ${({variant}) => cardStyles[variant]?.border || "#ccc"};
 
     @media screen and (max-width: 1023px), screen and (orientation: portrait) {
-        height: 180px;
-        padding: 20px;
+        min-height: 156px;
+    }
+
+    @media screen and (max-width: 560px) {
+        min-height: 128px;
     }
 
     @media screen and (min-width: 1024px) {
@@ -58,7 +61,7 @@ const Card = styled.div`
 const Label = styled.span`
     color: #666;
     margin-bottom: 10px;
-    font-size: 22px;
+    font-size: clamp(17px, 2vw, 22px);
     font-weight: 600;
 
     @media screen and (max-width: 1023px), screen and (orientation: portrait) {
@@ -67,14 +70,11 @@ const Label = styled.span`
 `;
 
 const Value = styled.span`
-    font-size: 60px;
+    font-size: clamp(38px, 6vw, 60px);
     font-weight: 800;
     color: ${({variant}) =>
     cardStyles[variant]?.text || "#333"};
 
-    @media screen and (max-width: 1023px), screen and (orientation: portrait) {
-        font-size: 56px;
-    }
 `;
 
 export default function StatCard(props) {

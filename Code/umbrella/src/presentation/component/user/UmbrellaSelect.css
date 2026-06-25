@@ -1,0 +1,402 @@
+.umbrella-select-container.loading {
+    justify-content: center;
+    font-size: clamp(1.5rem, 4vw, 2.4rem);
+    font-weight: 800;
+    color: var(--baro-blue);
+}
+
+.umbrella-card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(22px, 4vw, 42px);
+    justify-content: center;
+    width: min(980px, 100%);
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.umbrella-neu-card {
+    min-height: clamp(520px, 58vh, 740px);
+    padding: clamp(26px, 5vw, 52px) clamp(18px, 4vw, 34px);
+    border-radius: 34px;
+    background: var(--baro-surface-gradient);
+    border: 0;
+    box-shadow: var(--baro-raised), var(--baro-edge);
+    cursor: pointer;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.umbrella-neu-card:hover {
+    transform: none;
+    box-shadow: var(--baro-raised), var(--baro-ring), var(--baro-edge);
+}
+
+.umbrella-neu-card:active {
+    transform: scale(0.98);
+    box-shadow: var(--baro-inset);
+}
+
+.umbrella-neu-card.selected {
+    box-shadow: var(--baro-inset), var(--baro-ring);
+}
+
+.umbrella-info-section {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto auto;
+    align-items: center;
+    justify-items: center;
+    gap: clamp(18px, 3vh, 30px);
+    position: relative;
+    z-index: 1;
+}
+
+.umbrella-type-label-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 14px 24px;
+    border-radius: 999px;
+    background: var(--baro-surface-gradient);
+    box-shadow: var(--baro-raised-soft), var(--baro-edge);
+}
+
+.umbrella-type-label {
+    font-size: clamp(2rem, 4.6vw, 3.1rem);
+    font-weight: 900;
+    line-height: 1;
+    color: var(--baro-label);
+    background: var(--baro-text-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.umbrella-type-label-En {
+    min-width: 54px;
+    padding: 8px 14px;
+    border-radius: 16px;
+    background-color: var(--baro-lime);
+    color: var(--baro-blue);
+    box-shadow: var(--baro-inset-soft);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 800;
+    text-align: center;
+}
+
+.umbrella-icon-wrapper {
+    width: min(320px, 60vw);
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(20px, 5vw, 36px);
+    border-radius: 50%;
+    background: linear-gradient(145deg, #e0eaf7 0%, #f2f7ff 100%);
+    box-shadow: var(--baro-inset);
+    overflow: hidden;
+}
+
+.umbrella-asset-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(5px 8px 10px rgba(38, 61, 99, 0.13));
+}
+
+.umbrella-type-label-ko {
+    font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+    font-weight: 800;
+    color: var(--baro-muted);
+    letter-spacing: 0.18em;
+}
+
+.umbrella-count-badge {
+    min-width: min(280px, 80%);
+    padding: 16px 28px;
+    border-radius: 999px;
+    background: linear-gradient(145deg, #e0eaf7 0%, #f2f7ff 100%);
+    box-shadow: var(--baro-inset);
+    color: var(--baro-blue-dark);
+    font-size: clamp(1.25rem, 2.7vw, 1.7rem);
+    font-weight: 800;
+    text-align: center;
+}
+
+.umbrella-neu-card.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: grayscale(0.82);
+    box-shadow: var(--baro-inset-soft);
+}
+
+@media (max-width: 820px) {
+    .umbrella-card-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .umbrella-neu-card {
+        min-height: 360px;
+        padding: 28px 24px;
+        border-radius: 28px;
+    }
+
+    .umbrella-info-section {
+        gap: 20px;
+    }
+
+    .umbrella-type-label-wrapper {
+        padding: 12px 18px;
+        gap: 12px;
+    }
+
+    .umbrella-type-label {
+        font-size: clamp(2rem, 9vw, 2.55rem);
+    }
+
+    .umbrella-type-label-En {
+        min-width: 48px;
+        font-size: clamp(1.25rem, 5.5vw, 1.6rem);
+    }
+
+    .umbrella-icon-wrapper {
+        width: min(230px, 58vw);
+    }
+
+    .umbrella-type-label-ko,
+    .umbrella-count-badge {
+        font-size: clamp(1.08rem, 4.4vw, 1.35rem);
+    }
+}
+
+@media (min-width: 900px) and (min-aspect-ratio: 4/3) {
+    .umbrella-select-container {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        justify-items: center;
+        align-content: center;
+        gap: 30px;
+    }
+
+    .umbrella-select-container .neu-header-texts {
+        width: min(980px, 100%);
+        margin: 0;
+    }
+
+    .umbrella-select-container .neu-main-text {
+        font-size: clamp(3rem, 3.9vw, 4.1rem);
+    }
+
+    .umbrella-select-container .neu-sub-text {
+        font-size: clamp(1.35rem, 1.7vw, 1.75rem);
+    }
+
+    .umbrella-card-grid {
+        width: min(980px, 100%);
+        gap: 36px;
+        align-self: center;
+    }
+
+    .umbrella-neu-card {
+        min-height: 520px;
+        padding: 34px 28px;
+        border-radius: 30px;
+    }
+
+    .umbrella-info-section {
+        gap: 24px;
+    }
+
+    .umbrella-type-label-wrapper {
+        padding: 14px 22px;
+    }
+
+    .umbrella-type-label {
+        font-size: 2.45rem;
+        white-space: nowrap;
+    }
+
+    .umbrella-type-label-En {
+        min-width: 54px;
+        font-size: 1.62rem;
+    }
+
+    .umbrella-icon-wrapper {
+        width: 250px;
+        padding: 28px;
+    }
+
+    .umbrella-type-label-ko,
+    .umbrella-count-badge {
+        font-size: 1.35rem;
+    }
+
+    .umbrella-select-container .neu-footer {
+        width: min(620px, 100%);
+        margin-top: 0;
+    }
+}
+
+@media (max-height: 820px) and (min-width: 900px) and (orientation: portrait) {
+    .umbrella-card-grid {
+        gap: 22px;
+    }
+
+    .umbrella-neu-card {
+        min-height: 300px;
+        padding: 22px 24px;
+        border-radius: 26px;
+    }
+
+    .umbrella-info-section {
+        gap: 12px;
+    }
+
+    .umbrella-type-label-wrapper {
+        padding: 10px 18px;
+    }
+
+    .umbrella-type-label {
+        font-size: 1.8rem;
+    }
+
+    .umbrella-type-label-En {
+        min-width: 44px;
+        font-size: 1.2rem;
+        border-radius: 14px;
+    }
+
+    .umbrella-icon-wrapper {
+        width: 170px;
+        padding: 18px;
+    }
+
+    .umbrella-count-badge {
+        padding: 12px 20px;
+        font-size: 1.12rem;
+    }
+}
+
+@media (min-width: 900px) and (min-height: 1000px) and (orientation: portrait) {
+    .umbrella-select-container {
+        padding-top: 76px;
+    }
+
+    .umbrella-select-container .neu-header-texts {
+        margin-bottom: 66px;
+    }
+
+    .umbrella-card-grid {
+        width: 980px;
+        align-self: center;
+        gap: 48px;
+    }
+
+    .umbrella-neu-card {
+        min-height: 1060px;
+        padding: 52px 34px 46px;
+        border-radius: 34px;
+    }
+
+    .umbrella-info-section {
+        gap: 34px;
+    }
+
+    .umbrella-type-label-wrapper {
+        padding: 20px 30px;
+        gap: 16px;
+    }
+
+    .umbrella-type-label {
+        font-size: 2.82rem;
+        white-space: nowrap;
+    }
+
+    .umbrella-type-label-En {
+        min-width: 64px;
+        padding: 10px 16px;
+        font-size: 2rem;
+    }
+
+    .umbrella-icon-wrapper {
+        width: 330px;
+        padding: 34px;
+    }
+
+    .umbrella-type-label-ko {
+        font-size: 1.86rem;
+    }
+
+    .umbrella-count-badge {
+        min-width: 300px;
+        padding: 18px 34px;
+        font-size: 1.86rem;
+    }
+
+    .umbrella-select-container .neu-footer {
+        margin-top: 0;
+    }
+}
+
+@media (min-width: 900px) and (min-aspect-ratio: 4/3) {
+    .umbrella-select-container {
+        display: grid !important;
+        grid-template-rows: auto 1fr auto !important;
+        justify-items: center !important;
+        align-content: center !important;
+        gap: 22px !important;
+    }
+
+    .umbrella-select-container .neu-header-texts {
+        width: min(940px, 100%) !important;
+        margin: 0 !important;
+        text-align: center !important;
+    }
+
+    .umbrella-card-grid {
+        width: min(880px, 100%) !important;
+        gap: 28px !important;
+        align-self: center !important;
+    }
+
+    .umbrella-neu-card {
+        min-height: min(430px, calc(100vh - 310px)) !important;
+        padding: 26px 24px !important;
+        border-radius: 26px !important;
+    }
+
+    .umbrella-info-section {
+        gap: 18px !important;
+    }
+
+    .umbrella-type-label-wrapper {
+        padding: 10px 18px !important;
+        gap: 10px !important;
+    }
+
+    .umbrella-type-label {
+        font-size: 2.05rem !important;
+        white-space: nowrap !important;
+    }
+
+    .umbrella-type-label-En {
+        min-width: 46px !important;
+        padding: 7px 12px !important;
+        font-size: 1.25rem !important;
+        border-radius: 14px !important;
+    }
+
+    .umbrella-icon-wrapper {
+        width: 190px !important;
+        padding: 22px !important;
+    }
+
+    .umbrella-type-label-ko,
+    .umbrella-count-badge {
+        font-size: 1.18rem !important;
+    }
+}
