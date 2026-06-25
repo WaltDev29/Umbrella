@@ -79,7 +79,7 @@ export default function DefectReport({ setIsDone }) {
                         <input
                             type="tel"
                             name="phone"
-                            placeholder="01012345678"
+                            placeholder="전화번호 입력"
                             value={formData.phone}
                             onChange={handleChange}
                             disabled={isLoading}
